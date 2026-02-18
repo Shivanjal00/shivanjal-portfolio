@@ -4,248 +4,102 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shivanjal | Android Developer</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-* {
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Inter', sans-serif;
-}
-
-body {
-    background:#0f172a;
-    color:#e5e7eb;
-    line-height:1.6;
-}
-
-.container {
-    max-width:1100px;
-    margin:auto;
-    padding:40px 20px;
-}
-
-header {
-    text-align:center;
-    margin-bottom:50px;
-}
-
-header img {
-    width:160px;
-    height:160px;
-    border-radius:50%;
-    object-fit:cover;
-    border:4px solid #22c55e;
-    margin-bottom:20px;
-}
-
-h1 {
-    font-size:42px;
-    font-weight:800;
-}
-
-.tagline {
-    color:#22c55e;
-    font-weight:600;
-    margin-top:8px;
-}
-
-.sub {
-    color:#94a3b8;
-}
-
-.btn {
-    display:inline-block;
-    margin-top:20px;
-    padding:12px 22px;
-    background:#22c55e;
-    color:#022c22;
-    border-radius:8px;
-    text-decoration:none;
-    font-weight:600;
-}
-
-.section {
-    margin-top:50px;
-}
-
-.section h2 {
-    font-size:26px;
-    margin-bottom:20px;
-    color:#22c55e;
-}
-
-.grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:20px;
-}
-
-.card {
-    background:#111827;
-    padding:20px;
-    border-radius:14px;
-    border:1px solid #1f2937;
-    transition:.2s;
-}
-
-.card:hover {
-    transform:translateY(-5px);
-    border-color:#22c55e;
-}
-
-.card h3 {
-    margin-bottom:8px;
-    color:#f9fafb;
-}
-
-.skills span {
-    display:inline-block;
-    background:#1f2937;
-    padding:8px 12px;
-    border-radius:20px;
-    margin:6px;
-    font-size:14px;
-}
-
-.contact a {
-    color:#22c55e;
-    text-decoration:none;
-}
-
-footer {
-    text-align:center;
-    margin-top:60px;
-    color:#64748b;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
+body{background:#f5f7fb;color:#222;line-height:1.6}
+.container{max-width:1000px;margin:auto;padding:2rem}
+header{text-align:center;padding:2rem 0}
+header img{width:150px;height:150px;border-radius:50%;object-fit:cover;margin-bottom:1rem}
+h1{font-size:2.4rem}
+.tag{color:#666;margin-top:.5rem}
+.card{background:#fff;border-radius:14px;padding:1.5rem;margin-top:1.5rem;
+box-shadow:0 8px 24px rgba(0,0,0,.06)}
+h2{margin-bottom:1rem;color:#444}
+ul{padding-left:1.2rem}
+.project{margin-bottom:1rem}
+.badge{display:inline-block;background:#eef2ff;color:#3730a3;
+padding:4px 10px;border-radius:20px;font-size:.85rem;margin:3px}
+a{color:#2563eb;text-decoration:none}
+footer{text-align:center;margin:3rem 0;color:#777}
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
 <header>
-    <img src="shivanjal.jpg">
-    <h1>Shivanjal</h1>
-    <div class="tagline">Android Developer — 1.9+ Years Experience</div>
-    <div class="sub">Kotlin • Java • Jetpack Compose • MVVM • Firebase • BLE</div>
-
-    <a href="Shivanjal_Resume.pdf" class="btn" download>Download Resume</a>
+<img src="shivanjal.jpg">
+<h1>Shivanjal</h1>
+<p class="tag">Android Developer • Kotlin • MVVM • Firebase • Compose</p>
 </header>
 
-<!-- SUMMARY -->
-<section class="section">
-<h2>Professional Summary</h2>
+<div class="card">
+<h2>About Me</h2>
 <p>
-Android Developer with 1.9+ years of experience delivering production Android apps.
-Built and published Play Store applications with full ownership. Strong in MVVM,
-Compose, Firebase, BLE integrations, and scalable architecture. Experienced in
-startup and product environments with live client deployments.
+Android Developer with 1.5+ years experience building production Android apps using Kotlin & Java.
+Strong ownership mindset with experience delivering and publishing Play Store apps independently.
+Skilled in MVVM, Firebase, REST APIs, BLE integrations, and scalable architecture.
 </p>
-</section>
+</div>
 
-<!-- SKILLS -->
-<section class="section">
+<div class="card">
 <h2>Core Skills</h2>
-<div class="skills">
-<span>Kotlin</span>
-<span>Java</span>
-<span>Jetpack Compose</span>
-<span>XML UI</span>
-<span>MVVM</span>
-<span>Clean Architecture</span>
-<span>Coroutines</span>
-<span>Retrofit</span>
-<span>Room DB</span>
-<span>Firebase</span>
-<span>ML Kit</span>
-<span>BLE</span>
-<span>REST APIs</span>
-<span>Play Store Release</span>
-</div>
-</section>
-
-<!-- EXPERIENCE -->
-<section class="section">
-<h2>Professional Experience</h2>
-
-<div class="grid">
-
-<div class="card">
-<h3>Android Developer — Libquik</h3>
-<p>
-• Built 2 Play Store apps (User + Admin)<br>
-• Seat booking + approval workflow<br>
-• Real-time slot locking<br>
-• Firebase ML Kit image moderation<br>
-• Full product ownership
-</p>
+<span class="badge">Kotlin</span>
+<span class="badge">Java</span>
+<span class="badge">MVVM</span>
+<span class="badge">Jetpack Compose</span>
+<span class="badge">Firebase</span>
+<span class="badge">Room DB</span>
+<span class="badge">Retrofit</span>
+<span class="badge">BLE / RFID</span>
+<span class="badge">Coroutines</span>
+<span class="badge">ML Kit</span>
 </div>
 
 <div class="card">
-<h3>Android Developer — WalkingTree</h3>
-<p>
-• Live production projects<br>
-• BLE & RFID tracking apps<br>
-• Deprecated code rewrite<br>
-• Dependency modernization<br>
-• Performance fixes
-</p>
+<h2>Professional Experience Projects</h2>
+
+<div class="project">
+<strong>Libquik – Library & Coaching Seat Booking Platform</strong><br>
+• Built and published two production apps (User + Admin)<br>
+• Seat booking by time/date with admin approval workflow<br>
+• Post & Poll engagement features<br>
+• Firebase backend + ML Kit image moderation<br>
+• Full end-to-end ownership & Play Store deployment
 </div>
 
-</div>
-</section>
-
-<!-- PROJECTS -->
-<section class="section">
-<h2>Key Projects</h2>
-
-<div class="grid">
-
-<div class="card">
-<h3>Libquik Platform</h3>
-<p>Library & coaching seat booking ecosystem with admin controls and analytics.</p>
+<div class="project">
+<strong>Team Tracker – BLE/RFID Tracking App</strong><br>
+• BLE & RFID based live tracking system<br>
+• Hardware integrated Android communication layer
 </div>
 
-<div class="card">
-<h3>TeamTracker</h3>
-<p>BLE + RFID based employee tracking and lap detection system.</p>
+<div class="project">
+<strong>TenSquare – Education Platform</strong><br>
+• Upgraded deprecated codebase<br>
+• Refactored modules & modern dependencies<br>
+• Improved performance & maintainability
+</div>
+
 </div>
 
 <div class="card">
-<h3>TenSquare Education App</h3>
-<p>Recorded classes, PDFs, secure student content delivery.</p>
+<h2>Personal Apps</h2>
+
+<div class="project"><strong>Jaankari</strong> — News app (MVVM + Retrofit + Room offline)</div>
+<div class="project"><strong>KharchaPaani</strong> — Offline expense tracker (Room DB)</div>
+<div class="project"><strong>ChatNova</strong> — Chat + Video calling (Firebase + ZegoCloud)</div>
+
 </div>
 
 <div class="card">
-<h3>ChatNova</h3>
-<p>Chat + Video Calling app using Firebase & ZegoCloud.</p>
-</div>
-
-<div class="card">
-<h3>Jaankari News App</h3>
-<p>MVVM news app with offline Room caching.</p>
-</div>
-
-<div class="card">
-<h3>KharchaPaani</h3>
-<p>Offline expense tracker using local database.</p>
-</div>
-
-</div>
-</section>
-
-<!-- CONTACT -->
-<section class="section contact">
 <h2>Contact</h2>
-<p>Email: <a href="mailto:shivanjalsharma00@gmail.com">shivanjalsharma00@gmail.com</a></p>
-<p>Phone: <a href="tel:+919084423885">+91 9084423885</a></p>
-<p>GitHub: <a href="https://github.com/Shivanjal00">github.com/Shivanjal00</a></p>
-<p>LinkedIn: <a href="https://linkedin.com/in/shivanjal-sharma-78a820152">LinkedIn Profile</a></p>
-</section>
+<p>Email: shivanjalsharma00@gmail.com</p>
+<p>Phone: +91 9084423885</p>
+<p>GitHub: github.com/Shivanjal00</p>
+<p>LinkedIn: linkedin.com/in/shivanjal-sharma</p>
+</div>
 
 <footer>
 © 2026 Shivanjal — Android Developer Portfolio
