@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shivanjal | Mobile Developer</title>
+<title>Shivanjal | Mobile Application Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -140,7 +140,6 @@
     color: var(--violet);
     min-width: 220px;
     text-align: left;
-    border-right: 2px solid var(--violet);
     white-space: nowrap;
     overflow: hidden;
   }
@@ -286,6 +285,7 @@
     color: var(--cyan); font-size: 12px;
   }
   .timeline-item:nth-child(2) .timeline-list li::before { color: var(--violet); }
+  .timeline-item:nth-child(3) .timeline-list li::before { color: var(--muted); }
 
   .timeline-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
   .tag {
@@ -380,6 +380,13 @@
     background: var(--bg3);
     border: 1px solid var(--border);
     padding: 3px 10px; border-radius: 6px;
+    transition: border-color .2s, color .2s, background .2s;
+    cursor: default;
+  }
+  .proj-tech:hover {
+    border-color: rgba(124,58,237,0.4);
+    color: #a78bfa;
+    background: rgba(124,58,237,0.07);
   }
 
   /* ── SKILLS ── */
@@ -393,6 +400,12 @@
     border: 1px solid var(--border);
     border-radius: 14px;
     padding: 24px;
+    transition: border-color .25s, transform .25s, box-shadow .25s;
+  }
+  .skill-group:hover {
+    border-color: rgba(0,229,255,0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
   }
   .skill-group-title {
     font-family: 'Space Grotesk', sans-serif;
@@ -409,6 +422,13 @@
     background: var(--bg3);
     border: 1px solid var(--border);
     color: var(--muted);
+    transition: border-color .2s, color .2s, background .2s;
+    cursor: default;
+  }
+  .pill:hover {
+    border-color: rgba(0,229,255,0.4);
+    color: var(--cyan);
+    background: rgba(0,229,255,0.06);
   }
 
   /* ── PERSONAL PROJECTS ── */
@@ -502,7 +522,7 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">SJ.</div>
+  <div class="nav-logo">Shivanjal.</div>
   <ul class="nav-links">
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
@@ -564,19 +584,20 @@
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <div class="timeline-meta">Mar 2026 – Present · Noida</div>
-      <div class="timeline-role">Associate Mobile Developer</div>
+      <div class="timeline-role">Mobile Application Developer</div>
       <div class="timeline-company">AlgoSoft Apps Technologies</div>
       <ul class="timeline-list">
-        <li>Building production React Native apps for Android & iOS — shipped 4 apps independently</li>
-        <li>Full ownership: architecture, API integration, Play Store & App Store releases</li>
-        <li>Worked on diverse domains: spiritual media streaming, AI chatbots, sports management, ride-hailing</li>
-        <li>Rapidly upskilled from native Android to cross-platform React Native in a live production environment</li>
+        <li><strong style="color:var(--text);">The Divine Sparks</strong> — Spiritual media streaming app live on Play Store & App Store. Built video streaming with in-app playback, background audio, permission-based feature access, and offline-ready downloads stored inside the app (not device gallery)</li>
+        <li><strong style="color:var(--text);">Unheard</strong> — AI chatbot with emotional intelligence; understands the emotional tone of each message and responds with empathy, built fully independently end-to-end</li>
+        <li><strong style="color:var(--text);">PGTI</strong> — Global golf tournament management platform live on both stores; real-time leaderboards, draws, scorecards, player rankings, WebSocket live scoring, and full tournament lifecycle management</li>
+        <li><strong style="color:var(--text);">NCRide / ALO</strong> — Ride-hailing app for Delhi NCR (cabs, bikes, autos, taxis) like Ola/Uber/Rapido; map integration, real-time booking, live ride tracking with turn-by-turn directions, dual apps for customers and driver partners</li>
+        <li>Full ownership on all 4 apps — architecture, API integration, Play Store & App Store release and maintenance</li>
       </ul>
       <div class="timeline-tags">
         <span class="tag">React Native</span>
         <span class="tag">TypeScript</span>
         <span class="tag">Redux</span>
-        <span class="tag">REST APIs</span>
+        <span class="tag">Maps & WebSocket</span>
         <span class="tag">iOS & Android</span>
       </div>
     </div>
