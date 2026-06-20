@@ -63,7 +63,6 @@
     overflow: hidden;
   }
 
-  /* Grid background */
   .hero::before {
     content: '';
     position: absolute; inset: 0;
@@ -74,7 +73,6 @@
     mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
   }
 
-  /* Glow orb */
   .hero::after {
     content: '';
     position: absolute;
@@ -124,7 +122,6 @@
 
   .hero h1 span { color: var(--cyan); }
 
-  /* Morphing stack ticker */
   .ticker-wrap {
     display: flex; justify-content: center; align-items: center;
     gap: 10px;
@@ -205,6 +202,64 @@
   hr.divider {
     border: none;
     border-top: 1px solid var(--border);
+  }
+
+  /* ── WHAT I DO ── */
+  .what-i-do {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 72px 40px;
+  }
+  .what-i-do-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .what-i-do-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .what-i-do-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .what-i-do-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 26px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    transition: border-color .25s, transform .25s, box-shadow .25s;
+  }
+  .what-i-do-item:hover {
+    border-color: rgba(0,229,255,0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+  }
+  .what-i-do-icon {
+    width: 38px; height: 38px;
+    border-radius: 9px;
+    background: rgba(0,229,255,0.08);
+    border: 1px solid rgba(0,229,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .what-i-do-text {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+  .what-i-do-text strong {
+    display: block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 3px;
   }
 
   /* ── STATS ── */
@@ -542,13 +597,68 @@
       <div id="ticker"></div>
     </div>
 
+    <!-- FIX 2: Stronger hero description matching resume summary -->
     <p class="hero-desc">
-      Mobile developer with 2+ years of experience — started with native Android (Kotlin/Java), now building cross-platform apps in React Native with live deployments on both Play Store and App Store.
+      Mobile Application Developer with 2+ years of experience building and shipping Android and React Native applications for Google Play Store and Apple App Store. Delivered 6+ production apps across ride-hailing, sports management, AI chatbots, media streaming, and education domains.
     </p>
 
     <div class="hero-ctas">
       <a href="Shivanjal_Resume.pdf" class="btn-primary" download>Download Resume</a>
       <a href="#contact" class="btn-ghost">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I DO -->
+<section class="what-i-do">
+  <div class="what-i-do-inner">
+    <div class="what-i-do-header">
+      <div class="section-label" style="text-align:center;">What I Do</div>
+      <h2 class="section-title" style="text-align:center; margin-bottom:0;">My Role</h2>
+    </div>
+    <div class="what-i-do-grid">
+      <div class="what-i-do-item">
+        <div class="what-i-do-icon">📋</div>
+        <div class="what-i-do-text">
+          <strong>Requirements → Product</strong>
+          Translate business requirements into scalable mobile solutions users actually enjoy.
+        </div>
+      </div>
+      <div class="what-i-do-item">
+        <div class="what-i-do-icon">🏗️</div>
+        <div class="what-i-do-text">
+          <strong>Architecture & Design</strong>
+          Design application architectures using MVVM and modern mobile development practices.
+        </div>
+      </div>
+      <div class="what-i-do-item">
+        <div class="what-i-do-icon">🔌</div>
+        <div class="what-i-do-text">
+          <strong>Integrations</strong>
+          Integrate third-party services, hardware devices (BLE, RFID), and backend APIs seamlessly.
+        </div>
+      </div>
+      <div class="what-i-do-item">
+        <div class="what-i-do-icon">⚡</div>
+        <div class="what-i-do-text">
+          <strong>Performance & UX</strong>
+          Optimise application performance, responsiveness, and user experience across platforms.
+        </div>
+      </div>
+      <div class="what-i-do-item">
+        <div class="what-i-do-icon">🚀</div>
+        <div class="what-i-do-text">
+          <strong>Store Releases</strong>
+          Manage end-to-end Play Store and App Store submissions, reviews, and version releases.
+        </div>
+      </div>
+      <div class="what-i-do-item">
+        <div class="what-i-do-icon">🔧</div>
+        <div class="what-i-do-text">
+          <strong>Maintenance & Iteration</strong>
+          Maintain production applications and deliver continuous improvements post-launch.
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -630,7 +740,7 @@
       <div class="timeline-role">Android Developer</div>
       <div class="timeline-company">Walking Tree Technology</div>
       <ul class="timeline-list">
-        <li>Maintained live production apps (TeamTracker, TenSquare) in Kotlin and Java</li>
+        <li>Maintained live production apps (Team Tracker, TenSquare) in Kotlin and Java</li>
         <li>Implemented BLE, Bluetooth, and RFID integrations for real-time device & employee tracking</li>
         <li>Rewrote deprecated code and modernised dependencies; fixed performance-critical bugs</li>
       </ul>
@@ -664,7 +774,7 @@
         </div>
       </div>
       <div class="proj-title">NCRide / ALO — Cab Booking App</div>
-      <div class="proj-desc">Full-featured ride-hailing platform for the Delhi NCR region — covering cabs, bikes, autos and taxis. Separate apps for customers and driver partners with complete booking lifecycle, live tracking, and payment integration.</div>
+      <div class="proj-desc">Ride-hailing platform for Delhi NCR supporting cabs, bikes, autos, and taxis — similar to Ola/Uber/Rapido. Features real-time map integration, live ride tracking with turn-by-turn directions, and dual apps for customers and driver partners.</div>
       <div class="proj-stack">
         <span class="proj-tech">React Native</span>
         <span class="proj-tech">TypeScript</span>
@@ -685,7 +795,8 @@
         </div>
       </div>
       <div class="proj-title">PGTI — Golf Tournaments App</div>
-      <div class="proj-desc">Global golf tournament management platform for the Professional Golf Tour of India. Live on both Play Store and App Store. Features real-time leaderboards, draws, scorecards, player rankings, and tournament scheduling.</div>
+      <!-- FIX 5: WebSocket added to PGTI stack -->
+      <div class="proj-desc">Global golf tournament management platform for the Professional Golf Tour of India. Live on both Play Store and App Store. Features real-time leaderboards, draws, scorecards, player rankings, WebSocket live scoring, and tournament lifecycle management.</div>
       <div class="proj-stack">
         <span class="proj-tech">React Native</span>
         <span class="proj-tech">TypeScript</span>
@@ -743,7 +854,8 @@
         </div>
       </div>
       <div class="proj-title">Libquik Platform</div>
-      <div class="proj-desc">Library & coaching centre seat-booking ecosystem with two live Play Store apps — one for students to reserve seats and one for business owners to manage bookings and approvals.</div>
+      <!-- FIX 3: LibQuik description updated with both app names -->
+      <div class="proj-desc">Library and coaching seat-booking ecosystem consisting of LibQuik Student and LibQuik Business applications, supporting seat reservations, approvals, and operational management workflows.</div>
       <div class="proj-stack">
         <span class="proj-tech">Kotlin</span>
         <span class="proj-tech">Firebase</span>
@@ -752,7 +864,7 @@
       </div>
     </div>
 
-    <!-- TeamTracker -->
+    <!-- FIX 4: TeamTracker renamed to Team Tracker -->
     <div class="project-card">
       <div class="proj-header">
         <div class="proj-icon">📡</div>
@@ -760,7 +872,7 @@
           <span class="proj-badge badge-android">Kotlin</span>
         </div>
       </div>
-      <div class="proj-title">TeamTracker</div>
+      <div class="proj-title">Team Tracker</div>
       <div class="proj-desc">BLE + RFID based real-time employee tracking and lap detection system built for Walking Tree Technology's live production clients.</div>
       <div class="proj-stack">
         <span class="proj-tech">Kotlin</span>
@@ -835,6 +947,7 @@
 
   <div class="skills-grid">
 
+    <!-- FIX 1: Added React Hooks, Native Modules, CodePush, Expo -->
     <div class="skill-group">
       <div class="skill-group-title">Cross-Platform</div>
       <div class="skill-pills">
@@ -843,10 +956,14 @@
         <span class="pill">JavaScript</span>
         <span class="pill">Redux / Context</span>
         <span class="pill">React Navigation</span>
+        <span class="pill">React Hooks</span>
+        <span class="pill">Native Modules</span>
+        <span class="pill">CodePush</span>
         <span class="pill">Expo</span>
       </div>
     </div>
 
+    <!-- FIX 1: Added Hilt, Navigation Component, WorkManager, DataStore -->
     <div class="skill-group">
       <div class="skill-group-title">Native Android</div>
       <div class="skill-pills">
@@ -856,6 +973,10 @@
         <span class="pill">XML UI</span>
         <span class="pill">MVVM</span>
         <span class="pill">Coroutines</span>
+        <span class="pill">Hilt</span>
+        <span class="pill">Navigation Component</span>
+        <span class="pill">WorkManager</span>
+        <span class="pill">DataStore</span>
       </div>
     </div>
 
@@ -879,6 +1000,8 @@
         <span class="pill">WebSocket</span>
         <span class="pill">ZegoCloud</span>
         <span class="pill">Git</span>
+        <span class="pill">Google Maps</span>
+        <span class="pill">Push Notifications</span>
         <span class="pill">Play Store & App Store</span>
       </div>
     </div>
@@ -918,8 +1041,9 @@
   </div>
 </section>
 
+<!-- FIX 6: Removed nested footer -->
 <footer>
-  © 2026 Shivanjal — Built with HTML, CSS & intent.
+  © 2026 Shivanjal | Mobile Application Developer
 </footer>
 
 <script>
