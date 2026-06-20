@@ -232,13 +232,24 @@
     display: flex;
     align-items: flex-start;
     gap: 16px;
+    position: relative;
+    overflow: hidden;
     transition: border-color .25s, transform .25s, box-shadow .25s;
   }
-  .what-i-do-item:hover {
-    border-color: rgba(0,229,255,0.3);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+  .what-i-do-item::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), var(--violet));
+    opacity: 0;
+    transition: opacity .25s;
   }
+  .what-i-do-item:hover {
+    border-color: rgba(0,229,255,0.35);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(0,0,0,0.35);
+  }
+  .what-i-do-item:hover::before { opacity: 1; }
   .what-i-do-icon {
     width: 38px; height: 38px;
     border-radius: 9px;
@@ -273,14 +284,35 @@
     flex: 1; text-align: center;
     padding: 36px 20px;
     border-right: 1px solid var(--border);
+    position: relative;
+    transition: background .25s, transform .25s, box-shadow .25s;
+    cursor: default;
+    overflow: hidden;
   }
+  .stat::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), var(--violet));
+    opacity: 0;
+    transition: opacity .25s;
+  }
+  .stat:hover {
+    background: rgba(0,229,255,0.04);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    z-index: 1;
+  }
+  .stat:hover::before { opacity: 1; }
   .stat:last-child { border-right: none; }
   .stat-num {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 40px; font-weight: 800;
     color: var(--cyan);
     line-height: 1;
+    transition: text-shadow .25s;
   }
+  .stat:hover .stat-num { text-shadow: 0 0 20px rgba(0,229,255,0.5); }
   .stat-label { font-size: 13px; color: var(--muted); margin-top: 6px; }
 
   /* ── EXPERIENCE TIMELINE ── */
@@ -295,18 +327,19 @@
 
   .timeline-item {
     padding-left: 36px;
-    padding-bottom: 52px;
+    padding-bottom: 24px;
     position: relative;
   }
   .timeline-item:last-child { padding-bottom: 0; }
 
   .timeline-dot {
-    position: absolute; left: -7px; top: 6px;
+    position: absolute; left: -7px; top: 20px;
     width: 16px; height: 16px;
     border-radius: 50%;
     background: var(--bg);
     border: 2px solid var(--cyan);
     box-shadow: 0 0 10px rgba(0,229,255,0.4);
+    z-index: 1;
   }
   .timeline-item:nth-child(2) .timeline-dot { border-color: var(--violet); box-shadow: 0 0 10px rgba(124,58,237,0.4); }
   .timeline-item:nth-child(3) .timeline-dot { border-color: var(--muted); box-shadow: none; }
@@ -343,6 +376,45 @@
   .timeline-item:nth-child(3) .timeline-list li::before { color: var(--muted); }
 
   .timeline-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+
+  /* ── TIMELINE CARD HOVER ── */
+  .timeline-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color .25s, transform .25s, box-shadow .25s;
+  }
+  .timeline-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), var(--violet));
+    opacity: 0;
+    transition: opacity .25s;
+  }
+  .timeline-item:nth-child(2) .timeline-card::before {
+    background: linear-gradient(90deg, var(--violet), var(--cyan));
+  }
+  .timeline-item:nth-child(3) .timeline-card::before {
+    background: linear-gradient(90deg, var(--muted), var(--violet));
+  }
+  .timeline-card:hover {
+    border-color: rgba(0,229,255,0.35);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  }
+  .timeline-item:nth-child(2) .timeline-card:hover {
+    border-color: rgba(124,58,237,0.4);
+    box-shadow: 0 20px 40px rgba(124,58,237,0.12);
+  }
+  .timeline-item:nth-child(3) .timeline-card:hover {
+    border-color: rgba(148,163,184,0.3);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  }
+  .timeline-card:hover::before { opacity: 1; }
   .tag {
     padding: 4px 12px;
     background: rgba(0,229,255,0.08);
@@ -382,17 +454,23 @@
     transition: opacity .25s;
   }
   .project-card:hover {
-    border-color: rgba(0,229,255,0.3);
+    border-color: rgba(0,229,255,0.35);
     transform: translateY(-4px);
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
   }
   .project-card:hover::before { opacity: 1; }
 
   .project-card.featured {
-    border-color: rgba(0,229,255,0.25);
-    background: linear-gradient(135deg, #0F1A2E, #0d1a30);
+    border-color: var(--border);
+    background: var(--card);
   }
-  .project-card.featured::before { opacity: 1; }
+  .project-card.featured::before { opacity: 0; }
+  .project-card.featured:hover {
+    border-color: rgba(0,229,255,0.35);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  }
+  .project-card.featured:hover::before { opacity: 1; }
 
   .proj-header {
     display: flex; justify-content: space-between; align-items: flex-start;
@@ -456,12 +534,23 @@
     border-radius: 14px;
     padding: 24px;
     transition: border-color .25s, transform .25s, box-shadow .25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .skill-group::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), var(--violet));
+    opacity: 0;
+    transition: opacity .25s;
   }
   .skill-group:hover {
-    border-color: rgba(0,229,255,0.3);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    border-color: rgba(0,229,255,0.35);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(0,0,0,0.35);
   }
+  .skill-group:hover::before { opacity: 1; }
   .skill-group-title {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 14px; font-weight: 700;
@@ -497,12 +586,24 @@
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 22px;
-    transition: border-color .2s, transform .2s;
+    transition: border-color .25s, transform .25s, box-shadow .25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .personal-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--violet), var(--cyan));
+    opacity: 0;
+    transition: opacity .25s;
   }
   .personal-card:hover {
     border-color: rgba(124,58,237,0.4);
-    transform: translateY(-3px);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(0,0,0,0.35);
   }
+  .personal-card:hover::before { opacity: 1; }
   .personal-card h4 {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 15px; font-weight: 700;
@@ -693,62 +794,68 @@
     <!-- Current -->
     <div class="timeline-item">
       <div class="timeline-dot"></div>
-      <div class="timeline-meta">Mar 2026 – Present · Noida</div>
-      <div class="timeline-role">Mobile Application Developer</div>
-      <div class="timeline-company">AlgoSoft Apps Technologies</div>
-      <ul class="timeline-list">
-        <li><strong style="color:var(--text);">The Divine Sparks</strong> — Spiritual media streaming app live on Play Store & App Store. Built video streaming with in-app playback, background audio, permission-based feature access, and offline-ready downloads stored inside the app (not device gallery)</li>
-        <li><strong style="color:var(--text);">Unheard</strong> — AI chatbot with emotional intelligence; understands the emotional tone of each message and responds with empathy, built fully independently end-to-end</li>
-        <li><strong style="color:var(--text);">PGTI</strong> — Global golf tournament management platform live on both stores; real-time leaderboards, draws, scorecards, player rankings, WebSocket live scoring, and full tournament lifecycle management</li>
-        <li><strong style="color:var(--text);">NCRide / ALO</strong> — Ride-hailing app for Delhi NCR (cabs, bikes, autos, taxis) like Ola/Uber/Rapido; map integration, real-time booking, live ride tracking with turn-by-turn directions, dual apps for customers and driver partners</li>
-        <li>Full ownership on all 4 apps — architecture, API integration, Play Store & App Store release and maintenance</li>
-      </ul>
-      <div class="timeline-tags">
-        <span class="tag">React Native</span>
-        <span class="tag">TypeScript</span>
-        <span class="tag">Redux</span>
-        <span class="tag">Maps & WebSocket</span>
-        <span class="tag">iOS & Android</span>
+      <div class="timeline-card">
+        <div class="timeline-meta">Mar 2026 – Present · Noida</div>
+        <div class="timeline-role">Mobile Application Developer</div>
+        <div class="timeline-company">AlgoSoft Apps Technologies</div>
+        <ul class="timeline-list">
+          <li><strong style="color:var(--text);">The Divine Sparks</strong> — Spiritual media streaming app live on Play Store & App Store. Built video streaming with in-app playback, background audio, permission-based feature access, and offline-ready downloads stored inside the app (not device gallery)</li>
+          <li><strong style="color:var(--text);">Unheard</strong> — AI chatbot with emotional intelligence; understands the emotional tone of each message and responds with empathy, built fully independently end-to-end</li>
+          <li><strong style="color:var(--text);">PGTI</strong> — Global golf tournament management platform live on both stores; real-time leaderboards, draws, scorecards, player rankings, WebSocket live scoring, and full tournament lifecycle management</li>
+          <li><strong style="color:var(--text);">NCRide / ALO</strong> — Ride-hailing app for Delhi NCR (cabs, bikes, autos, taxis) like Ola/Uber/Rapido; map integration, real-time booking, live ride tracking with turn-by-turn directions, dual apps for customers and driver partners</li>
+          <li>Full ownership on all 4 apps — architecture, API integration, Play Store & App Store release and maintenance</li>
+        </ul>
+        <div class="timeline-tags">
+          <span class="tag">React Native</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Redux</span>
+          <span class="tag">Maps & WebSocket</span>
+          <span class="tag">iOS & Android</span>
+        </div>
       </div>
     </div>
 
     <!-- Libquik -->
     <div class="timeline-item">
       <div class="timeline-dot"></div>
-      <div class="timeline-meta">Nov 2024 – Feb 2026 · Agra</div>
-      <div class="timeline-role">Android Developer</div>
-      <div class="timeline-company">Libquik Pvt. Ltd.</div>
-      <ul class="timeline-list">
-        <li>Built a library & coaching seat-booking ecosystem — two separate Play Store apps (Student + Business Owner)</li>
-        <li>Implemented seat reservation by date/time/seat number with admin approval workflow</li>
-        <li>Integrated Email, Facebook, and Phone authentication for seamless onboarding</li>
-        <li>Added Firebase ML Kit image moderation and in-app polls & Q&A for engagement</li>
-      </ul>
-      <div class="timeline-tags">
-        <span class="tag violet">Kotlin</span>
-        <span class="tag violet">Firebase</span>
-        <span class="tag violet">MVVM</span>
-        <span class="tag violet">ML Kit</span>
-        <span class="tag violet">Play Store</span>
+      <div class="timeline-card">
+        <div class="timeline-meta">Nov 2024 – Feb 2026 · Agra</div>
+        <div class="timeline-role">Android Developer</div>
+        <div class="timeline-company">Libquik Pvt. Ltd.</div>
+        <ul class="timeline-list">
+          <li>Built a library & coaching seat-booking ecosystem — two separate Play Store apps (Student + Business Owner)</li>
+          <li>Implemented seat reservation by date/time/seat number with admin approval workflow</li>
+          <li>Integrated Email, Facebook, and Phone authentication for seamless onboarding</li>
+          <li>Added Firebase ML Kit image moderation and in-app polls & Q&A for engagement</li>
+        </ul>
+        <div class="timeline-tags">
+          <span class="tag violet">Kotlin</span>
+          <span class="tag violet">Firebase</span>
+          <span class="tag violet">MVVM</span>
+          <span class="tag violet">ML Kit</span>
+          <span class="tag violet">Play Store</span>
+        </div>
       </div>
     </div>
 
     <!-- WalkingTree -->
     <div class="timeline-item">
       <div class="timeline-dot"></div>
-      <div class="timeline-meta">Jun 2024 – Oct 2024 · Agra</div>
-      <div class="timeline-role">Android Developer</div>
-      <div class="timeline-company">Walking Tree Technology</div>
-      <ul class="timeline-list">
-        <li>Maintained live production apps (Team Tracker, TenSquare) in Kotlin and Java</li>
-        <li>Implemented BLE, Bluetooth, and RFID integrations for real-time device & employee tracking</li>
-        <li>Rewrote deprecated code and modernised dependencies; fixed performance-critical bugs</li>
-      </ul>
-      <div class="timeline-tags">
-        <span class="tag" style="border-color:rgba(148,163,184,0.2);color:var(--muted);">Kotlin</span>
-        <span class="tag" style="border-color:rgba(148,163,184,0.2);color:var(--muted);">BLE / RFID</span>
-        <span class="tag" style="border-color:rgba(148,163,184,0.2);color:var(--muted);">Java</span>
-        <span class="tag" style="border-color:rgba(148,163,184,0.2);color:var(--muted);">Retrofit</span>
+      <div class="timeline-card">
+        <div class="timeline-meta">Jun 2024 – Oct 2024 · Agra</div>
+        <div class="timeline-role">Android Developer</div>
+        <div class="timeline-company">Walking Tree Technology</div>
+        <ul class="timeline-list">
+          <li>Maintained live production apps (Team Tracker, TenSquare) in Kotlin and Java</li>
+          <li>Implemented BLE, Bluetooth, and RFID integrations for real-time device & employee tracking</li>
+          <li>Rewrote deprecated code and modernised dependencies; fixed performance-critical bugs</li>
+        </ul>
+        <div class="timeline-tags">
+          <span class="tag" style="border-color:rgba(148,163,184,0.2);color:var(--muted);">Kotlin</span>
+          <span class="tag" style="border-color:rgba(148,163,184,0.2);color:var(--muted);">BLE / RFID</span>
+          <span class="tag" style="border-color:rgba(148,163,184,0.2);color:var(--muted);">Java</span>
+          <span class="tag" style="border-color:rgba(148,163,184,0.2);color:var(--muted);">Retrofit</span>
+        </div>
       </div>
     </div>
 
@@ -1024,7 +1131,7 @@
         shivanjalsharma00@gmail.com
       </a>
       <a href="tel:+919084423885" class="contact-link">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 0115.95 2a2 2 0 012 1.72 12.84 12.84 0 01.7 2.81 2 2 0 01-1.87 2.28L15 9a16 16 0 006.9 6.9l.01-.01 1.09-.82a2 2 0 012.28-1.87c.97.17 1.9.47 2.81.7z"/></svg>
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
         +91 90844 23885
       </a>
       <a href="https://github.com/Shivanjal00" target="_blank" class="contact-link">
@@ -1092,7 +1199,7 @@
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.project-card, .personal-card, .skill-group, .timeline-item').forEach(el => {
+  document.querySelectorAll('.project-card, .personal-card, .skill-group, .timeline-item, .stat, .what-i-do-item, .timeline-card').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(24px)';
     el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
