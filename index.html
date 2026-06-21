@@ -72,27 +72,7 @@ text-anchor='middle'>S</text>
     margin-bottom:0;
     position:relative;
   }
-
-  /* Diagonal SHIVANJAL watermark behind photo */
-  .hero-photo-wrapper::after{
-    content:'SHIVA  ANJAL';
-    position:absolute;
-    font-family:'Space Grotesk', sans-serif;
-    font-size:clamp(52px, 9vw, 96px);
-    font-weight:800;
-    color:var(--cyan);
-    opacity:0.07;
-    letter-spacing:6px;
-    white-space:nowrap;
-    transform: rotate(-25deg) translateY(30%);
-    z-index:0;
-    pointer-events:none;
-    user-select:none;
-    bottom:10%;
-    left:50%;
-    transform: translateX(-50%) rotate(-25deg);
-  }
-
+ 
   .hero-photo-wrapper::before{
     content:'';
     position:absolute;
@@ -790,6 +770,15 @@ text-anchor='middle'>S</text>
     letter-spacing: -1px;
     margin-bottom: 12px;
   }
+ .hero-greeting{
+    font-size: clamp(16px, 1.4vw, 20px);
+    font-weight: 500;
+    color: var(--text);
+}
+ .hero-greeting .accent{
+    color: var(--cyan);
+    font-weight: 600;
+}
   .contact-sub { color: var(--muted); margin-bottom: 36px; }
   .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; margin-bottom: 40px; }
   .contact-link {
@@ -854,7 +843,9 @@ text-anchor='middle'>S</text>
     <div class="hero-badge">
       Available for new opportunities
     </div>
-    <h1><span>Hello World</span></h1>
+   <span class="hero-greeting">
+    <span class="accent">Hello World</span> ! I'm <span class="accent">Shivanjal</span>
+</span>
 
     <div class="ticker-wrap">
       <span>Building with</span>
