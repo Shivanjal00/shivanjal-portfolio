@@ -770,14 +770,19 @@ text-anchor='middle'>S</text>
     letter-spacing: -1px;
     margin-bottom: 12px;
   }
- .hero-greeting{
-    font-size: clamp(16px, 1.4vw, 20px);
-    font-weight: 500;
-    color: var(--text);
+.hero-greeting{
+    display:block;
+    margin-top:16px;
+    margin-bottom:20px;
+    font-size:clamp(28px, 3vw, 42px);
+    font-weight:700;
+    line-height:1.2;
+    color:var(--text);
 }
- .hero-greeting .accent{
-    color: var(--cyan);
-    font-weight: 600;
+
+.hero-greeting .accent{
+    color:var(--cyan);
+    font-weight:800;
 }
   .contact-sub { color: var(--muted); margin-bottom: 36px; }
   .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; margin-bottom: 40px; }
@@ -843,9 +848,9 @@ text-anchor='middle'>S</text>
     <div class="hero-badge">
       Available for new opportunities
     </div>
-   <span class="hero-greeting">
+   <div class="hero-greeting">
     <span class="accent">Hello World</span> ! I'm <span class="accent">Shivanjal</span>
-</span>
+</div>
 
     <div class="ticker-wrap">
       <span>Building with</span>
