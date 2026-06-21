@@ -74,25 +74,35 @@ text-anchor='middle'>S</text>
   }
 
   /* Diagonal SHIVANJAL watermark behind photo */
-  .hero-photo-wrapper::after{
+.hero-photo-wrapper::after{
     content:'SHIVANJAL';
     position:absolute;
     font-family:'Space Grotesk', sans-serif;
-    font-size:clamp(52px, 9vw, 96px);
+    font-size:clamp(72px, 11vw, 130px);
     font-weight:800;
-    color:var(--cyan);
-    opacity:0.07;
-    letter-spacing:6px;
+    letter-spacing:10px;
     white-space:nowrap;
-    transform: rotate(-25deg) translateY(30%);
-    z-index:0;
+
+    background: linear-gradient(
+        90deg,
+        rgba(0,229,255,0.18),
+        rgba(124,58,237,0.14)
+    );
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    opacity:0.45;
+    text-shadow:
+        0 0 25px rgba(0,229,255,0.15);
+
     pointer-events:none;
     user-select:none;
-    bottom:10%;
-    left:50%;
-    transform: translateX(-50%) rotate(-25deg);
-  }
+    z-index:0;
 
+    top:18%;
+    left:52%;
+    transform:translateX(-50%) rotate(-22deg);
+}
   .hero-photo-wrapper::before{
     content:'';
     position:absolute;
