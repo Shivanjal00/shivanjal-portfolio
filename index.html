@@ -73,6 +73,26 @@ text-anchor='middle'>S</text>
     position:relative;
   }
 
+  /* Diagonal SHIVANJAL watermark behind photo */
+  .hero-photo-wrapper::after{
+    content:'SHIVANJAL';
+    position:absolute;
+    font-family:'Space Grotesk', sans-serif;
+    font-size:clamp(52px, 9vw, 96px);
+    font-weight:800;
+    color:var(--cyan);
+    opacity:0.07;
+    letter-spacing:6px;
+    white-space:nowrap;
+    transform: rotate(-25deg) translateY(30%);
+    z-index:0;
+    pointer-events:none;
+    user-select:none;
+    bottom:10%;
+    left:50%;
+    transform: translateX(-50%) rotate(-25deg);
+  }
+
   .hero-photo-wrapper::before{
     content:'';
     position:absolute;
@@ -90,8 +110,8 @@ text-anchor='middle'>S</text>
   }
 
   .hero-photo{
-    width:340px;
-    max-width:68vw;
+    width:280px;
+    max-width:56vw;
     position:relative;
     z-index:1;
     display:block;
@@ -120,15 +140,15 @@ text-anchor='middle'>S</text>
   }
 
   @media(max-width:640px){
-    .hero-photo{ width:200px; }
-    .hero-photo-wrapper::before{ width:220px; height:220px; }
+    .hero-photo{ width:180px; }
+    .hero-photo-wrapper::before{ width:200px; height:200px; }
   }
 
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
     display: flex; align-items: center; justify-content: center;
-    padding: 60px 40px 80px;
+    padding: 50px 40px 60px;
     position: relative;
     overflow: hidden;
   }
@@ -834,7 +854,7 @@ text-anchor='middle'>S</text>
     <div class="hero-badge">
       Available for new opportunities
     </div>
-    <h1>Hi, I'm <span>Shivanjal</span></h1>
+    <h1><span>Hello World</span></h1>
 
     <div class="ticker-wrap">
       <span>Building with</span>
