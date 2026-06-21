@@ -193,24 +193,33 @@ text-anchor='middle'>S</text>
 
   .hero h1 span { color: var(--cyan); }
 
-  .ticker-wrap {
-    display: flex; justify-content: center; align-items: center;
-    gap: 10px;
+ .ticker-wrap{
+    position: relative;
+    height: 36px;
+    margin-bottom: 24px;
     font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(18px, 3vw, 24px);
     font-weight: 600;
+}
+
+.ticker-wrap span{
+    position: absolute;
+    right: 50%;
+    transform: translateX(-5px);   /* small gap */
     color: var(--muted);
-    margin-bottom: 24px;
-    height: 36px;
-  }
-  .ticker-wrap span { color: var(--text); }
-  #ticker {
+    white-space: nowrap;
+}
+
+#ticker{
+    position: absolute;
+    left: 50%;
+    transform: translateX(5px);    /* same small gap */
     color: var(--violet);
     min-width: 220px;
     text-align: left;
     white-space: nowrap;
     overflow: hidden;
-  }
+}
 
   .hero-desc {
     color: var(--muted);
