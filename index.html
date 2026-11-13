@@ -5,327 +5,485 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Shivanjal Sharma – Mobile App Developer</title>
 <meta name="description" content="Shivanjal Sharma is a mobile app developer building React Native and Kotlin apps that are live on the Google Play Store and Apple App Store.">
-<meta name="theme-color" content="#0f1419">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230f1419'/%3E%3Ctext x='50' y='70' font-size='64' font-family='Arial' font-weight='bold' fill='%235eead4' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#070a14">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23070a14'/%3E%3Ctext x='50' y='70' font-size='64' font-family='Arial' font-weight='bold' fill='%235eead4' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{color-scheme:dark;--bg:#0f1419;--panel:#161c24;--line:#27303b;--text:#e8e6e1;--muted:#99a3ae;--acc:#5eead4;--live:#4ade80;--soon:#fbbf24;--priv:#a3a3b8}
-html{scroll-behavior:smooth;scroll-padding-top:72px}
-body{background:var(--bg);color:var(--text);font:400 16px/1.65 'Schibsted Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+:root{color-scheme:dark;--bg:#070a14;--card:rgba(255,255,255,.04);--line:rgba(255,255,255,.09);--text:#eceff6;--muted:#9aa6bd;--teal:#5eead4;--vio:#8b5cf6;--pink:#f472b6;--amb:#fbbf24;--live:#4ade80}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--text);font:400 16px/1.65 'DM Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,.disp{font-family:'Bricolage Grotesque',sans-serif;letter-spacing:-.03em}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:4px}
-::selection{background:var(--acc);color:#04201c}
-.wrap{max-width:960px;margin:0 auto;padding:0 24px}
-.mono{font-family:'JetBrains Mono',monospace}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+::selection{background:var(--vio);color:#fff}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
 
-header.top{position:sticky;top:0;z-index:20;background:rgba(15,20,25,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-header.top .wrap{display:flex;justify-content:space-between;align-items:center;height:58px}
-.brand{font-weight:700;text-decoration:none;letter-spacing:-.01em}
-.brand i{font-style:normal;color:var(--acc)}
-nav{display:flex;gap:24px}
-nav a{font-size:14px;color:var(--muted);text-decoration:none;transition:color .15s}
-nav a:hover{color:var(--text)}
+/* ambient background */
+.amb{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.amb i{position:absolute;border-radius:50%;filter:blur(110px);opacity:.38;animation:drift 22s ease-in-out infinite alternate}
+.amb i:nth-child(1){width:520px;height:520px;background:var(--vio);top:-120px;left:-100px}
+.amb i:nth-child(2){width:460px;height:460px;background:#0ea5b7;top:30%;right:-140px;animation-delay:-8s}
+.amb i:nth-child(3){width:420px;height:420px;background:var(--pink);bottom:-120px;left:25%;opacity:.22;animation-delay:-14s}
+@keyframes drift{to{transform:translate(70px,50px) scale(1.15)}}
+.amb::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:30px 30px;-webkit-mask-image:radial-gradient(ellipse at 50% 20%,#000,transparent 70%);mask-image:radial-gradient(ellipse at 50% 20%,#000,transparent 70%)}
+#bar{position:fixed;top:0;left:0;height:3px;width:0;z-index:200;background:linear-gradient(90deg,var(--teal),var(--vio),var(--pink))}
 
-.hero{padding:88px 0 72px;display:grid;grid-template-columns:1fr 168px;gap:48px;align-items:center}
-.hero h1{font-size:clamp(40px,7vw,68px);line-height:1.04;letter-spacing:-.035em;font-weight:700;margin-bottom:14px}
-.hero .what{font-size:clamp(18px,2.4vw,22px);color:var(--muted);margin-bottom:22px}
-.hero .what b{color:var(--text);font-weight:500}
-.hero p.about{max-width:560px;color:#c3c8cf;margin-bottom:28px}
-.photo{width:168px;height:208px;border-radius:14px;overflow:hidden;background:var(--panel);border:1px solid var(--line)}
-.photo img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
-.actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-.btn{display:inline-block;padding:11px 20px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid var(--line);transition:border-color .15s,background .15s}
-.btn:hover{border-color:var(--acc)}
-.btn.main{background:var(--acc);border-color:var(--acc);color:#04201c}
-.btn.main:hover{background:#7ff3e2}
-.facts{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:26px;font-size:13px;color:var(--muted)}
-.facts span::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--live);margin-right:8px;vertical-align:middle}
-.facts span+span::before{background:var(--line)}
+/* nav */
+header.top{position:fixed;top:14px;left:0;right:0;z-index:100;display:flex;justify-content:center;padding:0 16px}
+.pill-nav{display:flex;align-items:center;gap:6px;padding:7px 8px 7px 20px;border-radius:999px;background:rgba(14,19,34,.7);border:1px solid var(--line);backdrop-filter:blur(16px);box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.brand{font:800 18px 'Bricolage Grotesque',sans-serif;text-decoration:none;margin-right:14px}
+.brand i{font-style:normal;color:var(--teal)}
+.pill-nav a.l{font-size:14px;color:var(--muted);text-decoration:none;padding:8px 14px;border-radius:999px;transition:.2s}
+.pill-nav a.l:hover,.pill-nav a.l.on{color:var(--text);background:rgba(255,255,255,.08)}
+.pill-nav a.cta{font-size:14px;font-weight:600;text-decoration:none;padding:8px 18px;border-radius:999px;background:var(--teal);color:#04201c;margin-left:4px}
 
-section{padding:64px 0;border-top:1px solid var(--line)}
-h2{font-size:28px;letter-spacing:-.02em;font-weight:700;margin-bottom:8px}
-.lead{color:var(--muted);max-width:600px;margin-bottom:36px}
+/* hero */
+.hero{min-height:100vh;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;padding:130px 0 80px}
+.tagline{display:inline-flex;align-items:center;gap:9px;font-size:13px;color:#b7f5ea;background:rgba(94,234,212,.08);border:1px solid rgba(94,234,212,.25);padding:6px 14px 6px 10px;border-radius:999px;margin-bottom:22px}
+.tagline::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--live);box-shadow:0 0 0 0 rgba(74,222,128,.6);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 9px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
+.hero h1{font-size:clamp(44px,7.4vw,86px);font-weight:800;line-height:1;margin-bottom:18px}
+.hero h1 em{font-style:normal;background:linear-gradient(100deg,var(--teal),var(--vio) 55%,var(--pink));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.type{font:500 clamp(17px,2.2vw,22px) 'JetBrains Mono',monospace;color:var(--muted);margin-bottom:22px;min-height:34px}
+.type b{color:var(--teal);font-weight:500}
+.type b::after{content:'';display:inline-block;width:9px;height:1.1em;background:var(--teal);margin-left:3px;vertical-align:-3px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.about{max-width:540px;color:#c4cbdb;margin-bottom:30px}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:12px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid var(--line);background:var(--card);transition:transform .2s,border-color .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-3px);border-color:rgba(94,234,212,.5)}
+.btn.main{background:linear-gradient(120deg,var(--teal),#38bdf8);color:#04201c;border:0}
+.btn.main:hover{box-shadow:0 12px 34px rgba(56,189,248,.35)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+.chips span{font-size:13px;color:var(--muted);padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card)}
+.chips b{color:var(--text)}
 
-.group{margin-top:34px}
-.group h3{font-size:15px;font-weight:600;color:var(--muted);padding-bottom:10px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
-.group h3 span{font-weight:400;font-size:13px}
-details.p{border-bottom:1px solid var(--line)}
-details.p summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:4px 24px;padding:18px 4px;transition:background .15s}
-details.p summary::-webkit-details-marker{display:none}
-details.p summary:hover{background:rgba(255,255,255,.025)}
-.p-name{font-weight:600;font-size:18px;display:flex;align-items:center;gap:10px}
-.p-name::after{content:'+';font-weight:400;color:var(--muted);transition:transform .2s;font-size:20px;line-height:1}
-details[open] .p-name::after{transform:rotate(45deg);color:var(--acc)}
-.p-line{grid-column:1;color:var(--muted);font-size:15px}
-.p-meta{grid-row:1/3;grid-column:2;text-align:right;font-size:13px;color:var(--muted);align-self:center;display:flex;flex-direction:column;gap:2px}
-.st{display:inline-flex;align-items:center;gap:7px;justify-content:flex-end}
-.st::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--c)}
-.st.live{--c:var(--live)}.st.soon{--c:var(--soon)}.st.priv{--c:var(--priv)}
-.body{padding:4px 4px 26px;display:grid;grid-template-columns:1.2fr 1fr;gap:20px 40px;animation:open .25s ease}
-@keyframes open{from{opacity:0;transform:translateY(-4px)}}
-.body p{color:#c3c8cf}
-.body h4{font-size:13px;font-weight:600;color:var(--muted);margin-bottom:8px}
-.body ul{list-style:none}
-.body li{font-size:14.5px;color:#c3c8cf;padding:3px 0 3px 16px;position:relative}
-.body li::before{content:'';position:absolute;left:0;top:13px;width:6px;height:1px;background:var(--acc)}
-.stack{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px}
-.stack span{font:400 12px 'JetBrains Mono',monospace;color:var(--muted);border:1px solid var(--line);padding:2px 9px;border-radius:5px}
-.links{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px}
-.links a{font-size:13.5px;font-weight:600;text-decoration:none;color:var(--acc);border:1px solid rgba(94,234,212,.35);padding:7px 14px;border-radius:7px;transition:background .15s}
-.links a:hover{background:rgba(94,234,212,.1)}
+/* phone */
+.stage{position:relative;display:flex;justify-content:center;min-height:540px;align-items:center}
+.stage::before{content:'';position:absolute;width:360px;height:360px;border-radius:50%;background:conic-gradient(from 0deg,var(--teal),var(--vio),var(--pink),var(--teal));filter:blur(70px);opacity:.4;animation:spin 14s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.phone{position:relative;width:250px;height:500px;border-radius:40px;padding:9px;background:linear-gradient(160deg,#2a3350,#0e1322);box-shadow:0 40px 80px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.12);animation:bob 6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-14px) rotate(-1.5deg)}}
+.screen{height:100%;border-radius:32px;overflow:hidden;background:linear-gradient(180deg,#121a33,#0a0f20);padding:34px 16px 16px;position:relative;display:flex;flex-direction:column;gap:14px}
+.screen::before{content:'';position:absolute;top:10px;left:50%;transform:translateX(-50%);width:70px;height:18px;border-radius:12px;background:#000}
+.s-title{font:700 13px 'Bricolage Grotesque';color:var(--muted);text-align:center;margin-top:2px}
+.breath{margin:4px auto;width:118px;height:118px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:600 13px 'DM Sans';color:#e6fffa;background:radial-gradient(circle at 35% 30%,rgba(94,234,212,.9),rgba(139,92,246,.7));box-shadow:0 0 40px rgba(94,234,212,.45);animation:breathe 8s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:scale(.72)}50%{transform:scale(1.06)}}
+.board{background:rgba(255,255,255,.05);border-radius:14px;padding:10px 12px;font-size:11px}
+.board div{display:flex;align-items:center;gap:8px;padding:3px 0;color:#cfd7ea}
+.board b{width:14px;color:var(--amb)}
+.board span{flex:1;height:5px;border-radius:5px;background:rgba(255,255,255,.08);overflow:hidden}
+.board span i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--teal),var(--vio));animation:grow 3s ease-in-out infinite alternate}
+@keyframes grow{from{width:var(--a)}to{width:var(--b)}}
+.ride{margin-top:auto;border-radius:14px;padding:12px;background:rgba(244,114,182,.1);border:1px solid rgba(244,114,182,.25);font-size:11px;color:#f9d0e4;position:relative;overflow:hidden}
+.ride i{display:block;height:3px;border-radius:3px;background:rgba(255,255,255,.12);margin-top:8px;position:relative}
+.ride i::after{content:'';position:absolute;top:-3px;left:0;width:9px;height:9px;border-radius:50%;background:var(--pink);box-shadow:0 0 10px var(--pink);animation:go 4s ease-in-out infinite alternate}
+@keyframes go{to{left:calc(100% - 9px)}}
+.fl{position:absolute;font:500 12px 'JetBrains Mono',monospace;padding:7px 13px;border-radius:12px;background:rgba(14,19,34,.85);border:1px solid var(--line);backdrop-filter:blur(8px);animation:bob 5s ease-in-out infinite;white-space:nowrap}
+.fl.a{top:12%;left:-2%;color:var(--teal)}.fl.b{top:34%;right:-4%;color:#c4b5fd;animation-delay:-2s}.fl.c{bottom:20%;left:-6%;color:#fcd34d;animation-delay:-1s}.fl.d{bottom:6%;right:2%;color:#f9a8d4;animation-delay:-3s}
 
-.job{display:grid;grid-template-columns:190px 1fr;gap:8px 40px;padding:26px 0;border-bottom:1px solid var(--line)}
-.job:first-of-type{padding-top:0}
-.job time{font-size:13px;color:var(--muted);padding-top:4px}
-.job h3{font-size:18px;font-weight:600}
-.job .co{color:var(--muted);font-size:15px;margin-bottom:10px}
+/* marquee */
+.marq{border-block:1px solid var(--line);background:rgba(255,255,255,.02);overflow:hidden;position:relative;z-index:1;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marq div{display:flex;gap:48px;width:max-content;padding:18px 0;animation:roll 32s linear infinite}
+.marq:hover div{animation-play-state:paused}
+.marq span{font:700 20px 'Bricolage Grotesque';color:#5d6b86;white-space:nowrap}
+.marq span::before{content:'✦';color:var(--vio);margin-right:48px}
+@keyframes roll{to{transform:translateX(-50%)}}
+
+/* sections */
+section{padding:96px 0}
+.kick{font:500 13px 'JetBrains Mono',monospace;color:var(--teal);margin-bottom:10px}
+h2{font-size:clamp(32px,5vw,52px);font-weight:800;line-height:1.05;margin-bottom:14px}
+.lead{color:var(--muted);max-width:580px;margin-bottom:44px}
+.grid{display:grid;gap:18px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{position:relative;border-radius:20px;background:var(--card);border:1px solid var(--line);overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s}
+.card::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(380px circle at var(--mx,50%) var(--my,0%),var(--glow,rgba(94,234,212,.14)),transparent 60%)}
+.card:hover{transform:translateY(-6px);border-color:var(--bd,rgba(94,234,212,.4));box-shadow:0 24px 50px rgba(0,0,0,.4)}
+.card:hover::after{opacity:1}
+.ico{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;background:linear-gradient(135deg,hsl(var(--h,170) 85% 55%/.32),hsl(calc(var(--h,170) + 50) 85% 55%/.12));border:1px solid hsl(var(--h,170) 85% 60%/.3);transition:transform .3s}
+.card:hover .ico{transform:scale(1.1) rotate(-6deg)}
+
+/* stats + do */
+.stat{padding:26px;display:flex;gap:16px;align-items:center}
+.stat strong{display:block;font:800 36px/1 'Bricolage Grotesque';letter-spacing:-.04em}
+.stat span{font-size:13px;color:var(--muted)}
+.do{padding:26px}
+.do h3{font-size:19px;margin:16px 0 6px}
+.do p{font-size:14.5px;color:var(--muted)}
+
+/* projects */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px}
+.f{font:600 14px 'DM Sans';color:var(--muted);background:var(--card);border:1px solid var(--line);padding:9px 18px;border-radius:999px;cursor:pointer;transition:.2s}
+.f:hover{color:var(--text)}
+.f.on{color:#04201c;background:var(--teal);border-color:var(--teal)}
+.proj{--c:hsl(var(--h) 85% 64%);--bd:hsl(var(--h) 85% 62%/.5);--glow:hsl(var(--h) 85% 60%/.16);padding:24px;cursor:pointer;display:flex;flex-direction:column;animation:pop .5s ease both}
+@keyframes pop{from{opacity:0;transform:translateY(18px)}}
+.proj .top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px}
+.badge{font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:7px;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid var(--line)}
+.badge::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--s)}
+.live{--s:var(--live)}.soon{--s:var(--amb)}.priv{--s:#a5b0c8}
+.proj h3{font-size:21px;margin-bottom:6px}
+.proj .ln{font-size:14.5px;color:var(--muted);margin-bottom:16px;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font:400 11.5px 'JetBrains Mono',monospace;color:var(--c);background:hsl(var(--h) 85% 60%/.1);border:1px solid hsl(var(--h) 85% 60%/.22);padding:2px 9px;border-radius:6px}
+.foot{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.foot b{font-weight:600;color:var(--c);transition:letter-spacing .2s}
+.proj:hover .foot b{letter-spacing:.02em}
+
+dialog{border:0;background:transparent;color:var(--text);margin:auto;width:min(680px,94vw);max-height:90vh;overflow:visible}
+dialog::backdrop{background:rgba(4,6,14,.72);backdrop-filter:blur(8px)}
+dialog[open]{animation:dlg .3s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes dlg{from{opacity:0;transform:translateY(24px) scale(.96)}}
+.sheet{--c:hsl(var(--h) 85% 64%);background:#0e1322;border:1px solid hsl(var(--h) 85% 60%/.4);border-radius:24px;padding:30px;max-height:88vh;overflow:auto;box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 80px hsl(var(--h) 85% 55%/.15)}
+.sheet .hd{display:flex;gap:16px;align-items:center;margin-bottom:18px}
+.sheet h3{font-size:28px;line-height:1.1}
+.sheet p{color:#c4cbdb;margin-bottom:20px}
+.sheet h4{font:500 12px 'JetBrains Mono',monospace;color:var(--c);margin-bottom:10px}
+.sheet ul{list-style:none;margin-bottom:22px}
+.sheet li{padding:4px 0 4px 24px;position:relative;font-size:15px;color:#d5dbe9}
+.sheet li::before{content:'✓';position:absolute;left:0;color:var(--c);font-weight:700}
+.x{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--text);font-size:18px;cursor:pointer;z-index:2}
+.x:hover{background:rgba(255,255,255,.14)}
+.lk{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.lk a{font-weight:600;font-size:14px;text-decoration:none;padding:11px 20px;border-radius:12px;background:var(--c);color:#06101a;transition:transform .2s}
+.lk a:hover{transform:translateY(-2px)}
+.lk .none{font-size:13.5px;color:var(--muted)}
+
+/* experience */
+.tl{position:relative;padding-left:34px}
+.tl::before{content:'';position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--teal),var(--vio),var(--pink));border-radius:2px}
+.job{position:relative;margin-bottom:20px;padding:26px 28px}
+.job::before{content:'';position:absolute;left:-35px;top:32px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--k)}
+.job time{font:500 13px 'JetBrains Mono',monospace;color:var(--k)}
+.job h3{font-size:22px;margin:6px 0 2px}
+.job .co{color:var(--muted);margin-bottom:12px}
 .job ul{list-style:none}
-.job li{font-size:15px;color:#c3c8cf;padding:3px 0 3px 16px;position:relative}
-.job li::before{content:'';position:absolute;left:0;top:14px;width:6px;height:1px;background:var(--acc)}
-.job li b{font-weight:600;color:var(--text)}
+.job li{font-size:15px;color:#c4cbdb;padding:4px 0 4px 20px;position:relative}
+.job li::before{content:'';position:absolute;left:0;top:15px;width:8px;height:2px;background:var(--k);border-radius:2px}
+.job li b{color:var(--text);font-weight:600}
 
-.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:28px 48px}
-.skills h3{font-size:15px;margin-bottom:6px}
-.skills p{color:var(--muted);font-size:15px}
-.certs{margin-top:44px;padding-top:28px;border-top:1px solid var(--line);color:var(--muted);font-size:14.5px}
-.certs b{color:var(--text);font-weight:600}
+/* skills */
+.sk{padding:26px}
+.sk h3{font-size:19px;margin:16px 0 14px}
+.pl{display:flex;flex-wrap:wrap;gap:8px}
+.pl span{font-size:13px;color:#cbd3e4;padding:5px 12px;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid var(--line);transition:.2s}
+.pl span:hover{transform:translateY(-2px);color:#fff;border-color:hsl(var(--h) 85% 62%/.6);background:hsl(var(--h) 85% 60%/.14)}
+.cert{padding:20px;display:flex;gap:14px;align-items:center}
+.cert h3{font-size:16px}.cert p{font-size:13px;color:var(--muted)}
 
-.contact h2{font-size:clamp(30px,5vw,44px);letter-spacing:-.03em}
-.contact .lead{margin-bottom:26px}
-.rows a{display:flex;justify-content:space-between;gap:16px;padding:14px 2px;border-bottom:1px solid var(--line);text-decoration:none;transition:padding .2s,color .2s}
-.rows a:first-child{border-top:1px solid var(--line)}
-.rows a:hover{padding-left:10px;color:var(--acc)}
-.rows span{color:var(--muted);font-size:14px}
-footer{padding:28px 0 40px;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
-footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+/* contact */
+.cbox{position:relative;border-radius:32px;padding:70px 32px;text-align:center;overflow:hidden;background:linear-gradient(135deg,rgba(94,234,212,.12),rgba(139,92,246,.16) 55%,rgba(244,114,182,.12));border:1px solid var(--line)}
+.cbox h2{font-size:clamp(34px,6vw,62px)}
+.cbox p{color:#c4cbdb;max-width:480px;margin:0 auto 34px}
+.cl{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:30px}
+.cl a{display:flex;align-items:center;gap:9px;padding:12px 20px;border-radius:14px;text-decoration:none;font-size:14.5px;background:rgba(7,10,20,.55);border:1px solid var(--line);transition:.2s}
+.cl a:hover{transform:translateY(-3px);border-color:var(--teal);color:var(--teal)}
+footer{padding:30px 0 40px;text-align:center;color:var(--muted);font-size:13px;position:relative;z-index:1}
 
-@media(max-width:760px){
-  .hero{grid-template-columns:1fr;padding:56px 0 48px;gap:28px}
-  .photo{order:-1;width:112px;height:136px}
-  nav{gap:16px}
-  .body{grid-template-columns:1fr}
-  .job{grid-template-columns:1fr}
-  .skills{grid-template-columns:1fr}
-  details.p summary{grid-template-columns:1fr}
-  .p-meta{grid-row:auto;grid-column:1;text-align:left;flex-direction:row;gap:14px;margin-top:4px}
-  .st{justify-content:flex-start}
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.js .rv.in{opacity:1;transform:none}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding-top:110px}
+  .stage{min-height:520px}
+  .fl.a{left:6%}.fl.c{left:2%}.fl.b{right:2%}
 }
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media(max-width:620px){
+  .pill-nav a.l:not([href="#work"]){display:none}
+  section{padding:70px 0}
+  .job{padding:20px}
+  .sheet{padding:24px 20px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}}
 </style>
 </head>
 <body>
+<div class="amb"><i></i><i></i><i></i></div>
+<div id="bar"></div>
 
 <header class="top">
-  <div class="wrap">
-    <a href="#top" class="brand">shivanjal<i>.</i></a>
-    <nav>
-      <a href="#work">Work</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
+  <nav class="pill-nav">
+    <a href="#home" class="brand">shivanjal<i>.</i></a>
+    <a class="l" href="#work">Work</a>
+    <a class="l" href="#experience">Experience</a>
+    <a class="l" href="#skills">Skills</a>
+    <a class="cta" href="#contact">Hire me</a>
+  </nav>
 </header>
 
-<main id="top">
+<main id="home">
 <div class="wrap">
-
   <div class="hero">
     <div>
-      <h1>Shivanjal Sharma</h1>
-      <p class="what"><b>Mobile app developer.</b> React Native and Kotlin.</p>
-      <p class="about">I build mobile apps and take them all the way to the Play Store and App Store. Over the last two years I've shipped apps for ride-hailing, golf tournaments, wellness, education and libraries, usually owning the whole thing: architecture, API integration, release and the updates after launch.</p>
+      <div class="tagline">Open to full-time and freelance work</div>
+      <h1>Hi, I'm <em>Shivanjal</em>. I build mobile apps people actually install.</h1>
+      <div class="type">&gt; building with <b id="ty"></b></div>
+      <p class="about">Mobile app developer with 2+ years of experience in React Native and Kotlin. I take apps from the first screen to the Play Store and App Store, across ride-hailing, golf, wellness, education and libraries, and keep them running after launch.</p>
       <div class="actions">
-        <a class="btn main" href="Shivanjal_Resume.pdf" download>Download resume</a>
-        <a class="btn" href="#work">See my work</a>
-        <a class="btn" href="mailto:shivanjalsharma00@gmail.com">Email me</a>
+        <a class="btn main" href="#work">See my work</a>
+        <a class="btn" href="Shivanjal_Resume.pdf" download>Download resume</a>
       </div>
-      <div class="facts"><span>Open to full-time and freelance work</span><span>Delhi NCR</span></div>
+      <div class="chips"><span><b>2+</b> years</span><span><b>5</b> apps live on the stores</span><span><b>Android</b> and <b>iOS</b></span></div>
     </div>
-    <div class="photo"><img src="pro.png" alt="Shivanjal Sharma" onerror="this.parentNode.style.display='none'"></div>
+    <div class="stage" aria-hidden="true">
+      <div class="phone"><div class="screen">
+        <div class="s-title">Divine Sparks</div>
+        <div class="breath" id="br">Inhale</div>
+        <div class="board">
+          <div><b>1</b><span><i style="--a:70%;--b:92%"></i></span>−12</div>
+          <div><b>2</b><span><i style="--a:55%;--b:76%"></i></span>−10</div>
+          <div><b>3</b><span><i style="--a:40%;--b:64%"></i></span>−9</div>
+        </div>
+        <div class="ride">Driver is 3 min away<i></i></div>
+      </div></div>
+      <span class="fl a">React Native</span><span class="fl b">Kotlin</span><span class="fl c">WebSocket</span><span class="fl d">Firebase</span>
+    </div>
   </div>
+</div>
 
-  <section id="work">
-    <h2>Work</h2>
-    <p class="lead">Apps I've built for clients and for my company. Open any row for details and store links.</p>
-    <div id="projects"></div>
+<div class="marq" aria-hidden="true"><div id="mq"></div></div>
+
+<div class="wrap">
+  <section>
+    <div class="kick">// numbers</div>
+    <div class="grid g4">
+      <div class="card stat rv" style="--h:170"><div class="ico">⏱️</div><div><strong>2+</strong><span>Years of experience</span></div></div>
+      <div class="card stat rv" style="--h:260"><div class="ico">📱</div><div><strong>17</strong><span>Apps and sites built</span></div></div>
+      <div class="card stat rv" style="--h:320"><div class="ico">🚀</div><div><strong>5</strong><span>Live on Play Store / App Store</span></div></div>
+      <div class="card stat rv" style="--h:40"><div class="ico">🏢</div><div><strong>3</strong><span>Companies</span></div></div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="kick">// what I do</div>
+    <h2>From idea to store release</h2>
+    <p class="lead">I work on the whole app, not just the screens.</p>
+    <div class="grid g3">
+      <div class="card do rv" style="--h:170"><div class="ico">📋</div><h3>Requirements to product</h3><p>I turn business requirements into mobile apps that are simple to use and easy to grow.</p></div>
+      <div class="card do rv" style="--h:260"><div class="ico">🏗️</div><h3>Architecture</h3><p>Clean structure with MVVM, so features can be added without breaking the rest.</p></div>
+      <div class="card do rv" style="--h:200"><div class="ico">🔌</div><h3>Integrations</h3><p>Maps, WebSocket, BLE and RFID hardware, payments, media and backend APIs.</p></div>
+      <div class="card do rv" style="--h:40"><div class="ico">⚡</div><h3>Performance</h3><p>Smooth lists, quick start-up and background features that behave on real devices.</p></div>
+      <div class="card do rv" style="--h:320"><div class="ico">🚢</div><h3>Store releases</h3><p>Builds, reviews and updates on the Play Store and App Store, handled end to end.</p></div>
+      <div class="card do rv" style="--h:140"><div class="ico">🔧</div><h3>Maintenance</h3><p>Live apps stay healthy with bug fixes, dependency updates and improvements.</p></div>
+    </div>
+  </section>
+
+  <section id="work" style="padding-top:20px">
+    <div class="kick">// projects</div>
+    <h2>Things I've built</h2>
+    <p class="lead">Client apps, company products and a few side projects. Click any card for the full story and store links.</p>
+    <div class="filters" id="fl">
+      <button class="f on" data-f="all">All</button>
+      <button class="f" data-f="live">Live on stores</button>
+      <button class="f" data-f="soon">Launching soon</button>
+      <button class="f" data-f="web">Websites</button>
+      <button class="f" data-f="side">Side projects</button>
+    </div>
+    <div class="grid g3" id="pg"></div>
   </section>
 
   <section id="experience">
-    <h2>Experience</h2>
-    <p class="lead">Three companies, one thing in common: apps that real users have installed.</p>
-
-    <div class="job">
-      <time class="mono">Mar 2026 – now<br>Noida</time>
-      <div>
-        <h3>Mobile Application Developer</h3>
-        <div class="co">AlgoSoft Apps Technologies</div>
+    <div class="kick">// experience</div>
+    <h2>Where I've worked</h2>
+    <p class="lead">Three companies, and apps that real users have installed at each one.</p>
+    <div class="tl">
+      <div class="card job rv" style="--k:var(--teal)"><time>Mar 2026 – now · Noida</time><h3>Mobile Application Developer</h3><div class="co">AlgoSoft Apps Technologies</div>
         <ul>
           <li>Own the mobile side of <b>The Divine Sparks, PGTI, CDesk and ALO</b>, from architecture and API integration to store releases and maintenance.</li>
           <li>Built <b>Unheard</b> independently, an AI chat app that reads the emotional tone of a message and replies with empathy.</li>
           <li>Building the app suite for <b>TradeGrid</b>, plus Reachly, the hospital apps and ALO's customer and driver apps.</li>
-          <li>Real-time features across projects: live scoring over WebSocket, live ride tracking, background media playback.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="job">
-      <time class="mono">Nov 2024 – Feb 2026<br>Agra</time>
-      <div>
-        <h3>Android Developer</h3>
-        <div class="co">Libquik Pvt. Ltd.</div>
+          <li>Real-time features across projects: live scoring over WebSocket, live ride tracking and background media playback.</li>
+        </ul></div>
+      <div class="card job rv" style="--k:var(--vio)"><time>Nov 2024 – Feb 2026 · Agra</time><h3>Android Developer</h3><div class="co">Libquik Pvt. Ltd.</div>
         <ul>
           <li>Built the LibQuik Student and LibQuik Business apps in Kotlin and published both on the Play Store.</li>
           <li>Seat booking by date, time and seat number, with an approval flow for library owners.</li>
-          <li>Email, Facebook and phone sign-in; Firebase ML Kit image moderation; in-app polls and Q&amp;A.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="job">
-      <time class="mono">Jun 2024 – Oct 2024<br>Agra</time>
-      <div>
-        <h3>Android Developer</h3>
-        <div class="co">Walking Tree Technology</div>
+          <li>Email, Facebook and phone sign-in, Firebase ML Kit image moderation, in-app polls and Q&amp;A.</li>
+        </ul></div>
+      <div class="card job rv" style="--k:var(--pink)"><time>Jun 2024 – Oct 2024 · Agra</time><h3>Android Developer</h3><div class="co">Walking Tree Technology</div>
         <ul>
           <li>Maintained live apps (Team Tracker, TenSquare) in Kotlin and Java.</li>
           <li>Worked with BLE, Bluetooth and RFID for real-time device and employee tracking.</li>
           <li>Replaced deprecated code, updated dependencies and fixed performance-critical bugs.</li>
-        </ul>
-      </div>
+        </ul></div>
     </div>
   </section>
 
   <section id="skills">
-    <h2>Skills</h2>
-    <p class="lead">What I reach for most often.</p>
-    <div class="skills">
-      <div><h3>Cross-platform</h3><p>React Native, TypeScript, JavaScript, Redux, Context API, React Navigation, Native Modules, CodePush, Expo</p></div>
-      <div><h3>Native Android</h3><p>Kotlin, Java, Jetpack Compose, XML layouts, MVVM, Coroutines, Hilt, Navigation Component, WorkManager, DataStore</p></div>
-      <div><h3>Backend and data</h3><p>Firebase, REST APIs, Retrofit, WebSocket, Room, Realm, AsyncStorage. Some React.js and Node.js on the web side.</p></div>
-      <div><h3>Integrations and release</h3><p>Google Maps, BLE / RFID / Bluetooth, ML Kit, ZegoCloud, push notifications, Git, Play Store and App Store publishing</p></div>
+    <div class="kick">// skills</div>
+    <h2>My toolbox</h2>
+    <p class="lead">The tools I reach for most often.</p>
+    <div class="grid g3">
+      <div class="card sk rv" style="--h:190"><div class="ico">⚛️</div><h3>Cross-platform</h3><div class="pl"><span>React Native</span><span>TypeScript</span><span>JavaScript</span><span>Redux</span><span>Context API</span><span>React Navigation</span><span>Native Modules</span><span>CodePush</span><span>Expo</span></div></div>
+      <div class="card sk rv" style="--h:140"><div class="ico">🤖</div><h3>Native Android</h3><div class="pl"><span>Kotlin</span><span>Java</span><span>Jetpack Compose</span><span>XML</span><span>MVVM</span><span>Coroutines</span><span>Hilt</span><span>Navigation</span><span>WorkManager</span><span>DataStore</span></div></div>
+      <div class="card sk rv" style="--h:270"><div class="ico">🗄️</div><h3>Backend and data</h3><div class="pl"><span>Firebase</span><span>REST APIs</span><span>Retrofit</span><span>WebSocket</span><span>Room</span><span>Realm</span><span>AsyncStorage</span><span>Node.js</span><span>React.js</span></div></div>
+      <div class="card sk rv" style="--h:330"><div class="ico">🧰</div><h3>Integrations and release</h3><div class="pl"><span>Google Maps</span><span>BLE / RFID</span><span>Bluetooth</span><span>ML Kit</span><span>ZegoCloud</span><span>Push notifications</span><span>Git</span><span>Play Store</span><span>App Store</span></div></div>
     </div>
-    <p class="certs"><b>Certifications:</b> Complete Kotlin Course, Udemy (2024) · Java, B2E Coder (2021) · Data Structures, Technoster (2021) · C Language, Technoster (2021)</p>
+    <div class="grid g4" style="margin-top:18px">
+      <div class="card cert rv" style="--h:170"><div class="ico">🎓</div><div><h3>Complete Kotlin Course</h3><p>Udemy · 2024</p></div></div>
+      <div class="card cert rv" style="--h:30"><div class="ico">☕</div><div><h3>Java</h3><p>B2E Coder · 2021</p></div></div>
+      <div class="card cert rv" style="--h:260"><div class="ico">🧩</div><div><h3>Data Structures</h3><p>Technoster · 2021</p></div></div>
+      <div class="card cert rv" style="--h:320"><div class="ico">💻</div><div><h3>C Language</h3><p>Technoster · 2021</p></div></div>
+    </div>
   </section>
 
-  <section id="contact" class="contact">
-    <h2>Let's talk</h2>
-    <p class="lead">If you have an app to build or a role to fill, send me a message. I usually reply within a day.</p>
-    <div class="rows">
-      <a href="mailto:shivanjalsharma00@gmail.com">shivanjalsharma00@gmail.com <span>Email</span></a>
-      <a href="tel:+919084423885">+91 90844 23885 <span>Phone</span></a>
-      <a href="https://linkedin.com/in/shivanjal-sharma-78a820152" target="_blank" rel="noopener">linkedin.com/in/shivanjal-sharma <span>LinkedIn</span></a>
-      <a href="https://github.com/Shivanjal00" target="_blank" rel="noopener">github.com/Shivanjal00 <span>GitHub</span></a>
+  <section id="contact" style="padding-top:20px">
+    <div class="cbox rv">
+      <div class="kick">// contact</div>
+      <h2>Have an app in mind? Let's build it.</h2>
+      <p>Full-time role, freelance project or just a chat about an idea. I usually reply within a day.</p>
+      <a class="btn main" href="mailto:shivanjalsharma00@gmail.com">Say hello</a>
+      <div class="cl">
+        <a href="mailto:shivanjalsharma00@gmail.com">✉️ shivanjalsharma00@gmail.com</a>
+        <a href="tel:+919084423885">📞 +91 90844 23885</a>
+        <a href="https://github.com/Shivanjal00" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/shivanjal-sharma-78a820152" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
     </div>
   </section>
 </div>
 </main>
 
-<footer><div class="wrap"><span>© 2026 Shivanjal Sharma</span><span>Built by hand with HTML, CSS and a little JavaScript.</span></div></footer>
+<footer>© 2026 Shivanjal Sharma · Designed and coded by hand</footer>
+
+<dialog id="dlg"><button class="x" id="dx" aria-label="Close">✕</button><div class="sheet" id="sheet"></div></dialog>
 
 <script>
-/* ───── PROJECTS ─────
-   To add or change a project, edit this list.
-   status: 'live' | 'soon' | 'priv'.  links: [['Label','url'], ...] */
-const GP='Google Play', AS='App Store';
-const groups=[
- {title:'Live on the stores',items:[
-  {name:'The Divine Sparks',line:'Spiritual wellness app with video, audio, PDFs and guided breathing',platform:'Android · iOS',status:'live',statusText:'Live',
-   desc:'A wellness and spiritual content app that I built end to end, from the first screen to the Android and iOS releases, and delivered to the client. Members stream video and audio, read PDFs, and follow a guided breathing exercise, with different content unlocked by their access level.',
-   built:['Video and audio playback, including background play with the screen off','Inhale and exhale breathing animation with timed guidance','PDF library and downloadable content stored inside the app','Access-based options, so each member sees what they have unlocked','Content and data driven from the client\'s backend'],
-   stack:['React Native','TypeScript','Media playback','Background audio','Animations'],
-   links:[[GP,'https://play.google.com/store/apps/details?id=com.app.thedivinesparks&hl=en_IN'],[AS,'https://apps.apple.com/in/app/the-divine-sparks/id6473799742']]},
-  {name:'PGTI',line:'Golf tournament and player management, live scores included',platform:'Android · iOS',status:'live',statusText:'Live',
-   desc:'A large golf management app for the Professional Golf Tour of India, linked to DP World Tour data. Players log in and get everything in one place, from the tournament calendar and draws to live scoring and rankings.',
-   built:['Live tournament view with leaderboards updating in real time','Tournament lists, draws, scorecards and player rankings','Player login with player-specific functions','WebSocket-based live scoring','Full tournament flow, from upcoming events to final results'],
-   stack:['React Native','TypeScript','WebSocket','REST APIs','MVVM'],
-   links:[[GP,'https://play.google.com/store/apps/details?id=com.forcepower.pgtigolf&hl=en_IN'],[AS,'https://apps.apple.com/in/app/pgti/id163550058']]},
-  {name:'CDesk',line:'Complaint management with two ways to file',platform:'Android',status:'live',statusText:'Live',
-   desc:'A complaint app where users sign in and choose how they want to report an issue. They can write out the full complaint and submit it, or take the quick route: search, pick the issue from a list and submit in a few taps.',
-   built:['User login and complaint history','Detailed mode: write the whole complaint and submit','Quick mode: search, select and submit','Built and published on the Play Store'],
-   stack:['Kotlin','Firebase','REST APIs'],
-   links:[[GP,'https://play.google.com/store/apps/details?id=com.algosoft.cdesk&hl=en_IN']]},
-  {name:'LibQuik',line:'Library seat booking for students, plus an app for library owners',platform:'Android · 2 apps',status:'live',statusText:'Live',
-   desc:'Two apps that work together. Students find a library and book a seat for a chosen time from home, and can ask questions in a community where teachers answer. Library owners get their own app to manage seats and bookings, and to fill empty seats through the platform.',
-   built:['Seat reservation by date, time and seat number','Owner approval workflow for bookings','Student community with questions answered by teachers','Email, Facebook and phone sign-in','Firebase ML Kit image moderation, polls and Q&A'],
-   stack:['Kotlin','Firebase','MVVM','ML Kit'],
-   links:[['Student app (Google Play)','https://play.google.com/store/apps/details?id=com.app.qiklibrary&hl=en_IN'],['Business app (Google Play)','https://play.google.com/store/apps/details?id=com.app.qiklibrarybusiness&hl=en_IN']]},
-  {name:'TenSquare',line:'Study material, papers and mock tests for class 10 and 12',platform:'Android',status:'live',statusText:'Live',
-   desc:'An exam-preparation app for class 10 and 12 students. It brings study material, previous papers, mock tests and video lessons into one place, with access controls so content reaches the right students.',
-   built:['Study material and PDF delivery','Papers and mock tests','Recorded video classes','Secure, organised course access'],
-   stack:['Kotlin','Firebase','PDF viewer'],
-   links:[[GP,'https://play.google.com/store/apps/details?id=com.app.tensquare&hl=en_IN']]}
- ]},
- {title:'Built and launching soon',items:[
-  {name:'ALO',line:'Ride-hailing for customers and drivers, similar to Rapido and Uber',platform:'Android · iOS',status:'soon',statusText:'Launching soon',
-   desc:'A ride-hailing platform starting in Maharashtra, with two apps: one for customers and one for driver partners. Both sides see each other on the map in real time, and every step of the ride is managed in the apps.',
-   built:['Live location for users and drivers','Ride booking and real-time location sharing','Turn-by-turn directions','Separate customer and driver apps','Cabs, bikes and autos'],
-   stack:['React Native','TypeScript','Redux','Google Maps','WebSocket']},
-  {name:'Reachly',line:'Marketplace connecting influencers and brands',platform:'Android · iOS',status:'soon',statusText:'Launching soon',
-   desc:'An app where influencers get paid promotions and businesses find the right creators. The whole deal is handled inside the app, from the first offer to the final payment.',
-   built:['Businesses post a campaign with tasks and a price, or book an influencer directly','Influencers accept or reject offers','Demo reel and post uploads for approval','Payment and campaign tracking for both sides'],
-   stack:['React Native','TypeScript','REST APIs','Media upload']},
-  {name:'TradeGrid',line:'Procurement-to-sales system with three connected apps',platform:'Android · iOS',status:'priv',statusText:'In development',
-   desc:'My company\'s product, built to manage the whole chain from procurement to sale. Each client gets three apps, and the demo builds of the first two are ready.',
-   built:['Dealer app for orders, trucks and daily dealer operations','Admin app that is read-only: see everything, and open the web dashboard to make changes','FLS app for field sales teams to manage their work'],
-   stack:['React Native','TypeScript','REST APIs','Role-based access']},
-  {name:'Hospital Management System',line:'Patient and doctor apps for booking, reports and alerts',platform:'Android · iOS',status:'soon',statusText:'In development',
-   desc:'Two apps that cover both sides of a hospital visit. Patients book doctors and keep their medical reports in one place. Doctors manage appointments and patient information.',
-   built:['Doctor booking and appointment tracking','Medical reports stored and available on demand','Alerts for serious or critical conditions','Separate patient and doctor apps'],
-   stack:['React Native','TypeScript','Push notifications','REST APIs']},
-  {name:'GymBym',line:'Gym access across your area with one pass, like FitPass',platform:'Android · iOS · Web',status:'soon',statusText:'Website live',
-   desc:'A gym membership platform that lets users walk into gyms across their area with a single pass. The website is live and the mobile app is in development.',
-   built:['Browse and book gyms nearby','One pass, many gyms','Mobile app currently in development'],
-   stack:['React Native','React.js','Node.js'],links:[['Visit gymbym.com','https://gymbym.com']]},
-  {name:'Gulf region games',line:'Native Android prize-game apps for a client in the Gulf',platform:'Android',status:'priv',statusText:'Private distribution',
-   desc:'A few native Android apps built for the Gulf market, based on simple game formats such as spin the wheel, pick a number and lottery-style draws, with prizes for winning numbers. They are distributed directly rather than through the stores.',
-   built:['Spin wheel, number selection and draw mechanics','Prize and result handling','Native Android build'],
-   stack:['Kotlin','Java','Android']}
- ]},
- {title:'Websites',items:[
-  {name:'RoadCarnet',line:'Trucking management, from driver onboarding to documents',platform:'Web',status:'live',statusText:'Live',
-   desc:'A web platform for managing a trucking business end to end. It handles drivers, bookings and the paperwork around every trip, so the whole flow stays in one system.',
-   built:['Driver management and ride booking','Document handling for every trip','Complete operational flow in one dashboard'],
-   stack:['React.js','Node.js'],links:[['Visit roadcarnet.com','https://roadcarnet.com']]},
-  {name:'GymBym website',line:'Public site for the GymBym gym-access platform',platform:'Web',status:'live',statusText:'Live',
-   desc:'The web side of GymBym, built in React.js and Node.js, while the mobile app is still being built.',
-   built:['Responsive marketing and sign-up site','Backed by Node.js'],
-   stack:['React.js','Node.js'],links:[['Visit gymbym.com','https://gymbym.com']]}
- ]},
- {title:'Side projects',items:[
-  {name:'Unheard',line:'AI chatbot that responds to how you feel',platform:'Android · iOS',status:'priv',statusText:'Built independently',
-   desc:'A chat app with emotional awareness. It picks up the tone of each message and answers with empathy rather than just information. I built it on my own, front to back.',
-   built:['Emotion-aware conversation flow','LLM API integration','Chat interface for Android and iOS'],
-   stack:['React Native','TypeScript','LLM APIs']},
-  {name:'ChatNova',line:'Real-time chat and video calling',platform:'Android',status:'priv',statusText:'Personal',
-   desc:'A messaging app with live chat and video calls, using Firebase and ZegoCloud, with message lists tuned for smooth scrolling.',
-   stack:['Kotlin','Firebase','ZegoCloud','RecyclerView']},
-  {name:'Jaankari',line:'News app that works offline',platform:'Android',status:'priv',statusText:'Personal',
-   desc:'MVVM news reader with live headlines from a News API and offline reading through a Room database.',
-   stack:['Kotlin','MVVM','Retrofit','Room']},
-  {name:'KharchaPaani',line:'Offline-first expense tracker',platform:'Android',status:'priv',statusText:'Personal',
-   desc:'A personal expense tracker that stores everything on the device with Realm for fast, offline access.',
-   stack:['Java','Realm','Android']}
- ]}
+document.documentElement.classList.add('js');
+
+/* ───── PROJECTS: edit this list to add or change projects ─────
+   cat: live | soon | web | side     st: live | soon | priv
+   h: colour hue (0–360)             links: [['Label','url'],...] */
+const GP='Google Play',AS='App Store';
+const P=[
+{cat:'live',st:'live',stt:'Live',h:165,i:'🧘',n:'The Divine Sparks',ln:'Spiritual wellness app with video, audio, PDFs and guided breathing.',pf:'Android · iOS',
+ d:'A wellness and spiritual content app that I built end to end, from the first screen to the Android and iOS releases, and delivered to the client. Members stream video and audio, read PDFs and follow a guided breathing exercise, with content unlocked by access level.',
+ b:['Video and audio playback, including background play with the screen off','Inhale and exhale breathing animation with timed guidance','PDF library and downloads stored inside the app','Access-based options, so each member sees what they have unlocked','Content and data driven from the client\'s backend'],
+ s:['React Native','TypeScript','Media playback','Animations'],
+ l:[[GP,'https://play.google.com/store/apps/details?id=com.app.thedivinesparks&hl=en_IN'],[AS,'https://apps.apple.com/in/app/the-divine-sparks/id6473799742']]},
+{cat:'live',st:'live',stt:'Live',h:140,i:'⛳',n:'PGTI',ln:'Golf tournament and player management with live scores.',pf:'Android · iOS',
+ d:'A large golf management app for the Professional Golf Tour of India, linked to DP World Tour data. Players log in and get everything in one place, from the tournament calendar and draws to live scoring and rankings.',
+ b:['Live tournament view with leaderboards updating in real time','Tournament lists, draws, scorecards and player rankings','Player login with player-specific functions','WebSocket-based live scoring','Full tournament flow, from upcoming events to final results'],
+ s:['React Native','TypeScript','WebSocket','REST APIs'],
+ l:[[GP,'https://play.google.com/store/apps/details?id=com.forcepower.pgtigolf&hl=en_IN'],[AS,'https://apps.apple.com/in/app/pgti/id1635500583']]},
+{cat:'live',st:'live',stt:'Live',h:25,i:'📣',n:'CDesk',ln:'Complaint management with two ways to file.',pf:'Android',
+ d:'A complaint app where users sign in and choose how to report an issue. They can write the full complaint and submit it, or take the quick route: search, pick the issue from a list and submit in a few taps.',
+ b:['User login and complaint history','Detailed mode: write the whole complaint and submit','Quick mode: search, select and submit','Published on the Play Store'],
+ s:['Kotlin','Firebase','REST APIs'],
+ l:[[GP,'https://play.google.com/store/apps/details?id=com.algosoft.cdesk&hl=en_IN']]},
+{cat:'live',st:'live',stt:'Live',h:265,i:'📚',n:'LibQuik',ln:'Library seat booking for students, plus an owner app.',pf:'Android · 2 apps',
+ d:'Two apps that work together. Students find a library and book a seat for a chosen time from home, and ask questions in a community where teachers answer. Library owners get their own app to manage seats and bookings and to fill empty seats through the platform.',
+ b:['Seat reservation by date, time and seat number','Owner approval workflow for bookings','Student community with questions answered by teachers','Email, Facebook and phone sign-in','Firebase ML Kit image moderation, polls and Q&A'],
+ s:['Kotlin','Firebase','MVVM','ML Kit'],
+ l:[['Student app','https://play.google.com/store/apps/details?id=com.app.qiklibrary&hl=en_IN'],['Business app','https://play.google.com/store/apps/details?id=com.app.qiklibrarybusiness&hl=en_IN']]},
+{cat:'live',st:'live',stt:'Live',h:45,i:'🎓',n:'TenSquare',ln:'Study material, papers and mock tests for class 10 and 12.',pf:'Android',
+ d:'An exam-preparation app for class 10 and 12 students. It brings study material, previous papers, mock tests and video lessons into one place, with access controls so content reaches the right students.',
+ b:['Study material and PDF delivery','Papers and mock tests','Recorded video classes','Secure, organised course access'],
+ s:['Kotlin','Firebase','PDF viewer'],
+ l:[[GP,'https://play.google.com/store/apps/details?id=com.app.tensquare&hl=en_IN']]},
+{cat:'soon',st:'soon',stt:'Launching soon',h:195,i:'🚖',n:'ALO',ln:'Ride-hailing for customers and drivers, like Rapido and Uber.',pf:'Android · iOS',
+ d:'A ride-hailing platform starting in Maharashtra, with two apps: one for customers and one for driver partners. Both sides see each other on the map in real time, and every step of the ride is managed in the apps.',
+ b:['Live location for users and drivers','Ride booking and real-time location sharing','Turn-by-turn directions','Separate customer and driver apps','Cabs, bikes and autos'],
+ s:['React Native','TypeScript','Google Maps','WebSocket'],l:[]},
+{cat:'soon',st:'soon',stt:'Launching soon',h:330,i:'🤝',n:'Reachly',ln:'Marketplace connecting influencers and brands.',pf:'Android · iOS',
+ d:'An app where influencers get paid promotions and businesses find the right creators. The whole deal is handled inside the app, from the first offer to the final payment.',
+ b:['Businesses post a campaign with tasks and a price, or book an influencer directly','Influencers accept or reject offers','Demo reel and post uploads for approval','Payment and campaign tracking for both sides'],
+ s:['React Native','TypeScript','Media upload'],l:[]},
+{cat:'soon',st:'priv',stt:'In development',h:215,i:'🚚',n:'TradeGrid',ln:'Procurement-to-sales system with three connected apps.',pf:'Android · iOS',
+ d:'My company\'s product, built to manage the whole chain from procurement to sale. Each client gets three apps, and demo builds of the first two are ready.',
+ b:['Dealer app for orders, trucks and daily dealer operations','Admin app that is read-only: see everything, and use the web dashboard to make changes','FLS app for field sales teams to manage their work'],
+ s:['React Native','TypeScript','Role-based access'],l:[]},
+{cat:'soon',st:'soon',stt:'In development',h:350,i:'🏥',n:'Hospital Management',ln:'Patient and doctor apps for booking, reports and alerts.',pf:'Android · iOS',
+ d:'Two apps that cover both sides of a hospital visit. Patients book doctors and keep their medical reports in one place. Doctors manage appointments and patient information.',
+ b:['Doctor booking and appointment tracking','Medical reports stored and available on demand','Alerts for serious or critical conditions','Separate patient and doctor apps'],
+ s:['React Native','TypeScript','Push notifications'],l:[]},
+{cat:'soon',st:'soon',stt:'Website live',h:100,i:'🏋️',n:'GymBym',ln:'One pass for gyms across your area, like FitPass.',pf:'App · Web',
+ d:'A gym membership platform that lets users walk into gyms across their area with a single pass. The website is live and the mobile app is in development.',
+ b:['Browse and book gyms nearby','One pass, many gyms','Mobile app in development'],
+ s:['React Native','React.js','Node.js'],l:[['Visit gymbym.com','https://gymbym.com']]},
+{cat:'soon',st:'priv',stt:'Private distribution',h:280,i:'🎰',n:'Gulf region games',ln:'Native Android prize-game apps for a client in the Gulf.',pf:'Android',
+ d:'A few native Android apps for the Gulf market based on simple game formats such as spin the wheel, pick a number and lottery-style draws, with prizes for winning numbers. They are distributed directly, not through the stores.',
+ b:['Spin wheel, number selection and draw mechanics','Prize and result handling','Native Android build'],
+ s:['Kotlin','Java','Android'],l:[]},
+{cat:'web',st:'live',stt:'Live',h:30,i:'🚛',n:'RoadCarnet',ln:'Trucking management from driver onboarding to documents.',pf:'Web',
+ d:'A web platform for managing a trucking business end to end. It handles drivers, bookings and the paperwork around every trip, so the whole flow stays in one system.',
+ b:['Driver management and ride booking','Document handling for every trip','Complete operational flow in one dashboard'],
+ s:['React.js','Node.js'],l:[['Visit roadcarnet.com','https://roadcarnet.com']]},
+{cat:'web',st:'live',stt:'Live',h:120,i:'🌐',n:'GymBym website',ln:'Public site for the GymBym gym-access platform.',pf:'Web',
+ d:'The web side of GymBym, built in React.js and Node.js while the mobile app is being built.',
+ b:['Responsive marketing and sign-up site','Backed by Node.js'],
+ s:['React.js','Node.js'],l:[['Visit gymbym.com','https://gymbym.com']]},
+{cat:'side',st:'priv',stt:'Built solo',h:300,i:'💜',n:'Unheard',ln:'AI chatbot that responds to how you feel.',pf:'Android · iOS',
+ d:'A chat app with emotional awareness. It picks up the tone of each message and answers with empathy rather than just information. I built it on my own, front to back.',
+ b:['Emotion-aware conversation flow','LLM API integration','Chat interface for Android and iOS'],
+ s:['React Native','TypeScript','LLM APIs'],l:[]},
+{cat:'side',st:'priv',stt:'Personal',h:185,i:'💬',n:'ChatNova',ln:'Real-time chat and video calling.',pf:'Android',
+ d:'A messaging app with live chat and video calls using Firebase and ZegoCloud, with message lists tuned for smooth scrolling.',
+ b:['Real-time messaging','Video calling with ZegoCloud','Optimised RecyclerView lists'],s:['Kotlin','Firebase','ZegoCloud'],l:[]},
+{cat:'side',st:'priv',stt:'Personal',h:210,i:'📰',n:'Jaankari',ln:'News app that works offline.',pf:'Android',
+ d:'MVVM news reader with live headlines from a News API and offline reading through a Room database.',
+ b:['Live headlines','Offline reading with Room','MVVM structure'],s:['Kotlin','Retrofit','Room'],l:[]},
+{cat:'side',st:'priv',stt:'Personal',h:60,i:'💸',n:'KharchaPaani',ln:'Offline-first expense tracker.',pf:'Android',
+ d:'A personal expense tracker that stores everything on the device with Realm for fast, offline access.',
+ b:['Add and review expenses','Fully offline','Fast local queries with Realm'],s:['Java','Realm','Android'],l:[]}
 ];
-const root=document.getElementById('projects');
-root.innerHTML=groups.map(g=>`
- <div class="group"><h3>${g.title}<span>${g.items.length}</span></h3>
- ${g.items.map(p=>`
-  <details class="p"><summary>
-    <span class="p-name">${p.name}</span><span class="p-line">${p.line}</span>
-    <span class="p-meta"><span class="st ${p.status}">${p.statusText}</span><span>${p.platform}</span></span>
-  </summary>
-  <div class="body">
-    <p>${p.desc}</p>
-    ${p.built?`<div><h4>What I built</h4><ul>${p.built.map(b=>`<li>${b}</li>`).join('')}</ul></div>`:''}
-    <div class="stack">${p.stack.map(s=>`<span>${s}</span>`).join('')}</div>
-    ${p.links?`<div class="links">${p.links.map(l=>`<a href="${l[1]}" target="_blank" rel="noopener">${l[0]}</a>`).join('')}</div>`:''}
-  </div></details>`).join('')}
- </div>`).join('');
+
+const pg=document.getElementById('pg');
+function show(f){
+  pg.innerHTML=P.map((p,i)=>({p,i})).filter(o=>f==='all'||o.p.cat===f).map((o,k)=>{const p=o.p;return `
+  <article class="card proj" style="--h:${p.h};animation-delay:${k*50}ms" tabindex="0" role="button" data-i="${o.i}" aria-label="${p.n} details">
+    <div class="top"><div class="ico">${p.i}</div><span class="badge ${p.st}">${p.stt}</span></div>
+    <h3>${p.n}</h3><p class="ln">${p.ln}</p>
+    <div class="tags">${p.s.slice(0,3).map(t=>`<span>${t}</span>`).join('')}</div>
+    <div class="foot"><span>${p.pf}</span><b>View details →</b></div>
+  </article>`}).join('');
+}
+show('all');
+document.getElementById('fl').onclick=e=>{const b=e.target.closest('.f');if(!b)return;
+  document.querySelectorAll('.f').forEach(x=>x.classList.toggle('on',x===b));show(b.dataset.f)};
+
+const dlg=document.getElementById('dlg'),sheet=document.getElementById('sheet');
+function open(i){const p=P[i];
+  sheet.style.setProperty('--h',p.h);
+  sheet.innerHTML=`<div class="hd"><div class="ico" style="--h:${p.h}">${p.i}</div><div><h3>${p.n}</h3><span class="badge ${p.st}">${p.stt}</span> <span style="font-size:13px;color:var(--muted);margin-left:6px">${p.pf}</span></div></div>
+  <p>${p.d}</p><h4>// what I built</h4><ul>${p.b.map(x=>`<li>${x}</li>`).join('')}</ul>
+  <h4>// stack</h4><div class="tags" style="--h:${p.h};--c:hsl(${p.h} 85% 64%)">${p.s.map(t=>`<span>${t}</span>`).join('')}</div>
+  <div class="lk">${p.l.length?p.l.map(l=>`<a href="${l[1]}" target="_blank" rel="noopener">${l[0]} ↗</a>`).join(''):'<span class="none">Not on the stores yet. Store links will appear here once it launches.</span>'}</div>`;
+  dlg.showModal();}
+pg.addEventListener('click',e=>{const c=e.target.closest('.proj');if(c)open(+c.dataset.i)});
+pg.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const c=e.target.closest('.proj');if(c){e.preventDefault();open(+c.dataset.i)}}});
+document.getElementById('dx').onclick=()=>dlg.close();
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+
+/* spotlight on cards */
+document.addEventListener('pointermove',e=>{const c=e.target.closest&&e.target.closest('.card');if(!c)return;
+  const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')},{passive:true});
+
+/* typing line */
+const W=['React Native','Kotlin','TypeScript','Firebase','WebSocket','REST APIs'],ty=document.getElementById('ty');
+let wi=0,ci=0,del=false;
+(function t(){const w=W[wi];ty.textContent=w.slice(0,del?--ci:++ci);let d=del?45:95;
+  if(!del&&ci===w.length){del=true;d=1500}else if(del&&ci===0){del=false;wi=(wi+1)%W.length;d=300}setTimeout(t,d)})();
+
+/* breathing label */
+const br=document.getElementById('br');let inh=true;
+setInterval(()=>{inh=!inh;br.textContent=inh?'Inhale':'Exhale'},4000);br.textContent='Inhale';
+
+/* marquee */
+const T=['React Native','Kotlin','TypeScript','Java','Firebase','Redux','Jetpack Compose','WebSocket','Google Maps','BLE / RFID','Node.js','React.js'];
+document.getElementById('mq').innerHTML=[...T,...T].map(x=>`<span>${x}</span>`).join('');
+
+/* reveal, progress, active nav */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+const bar=document.getElementById('bar'),ls=[...document.querySelectorAll('.pill-nav a.l')],ss=ls.map(a=>document.querySelector(a.getAttribute('href')));
+addEventListener('scroll',()=>{const h=document.documentElement;bar.style.width=h.scrollTop/(h.scrollHeight-h.clientHeight)*100+'%';
+  let c=-1;ss.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<160)c=i});ls.forEach((a,i)=>a.classList.toggle('on',i===c))},{passive:true});
 </script>
 </body>
 </html>
