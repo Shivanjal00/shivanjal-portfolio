@@ -3,75 +3,72 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Shivanjal Sharma – Mobile App Developer</title>
-<meta name="description" content="Shivanjal Sharma is a mobile app developer building React Native and Kotlin apps that are live on the Google Play Store and Apple App Store.">
+<title>Shivanjal – Mobile App Developer</title>
+<meta name="description" content="Shivanjal is a mobile app developer building React Native, Kotlin and Java apps that are live on the Google Play Store and Apple App Store.">
 <meta name="theme-color" content="#0b0f17">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%230b0f17'/%3E%3Ctext x='50' y='70' font-size='64' font-family='Arial' font-weight='bold' fill='%235eead4' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{color-scheme:dark;--bg:#0b0f17;--panel:#121824;--line:#222c3d;--text:#e9edf5;--muted:#93a0b6;--teal:#5eead4;--coral:#ff8a65;--live:#4ade80;--amb:#fbbf24}
+:root{color-scheme:dark;--bg:#0b0f17;--panel:#121824;--line:#222c3d;--text:#e9edf5;--muted:#93a0b6;--teal:#5eead4;--live:#4ade80;--amb:#fbbf24}
 html{scroll-behavior:smooth;scroll-padding-top:76px}
 body{background:var(--bg);color:var(--text);font:400 16px/1.7 'DM Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+/* static ambient light: cheap to render, no blur filters, no animation */
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(600px 460px at 92% 4%,rgba(45,190,170,.14),transparent 70%),radial-gradient(560px 420px at 4% 96%,rgba(255,138,101,.07),transparent 70%)}
 h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;letter-spacing:-.025em}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
 ::selection{background:var(--teal);color:#04201c}
 .wrap{max-width:1080px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+#bar{position:fixed;top:0;left:0;height:2px;width:100%;z-index:200;background:var(--teal);transform:scaleX(0);transform-origin:left;will-change:transform}
 
-.amb{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.amb i{position:absolute;border-radius:50%;filter:blur(120px);animation:drift 26s ease-in-out infinite alternate}
-.amb i:nth-child(1){width:520px;height:520px;background:#0f9e90;opacity:.2;top:-160px;right:-120px}
-.amb i:nth-child(2){width:460px;height:460px;background:var(--coral);opacity:.11;bottom:-140px;left:-120px;animation-delay:-10s}
-@keyframes drift{to{transform:translate(-60px,50px) scale(1.12)}}
-#bar{position:fixed;top:0;left:0;height:2px;width:0;z-index:200;background:var(--teal)}
-
-header.top{position:sticky;top:0;z-index:100;background:rgba(11,15,23,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-header.top .wrap{display:flex;justify-content:space-between;align-items:center;height:60px}
-.brand{font:800 19px 'Bricolage Grotesque';text-decoration:none}
+/* header */
+.site{position:sticky;top:0;z-index:100;background:rgba(11,15,23,.96);border-bottom:1px solid var(--line)}
+.site .in{max-width:1080px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{font:800 21px 'Bricolage Grotesque';letter-spacing:-.03em;text-decoration:none}
 .brand i{font-style:normal;color:var(--teal)}
-nav{display:flex;align-items:center;gap:26px}
-nav a{font-size:14.5px;color:var(--muted);text-decoration:none;transition:color .2s}
-nav a:hover,nav a.on{color:var(--text)}
-nav a.hire{color:#04201c;background:var(--teal);font-weight:600;padding:7px 16px;border-radius:8px}
-nav a.hire:hover{background:#8ff3e4;color:#04201c}
+.site nav{display:flex;align-items:center;gap:6px}
+.site nav a{font-size:14.5px;color:var(--muted);text-decoration:none;padding:8px 14px;border-radius:8px;transition:color .2s,background .2s}
+.site nav a:hover,.site nav a.on{color:var(--text);background:rgba(255,255,255,.06)}
+.site nav a.hire{margin-left:10px;color:#04201c;background:var(--teal);font-weight:600;padding:9px 20px}
+.site nav a.hire:hover{background:#8ff3e4}
 
 /* hero */
-.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:78px 0 90px}
-.hello{color:var(--muted);margin-bottom:10px;font-size:17px}
-.hero h1{font-size:clamp(46px,7.2vw,84px);font-weight:800;line-height:.98;margin-bottom:10px}
-.hero h1 svg{display:block;width:min(300px,60%);margin-top:6px}
-.hero h1 path{stroke-dasharray:300;stroke-dashoffset:300;animation:draw 1.1s .5s ease forwards}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:72px 0 90px}
+.hello{font:400 17px 'JetBrains Mono',monospace;color:var(--teal);margin-bottom:12px}
+.hello::after{content:'';display:inline-block;width:9px;height:1.05em;background:var(--teal);margin-left:6px;vertical-align:-3px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.hero h1{font-size:clamp(54px,9vw,104px);font-weight:800;line-height:.95;margin-bottom:6px}
+.hero h1 svg{display:block;width:min(280px,62%);margin-top:8px}
+.hero h1 path{stroke-dasharray:300;stroke-dashoffset:300;animation:draw 1.1s .4s ease forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
 .role{font-family:'Bricolage Grotesque';font-weight:700;font-size:clamp(20px,2.6vw,28px);margin:22px 0 14px}
 .role b{color:var(--teal);font-weight:700}
 .role b::after{content:'';display:inline-block;width:3px;height:.95em;background:var(--teal);margin-left:4px;vertical-align:-2px;animation:blink 1s steps(2) infinite}
-@keyframes blink{50%{opacity:0}}
 .about{max-width:520px;color:#bcc6d8;margin-bottom:28px}
 .actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:30px}
-.btn{display:inline-block;padding:12px 24px;border-radius:10px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid var(--line);background:var(--panel);transition:transform .2s,border-color .2s,box-shadow .2s}
+.btn{display:inline-block;padding:12px 24px;border-radius:10px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid var(--line);background:var(--panel);transition:transform .2s,border-color .2s}
 .btn:hover{transform:translateY(-3px);border-color:var(--teal)}
 .btn.main{background:var(--teal);border-color:var(--teal);color:#04201c}
-.btn.main:hover{box-shadow:0 10px 30px rgba(94,234,212,.3)}
-.facts{display:flex;flex-wrap:wrap;gap:26px;font-size:14px;color:var(--muted)}
+.facts{display:flex;flex-wrap:wrap;gap:28px;font-size:14px;color:var(--muted)}
 .facts b{display:block;font:800 30px/1.1 'Bricolage Grotesque';color:var(--text)}
 
 .stage{position:relative;justify-self:center;width:min(380px,100%);padding-bottom:20px}
-.pic{position:relative;height:440px;border-radius:30px;background:linear-gradient(155deg,#12303a,#18202f 60%,#2a1d1d);border:1px solid var(--line);overflow:hidden}
-.pic::before{content:'';position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(94,234,212,.38),transparent 65%);top:30px;left:20px}
-.pic::after{content:'';position:absolute;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,138,101,.3),transparent 65%);bottom:-40px;right:-30px}
-.pic img{position:absolute;bottom:0;left:50%;transform:translateX(-58%);height:96%;max-width:none;z-index:1;-webkit-mask-image:linear-gradient(#000 78%,transparent);mask-image:linear-gradient(#000 78%,transparent)}
-.pic .mono{position:absolute;inset:0;display:none;place-items:center;font:800 120px 'Bricolage Grotesque';color:var(--teal);z-index:1}
-.phone{position:absolute;right:-26px;bottom:-4px;width:176px;height:350px;border-radius:30px;padding:7px;z-index:3;background:linear-gradient(160deg,#323c58,#0c111c);box-shadow:0 30px 60px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.14);animation:bob 6s ease-in-out infinite}
-@keyframes bob{50%{transform:translateY(-14px) rotate(2deg)}}
-.screen{height:100%;border-radius:24px;background:#0a0e16;padding:26px 11px 11px;font:400 9.5px/1.6 'JetBrains Mono',monospace;overflow:hidden;position:relative}
-.screen::before{content:'';position:absolute;top:8px;left:50%;transform:translateX(-50%);width:48px;height:12px;border-radius:8px;background:#000}
-.tab{display:flex;gap:6px;margin-bottom:8px;color:var(--muted);font-size:9px}
-.tab span{padding:1px 7px;border-radius:5px;background:#161d2b;color:#cfd8ea}
+.pic{position:relative;height:440px;border-radius:30px;background:radial-gradient(260px 260px at 35% 28%,rgba(94,234,212,.3),transparent 70%),radial-gradient(200px 200px at 90% 100%,rgba(255,138,101,.18),transparent 70%),linear-gradient(155deg,#12242e,#161d2b);border:1px solid var(--line);overflow:hidden}
+.pic img{position:absolute;bottom:0;left:50%;transform:translateX(-58%);height:96%;max-width:none;-webkit-mask-image:linear-gradient(#000 78%,transparent);mask-image:linear-gradient(#000 78%,transparent)}
+.pic .mono{position:absolute;inset:0;display:none;place-items:center;font:800 120px 'Bricolage Grotesque';color:var(--teal)}
+.phone{position:absolute;right:-30px;bottom:-4px;width:196px;height:372px;border-radius:30px;padding:7px;background:linear-gradient(160deg,#323c58,#0c111c);box-shadow:0 24px 50px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.14);animation:bob 6s ease-in-out infinite;will-change:transform}
+@keyframes bob{50%{transform:translateY(-12px) rotate(2deg)}}
+.screen{height:100%;border-radius:24px;background:#0a0e16;padding:28px 12px 11px;font:400 9.5px/1.65 'JetBrains Mono',monospace;overflow:hidden;position:relative}
+.screen::before{content:'';position:absolute;top:8px;left:50%;transform:translateX(-50%);width:50px;height:12px;border-radius:8px;background:#000}
+.tabs{display:flex;gap:5px;margin-bottom:9px;font-size:8.5px}
+.tabs span{padding:1px 7px;border-radius:5px;background:#131a28;color:#6b7893;transition:background .3s,color .3s}
+.tabs span.on{background:#1b2640;color:#e0e8f8}
 .k{color:#c792ea}.s{color:#c3e88d}.f{color:#82aaff}.c{color:#6b7893}.n{color:#f78c6c}
-.term{margin-top:10px;padding-top:8px;border-top:1px dashed #263048;min-height:112px;color:#9fb0cc}
+#code{min-height:108px;white-space:pre;color:#cfd8ea}
+.term{margin-top:8px;padding-top:8px;border-top:1px dashed #263048;min-height:112px;color:#9fb0cc}
 .term .ok{color:var(--live)}.term .w{color:var(--amb)}
 .term .cur::after{content:'▍';color:var(--teal);animation:blink 1s steps(2) infinite}
 
@@ -79,7 +76,6 @@ nav a.hire:hover{background:#8ff3e4;color:#04201c}
 section{padding:84px 0;border-top:1px solid var(--line)}
 h2{font-size:clamp(30px,4.4vw,46px);font-weight:800;line-height:1.08;margin-bottom:12px}
 .lead{color:var(--muted);max-width:560px;margin-bottom:40px}
-
 .about2{display:grid;grid-template-columns:1fr 1fr;gap:20px 56px}
 .about2 p{color:#bcc6d8;margin-bottom:14px}
 .do{list-style:none}
@@ -89,48 +85,46 @@ h2{font-size:clamp(30px,4.4vw,46px);font-weight:800;line-height:1.08;margin-bott
 .do span{font-size:14.5px;color:var(--muted)}
 
 /* projects */
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
-.fb{font:600 14px 'DM Sans';color:var(--muted);background:transparent;border:1px solid var(--line);padding:8px 16px;border-radius:8px;cursor:pointer;transition:.2s}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.fb{font:600 14px 'DM Sans';color:var(--muted);background:transparent;border:1px solid var(--line);padding:8px 16px;border-radius:8px;cursor:pointer;transition:color .2s,border-color .2s,background .2s}
 .fb:hover{color:var(--text);border-color:#3a4863}
 .fb.on{color:#04201c;background:var(--teal);border-color:var(--teal)}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;grid-auto-flow:dense}
-.proj{--c:hsl(var(--h) 80% 66%);position:relative;display:flex;flex-direction:column;padding:24px;border-radius:16px;background:var(--panel);border:1px solid var(--line);cursor:pointer;overflow:hidden;animation:pop .5s ease both;transition:transform .25s,border-color .25s,box-shadow .25s}
-@keyframes pop{from{opacity:0;transform:translateY(14px)}}
-.proj::before{content:'';position:absolute;left:0;top:0;right:0;height:3px;background:var(--c);transform:scaleX(.18);transform-origin:left;transition:transform .35s ease}
-.proj:hover{transform:translateY(-5px);border-color:hsl(var(--h) 60% 50%/.6);box-shadow:0 18px 40px rgba(0,0,0,.4),0 0 40px hsl(var(--h) 80% 55%/.1)}
+.gh{display:flex;justify-content:space-between;align-items:baseline;margin:38px 0 16px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.gh h3{font-size:22px}
+.gh span{font-size:13px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.proj{position:relative;display:flex;flex-direction:column;padding:24px;border-radius:16px;background:var(--panel);border:1px solid var(--line);cursor:pointer;overflow:hidden;transition:transform .2s,border-color .2s}
+.proj::before{content:'';position:absolute;left:0;top:0;right:0;height:3px;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.proj:hover{transform:translateY(-4px);border-color:rgba(94,234,212,.45)}
 .proj:hover::before{transform:scaleX(1)}
-.feat{grid-column:span 2}
-.top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px}
-.app{width:50px;height:50px;border-radius:15px;display:grid;place-items:center;font:800 18px 'Bricolage Grotesque';color:#071018;background:linear-gradient(140deg,hsl(var(--h) 85% 70%),hsl(calc(var(--h) + 35) 80% 55%));box-shadow:0 6px 16px hsl(var(--h) 80% 50%/.3)}
-.badge{font-size:12px;font-weight:500;display:inline-flex;align-items:center;gap:7px;color:var(--muted)}
+.ptop{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.ico{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;font-size:25px;background:rgba(94,234,212,.08);border:1px solid rgba(94,234,212,.2)}
+.badge{font-size:12.5px;display:inline-flex;align-items:center;gap:7px;color:var(--muted)}
 .badge::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--s)}
 .live{--s:var(--live)}.soon{--s:var(--amb)}.priv{--s:#8794ad}
 .proj h3{font-size:21px;margin-bottom:6px}
-.ln{font-size:14.5px;color:var(--muted);margin-bottom:14px}
-.pts{list-style:none;margin-bottom:16px}
-.pts li{font-size:14px;color:#c3ccdc;padding:2px 0 2px 18px;position:relative}
-.pts li::before{content:'';position:absolute;left:0;top:12px;width:8px;height:2px;border-radius:2px;background:var(--c)}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
-.tags span{font-size:12px;color:var(--c);background:hsl(var(--h) 80% 60%/.1);padding:2px 10px;border-radius:999px}
+.ln{font-size:14.5px;color:var(--muted);margin-bottom:16px;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-size:12px;color:#b9c4d8;background:rgba(255,255,255,.05);padding:2px 10px;border-radius:999px}
 .foot{display:flex;justify-content:space-between;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
-.foot b{font-weight:600;color:var(--text)}
+.foot b{font-weight:600;color:var(--teal)}
 
 dialog{border:0;background:transparent;color:var(--text);margin:auto;width:min(680px,94vw);max-height:90vh;overflow:visible}
-dialog::backdrop{background:rgba(5,8,14,.75);backdrop-filter:blur(6px)}
-dialog[open]{animation:dlg .28s ease}
-@keyframes dlg{from{opacity:0;transform:translateY(20px) scale(.97)}}
-.sheet{--c:hsl(var(--h) 80% 66%);position:relative;background:#101622;border:1px solid hsl(var(--h) 60% 50%/.45);border-radius:20px;padding:30px;max-height:88vh;overflow:auto;box-shadow:0 40px 100px rgba(0,0,0,.6)}
+dialog::backdrop{background:rgba(5,8,14,.82)}
+dialog[open]{animation:dlg .22s ease}
+@keyframes dlg{from{opacity:0;transform:translateY(16px)}}
+.sheet{position:relative;background:#101622;border:1px solid rgba(94,234,212,.35);border-radius:20px;padding:30px;max-height:88vh;overflow:auto}
 .sheet .hd{display:flex;gap:16px;align-items:center;margin-bottom:18px}
 .sheet h3{font-size:28px;line-height:1.1;margin-bottom:4px}
 .sheet p{color:#c3ccdc;margin-bottom:20px}
-.sheet h4{font:700 14px 'Bricolage Grotesque';color:var(--c);margin-bottom:8px}
+.sheet h4{font:700 14px 'Bricolage Grotesque';color:var(--teal);margin-bottom:8px}
 .sheet ul{list-style:none;margin-bottom:20px}
 .sheet li{padding:3px 0 3px 22px;position:relative;font-size:15px;color:#d3dae8}
-.sheet li::before{content:'✓';position:absolute;left:0;color:var(--c);font-weight:700}
+.sheet li::before{content:'✓';position:absolute;left:0;color:var(--teal);font-weight:700}
 .x{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--text);font-size:16px;cursor:pointer}
 .x:hover{border-color:var(--teal)}
 .lk{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-.lk a{font-weight:600;font-size:14px;text-decoration:none;padding:10px 18px;border-radius:10px;background:var(--c);color:#06101a;transition:transform .2s}
+.lk a{font-weight:600;font-size:14px;text-decoration:none;padding:10px 18px;border-radius:10px;background:var(--teal);color:#04201c;transition:transform .2s}
 .lk a:hover{transform:translateY(-2px)}
 .none{font-size:13.5px;color:var(--muted)}
 
@@ -138,57 +132,55 @@ dialog[open]{animation:dlg .28s ease}
 .job{display:grid;grid-template-columns:200px 1fr;gap:6px 40px;padding:28px 0;border-bottom:1px solid var(--line)}
 .job:first-of-type{padding-top:0}
 .job time{font-size:14px;color:var(--muted);padding-top:5px}
-.job time::before{content:'';display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--k);margin-right:10px}
+.job time::before{content:'';display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--teal);margin-right:10px}
 .job h3{font-size:21px}
 .co{color:var(--muted);margin-bottom:10px}
 .job ul{list-style:none}
 .job li{font-size:15px;color:#c3ccdc;padding:3px 0 3px 18px;position:relative}
-.job li::before{content:'';position:absolute;left:0;top:14px;width:8px;height:2px;background:var(--k)}
+.job li::before{content:'';position:absolute;left:0;top:14px;width:8px;height:2px;background:var(--teal)}
 .job li b{color:var(--text);font-weight:600}
 
 /* skills as code */
 .code{background:#0a0e16;border:1px solid var(--line);border-radius:16px;overflow:hidden}
 .code .bar{display:flex;gap:7px;align-items:center;padding:12px 16px;background:#111826;border-bottom:1px solid var(--line);font:400 12.5px 'JetBrains Mono',monospace;color:var(--muted)}
 .code .bar i{width:11px;height:11px;border-radius:50%;background:#ff5f56}.code .bar i:nth-child(2){background:#ffbd2e}.code .bar i:nth-child(3){background:#27c93f;margin-right:10px}
-.code pre{padding:22px 24px;overflow-x:auto;font:400 14px/1.85 'JetBrains Mono',monospace;color:#cfd8ea}
-.code .ind{padding-left:2ch}
+.code pre{padding:22px 24px;overflow-x:auto;font:400 13.5px/1.85 'JetBrains Mono',monospace;color:#cfd8ea}
 .certs{margin-top:28px;color:var(--muted);font-size:14.5px}
 .certs b{color:var(--text)}
 
-.contact{text-align:left}
 .mail{display:inline-block;font:800 clamp(24px,5vw,54px)/1.15 'Bricolage Grotesque';letter-spacing:-.03em;text-decoration:none;background:linear-gradient(var(--teal),var(--teal)) 0 100%/0 3px no-repeat;transition:background-size .4s,color .3s;word-break:break-all}
 .mail:hover{background-size:100% 3px;color:var(--teal)}
 .cl{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
-.cl a{padding:10px 18px;border-radius:10px;text-decoration:none;font-size:14.5px;border:1px solid var(--line);background:var(--panel);transition:.2s}
+.cl a{padding:10px 18px;border-radius:10px;text-decoration:none;font-size:14.5px;border:1px solid var(--line);background:var(--panel);transition:color .2s,border-color .2s,transform .2s}
 .cl a:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-2px)}
 footer{padding:28px 0 40px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);position:relative;z-index:1}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 
-.js .rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
 .js .rv.in{opacity:1;transform:none}
 
 @media(max-width:900px){
-  .hero{grid-template-columns:1fr;gap:44px;padding-top:50px}
+  .hero{grid-template-columns:1fr;gap:44px;padding-top:44px}
   .stage{order:-1}
-  .grid{grid-template-columns:repeat(2,1fr)}
   .about2{grid-template-columns:1fr}
 }
-@media(max-width:620px){
-  nav a:not(.hire):not([href="#work"]){display:none}
-  .grid{grid-template-columns:1fr}.feat{grid-column:auto}
+@media(max-width:680px){
+  .site .in{height:58px;padding:0 16px}
+  .site nav a:not(.hire):not([href="#work"]){display:none}
+  .site nav a.hire{margin-left:2px;padding:8px 16px}
+  .grid{grid-template-columns:1fr}
   .job{grid-template-columns:1fr}
   section{padding:64px 0}
-  .stage{width:min(320px,88%)}.pic{height:380px}.phone{right:-16px;width:150px;height:300px}.screen{font-size:8.5px}
+  .stage{width:min(320px,86%)}.pic{height:380px}.phone{right:-18px;width:166px;height:320px}.screen{font-size:8.5px}
   .sheet{padding:24px 20px}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}.hero h1 path{stroke-dashoffset:0}}
 </style>
 </head>
 <body>
-<div class="amb"><i></i><i></i></div>
 <div id="bar"></div>
 
-<header class="top"><div class="wrap">
+<header class="site"><div class="in">
   <a href="#top" class="brand">shivanjal<i>.</i></a>
   <nav>
     <a href="#work">Work</a><a href="#experience">Experience</a><a href="#skills">Skills</a>
@@ -200,12 +192,12 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 <div class="wrap">
   <div class="hero">
     <div>
-      <p class="hello">Hello, I'm</p>
-      <h1>Shivanjal Sharma
+      <p class="hello">Hello World</p>
+      <h1>Shivanjal
         <svg viewBox="0 0 300 14" fill="none" aria-hidden="true"><path d="M3 9c40-8 90-8 140-3s100 5 154-2" stroke="#5eead4" stroke-width="4" stroke-linecap="round"/></svg>
       </h1>
       <div class="role">Mobile developer, working with <b id="ty"></b></div>
-      <p class="about">I'm a mobile app developer from Delhi NCR. For the last two years I've built apps in React Native and Kotlin, shipped them to the Play Store and App Store, and kept them running after launch. I like owning an app from the first screen to the release.</p>
+      <p class="about">I'm a mobile app developer from Delhi NCR. For the last two years I've built apps in React Native, Kotlin and Java, shipped them to the Play Store and App Store, and kept them running after launch. I like owning an app from the first screen to the release.</p>
       <div class="actions">
         <a class="btn main" href="#work">See my work</a>
         <a class="btn" href="Shivanjal_Resume.pdf" download>Download resume</a>
@@ -215,17 +207,12 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 
     <div class="stage">
       <div class="pic">
-        <img src="pro.png" alt="Shivanjal Sharma" onerror="this.remove();document.getElementById('mono').style.display='grid'">
+        <img src="pro.png" alt="Shivanjal" fetchpriority="high" decoding="async" onerror="this.remove();document.getElementById('mono').style.display='grid'">
         <div class="mono" id="mono">S</div>
       </div>
       <div class="phone" aria-hidden="true"><div class="screen">
-        <div class="tab"><span>App.tsx</span><span>build</span></div>
-<div><span class="k">const</span> <span class="f">dev</span> = {</div>
-<div class="ind">name: <span class="s">'Shivanjal'</span>,</div>
-<div class="ind">stack: [<span class="s">'RN'</span>, <span class="s">'Kotlin'</span>],</div>
-<div class="ind">ships: <span class="n">true</span>,</div>
-<div>};</div>
-<div class="c">// keep it simple</div>
+        <div class="tabs"><span id="t0" class="on">App.tsx</span><span id="t1">Home.kt</span></div>
+        <div id="code"></div>
         <div class="term" id="term"></div>
       </div></div>
     </div>
@@ -238,7 +225,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
     <p class="lead">I enjoy the whole path an app takes, not just one part of it.</p>
     <div class="about2">
       <div>
-        <p>I started with Android and Java, moved to Kotlin, and then picked up React Native so one codebase could ship to both stores. That mix lets me choose the right tool for the job instead of forcing one.</p>
+        <p>I started with Android in Java, moved to Kotlin, and then picked up React Native so one codebase could ship to both stores. Knowing both sides lets me choose the right tool for the job: native when the device needs it, React Native when speed and reach matter.</p>
         <p>Most of my time goes into the parts users never see but always feel: smooth lists, background audio that keeps playing, live scores that update on time, and updates that don't break anything.</p>
       </div>
       <ul class="do">
@@ -254,28 +241,28 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
     <h2>Projects</h2>
     <p class="lead">Client apps, company products and a few of my own. Click a card for the details and store links.</p>
     <div class="filters" id="fl">
-      <button class="fb on" data-f="all">All</button><button class="fb" data-f="live">Live on stores</button><button class="fb" data-f="soon">Launching soon</button><button class="fb" data-f="web">Websites</button><button class="fb" data-f="side">Side projects</button>
+      <button class="fb on" data-f="all">All</button><button class="fb" data-f="live">Live on stores</button><button class="fb" data-f="soon">Building / launching soon</button><button class="fb" data-f="web">Websites</button><button class="fb" data-f="side">Personal projects</button>
     </div>
-    <div class="grid" id="pg"></div>
+    <div id="pg"></div>
   </section>
 
   <section id="experience">
     <h2>Experience</h2>
     <p class="lead">Three companies, and live apps at each one.</p>
-    <div class="job rv" style="--k:var(--teal)"><time>Mar 2026 – now<br>Noida</time><div><h3>Mobile Application Developer</h3><div class="co">AlgoSoft Apps Technologies</div>
+    <div class="job"><time>Mar 2026 – now<br>Noida</time><div><h3>Mobile Application Developer</h3><div class="co">AlgoSoft Apps Technologies</div>
       <ul>
         <li>Own the mobile side of <b>The Divine Sparks, PGTI, CDesk and ALO</b>, from architecture and API integration to store releases and maintenance.</li>
         <li>Built <b>Unheard</b> independently, an AI chat app that reads the emotional tone of a message and replies with empathy.</li>
         <li>Building the app suite for <b>TradeGrid</b>, plus Reachly, the hospital apps and ALO's customer and driver apps.</li>
         <li>Real-time features across projects: live scoring over WebSocket, live ride tracking and background media playback.</li>
       </ul></div></div>
-    <div class="job rv" style="--k:var(--coral)"><time>Nov 2024 – Feb 2026<br>Agra</time><div><h3>Android Developer</h3><div class="co">Libquik Pvt. Ltd.</div>
+    <div class="job"><time>Nov 2024 – Feb 2026<br>Agra</time><div><h3>Android Developer</h3><div class="co">Libquik Pvt. Ltd.</div>
       <ul>
         <li>Built the LibQuik Student and LibQuik Business apps in Kotlin and published both on the Play Store.</li>
         <li>Seat booking by date, time and seat number, with an approval flow for library owners.</li>
         <li>Email, Facebook and phone sign-in, Firebase ML Kit image moderation, in-app polls and Q&amp;A.</li>
       </ul></div></div>
-    <div class="job rv" style="--k:var(--amb)"><time>Jun 2024 – Oct 2024<br>Agra</time><div><h3>Android Developer</h3><div class="co">Walking Tree Technology</div>
+    <div class="job"><time>Jun 2024 – Oct 2024<br>Agra</time><div><h3>Android Developer</h3><div class="co">Walking Tree Technology</div>
       <ul>
         <li>Maintained live apps (Team Tracker, TenSquare) in Kotlin and Java.</li>
         <li>Worked with BLE, Bluetooth and RFID for real-time device and employee tracking.</li>
@@ -289,18 +276,27 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
     <div class="code rv">
       <div class="bar"><i></i><i></i><i></i>skills.ts</div>
 <pre><span class="k">const</span> <span class="f">shivanjal</span> = {
-<span class="ind">crossPlatform: [<span class="s">'React Native'</span>, <span class="s">'TypeScript'</span>, <span class="s">'JavaScript'</span>, <span class="s">'Redux'</span>, <span class="s">'Context API'</span>, <span class="s">'React Navigation'</span>, <span class="s">'Native Modules'</span>, <span class="s">'CodePush'</span>, <span class="s">'Expo'</span>],</span>
-<span class="ind">nativeAndroid: [<span class="s">'Kotlin'</span>, <span class="s">'Java'</span>, <span class="s">'Jetpack Compose'</span>, <span class="s">'XML'</span>, <span class="s">'MVVM'</span>, <span class="s">'Coroutines'</span>, <span class="s">'Hilt'</span>, <span class="s">'WorkManager'</span>, <span class="s">'DataStore'</span>],</span>
-<span class="ind">backendAndData: [<span class="s">'Firebase'</span>, <span class="s">'REST APIs'</span>, <span class="s">'Retrofit'</span>, <span class="s">'WebSocket'</span>, <span class="s">'Room'</span>, <span class="s">'Realm'</span>, <span class="s">'AsyncStorage'</span>, <span class="s">'Node.js'</span>, <span class="s">'React.js'</span>],</span>
-<span class="ind">integrations: [<span class="s">'Google Maps'</span>, <span class="s">'BLE / RFID'</span>, <span class="s">'Bluetooth'</span>, <span class="s">'ML Kit'</span>, <span class="s">'ZegoCloud'</span>, <span class="s">'Push notifications'</span>],</span>
-<span class="ind">release: [<span class="s">'Play Store'</span>, <span class="s">'App Store'</span>, <span class="s">'Git'</span>],</span>
-<span class="ind">currentlyShipping: <span class="n">true</span>,</span>
+  reactNative: {
+    language: [<span class="s">'TypeScript'</span>, <span class="s">'JavaScript'</span>],
+    state:    [<span class="s">'Redux'</span>, <span class="s">'Context API'</span>, <span class="s">'React Navigation'</span>],
+    tooling:  [<span class="s">'Native Modules'</span>, <span class="s">'CodePush'</span>, <span class="s">'Expo'</span>],
+  },
+  kotlinAndJava: {
+    language: [<span class="s">'Kotlin'</span>, <span class="s">'Java'</span>],
+    ui:       [<span class="s">'Jetpack Compose'</span>, <span class="s">'XML layouts'</span>],
+    patterns: [<span class="s">'MVVM'</span>, <span class="s">'Coroutines'</span>, <span class="s">'Hilt'</span>, <span class="s">'WorkManager'</span>, <span class="s">'DataStore'</span>],
+  },
+  backendAndData: [<span class="s">'Firebase'</span>, <span class="s">'REST APIs'</span>, <span class="s">'Retrofit'</span>, <span class="s">'WebSocket'</span>, <span class="s">'Room'</span>, <span class="s">'Realm'</span>, <span class="s">'AsyncStorage'</span>],
+  integrations: [<span class="s">'Google Maps'</span>, <span class="s">'BLE / RFID'</span>, <span class="s">'Bluetooth'</span>, <span class="s">'ML Kit'</span>, <span class="s">'ZegoCloud'</span>, <span class="s">'Push notifications'</span>],
+  web: [<span class="s">'React.js'</span>, <span class="s">'Node.js'</span>],
+  release: [<span class="s">'Play Store'</span>, <span class="s">'App Store'</span>, <span class="s">'Git'</span>],
+  shipsToBothStores: <span class="n">true</span>,
 };</pre>
     </div>
     <p class="certs"><b>Certifications:</b> Complete Kotlin Course, Udemy (2024) · Java, B2E Coder (2021) · Data Structures, Technoster (2021) · C Language, Technoster (2021)</p>
   </section>
 
-  <section id="contact" class="contact">
+  <section id="contact">
     <h2>Let's work together</h2>
     <p class="lead">Full-time role, freelance project or an app idea you want built. Write to me and I'll reply within a day.</p>
     <a class="mail" href="mailto:shivanjalsharma00@gmail.com">shivanjalsharma00@gmail.com</a>
@@ -314,7 +310,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 </div>
 </main>
 
-<footer><div class="wrap"><span>© 2026 Shivanjal Sharma</span><span>Designed and coded by me</span></div></footer>
+<footer><div class="wrap"><span>© 2026 Shivanjal</span><span>Designed and coded by me</span></div></footer>
 
 <dialog id="dlg"><div class="sheet" id="sheet"></div></dialog>
 
@@ -322,103 +318,104 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 document.documentElement.classList.add('js');
 
 /* ───── PROJECTS: edit this list to add or change projects ─────
-   cat: live | soon | web | side   st: live | soon | priv   h: colour hue 0-360
-   m: two letters for the icon     f: true = wide card     l: [['Label','url'],...] */
+   cat: live | soon | web | side     st: live | soon | priv     i: icon (emoji)
+   l: store links, e.g. [['Google Play','https://...'],['App Store','https://...']] */
 const GP='Google Play',AS='App Store';
+const CATS={live:'Live on stores',soon:'Building and launching soon',web:'Websites',side:'Personal projects'};
 const P=[
-{cat:'live',st:'live',stt:'Live',h:165,m:'DS',f:1,n:'The Divine Sparks',ln:'Spiritual wellness app with video, audio, PDFs and guided breathing.',pf:'Android · iOS',
+{cat:'live',st:'live',stt:'Live',i:'🧘',n:'The Divine Sparks',ln:'Spiritual wellness app with video, audio, PDFs and guided breathing.',pf:'Android · iOS',
  d:'A wellness and spiritual content app that I built end to end, from the first screen to the Android and iOS releases, and delivered to the client. Members stream video and audio, read PDFs and follow a guided breathing exercise, with content unlocked by access level.',
  b:['Video and audio playback, including background play with the screen off','Inhale and exhale breathing animation with timed guidance','PDF library and downloads stored inside the app','Access-based options, so each member sees what they have unlocked','Content and data driven from the client\'s backend'],
  s:['React Native','TypeScript','Media playback','Animations'],
  l:[[GP,'https://play.google.com/store/apps/details?id=com.app.thedivinesparks&hl=en_IN'],[AS,'https://apps.apple.com/in/app/the-divine-sparks/id6473799742']]},
-{cat:'live',st:'live',stt:'Live',h:25,m:'CD',n:'CDesk',ln:'Complaint management with two ways to file.',pf:'Android',
- d:'A complaint app where users sign in and choose how to report an issue. They can write the full complaint and submit it, or take the quick route: search, pick the issue from a list and submit in a few taps.',
- b:['User login and complaint history','Detailed mode: write the whole complaint and submit','Quick mode: search, select and submit','Published on the Play Store'],
- s:['Kotlin','Firebase','REST APIs'],
- l:[[GP,'https://play.google.com/store/apps/details?id=com.algosoft.cdesk&hl=en_IN']]},
-{cat:'live',st:'live',stt:'Live',h:140,m:'PG',f:1,n:'PGTI',ln:'Golf tournament and player management with live scores.',pf:'Android · iOS',
+{cat:'live',st:'live',stt:'Live',i:'⛳',n:'PGTI',ln:'Golf tournament and player management with live scores.',pf:'Android · iOS',
  d:'A large golf management app for the Professional Golf Tour of India, linked to DP World Tour data. Players log in and get everything in one place, from the tournament calendar and draws to live scoring and rankings.',
  b:['Live tournament view with leaderboards updating in real time','Tournament lists, draws, scorecards and player rankings','Player login with player-specific functions','WebSocket-based live scoring','Full tournament flow, from upcoming events to final results'],
  s:['React Native','TypeScript','WebSocket','REST APIs'],
  l:[[GP,'https://play.google.com/store/apps/details?id=com.forcepower.pgtigolf&hl=en_IN'],[AS,'https://apps.apple.com/in/app/pgti/id1635500583']]},
-{cat:'live',st:'live',stt:'Live',h:265,m:'LQ',n:'LibQuik',ln:'Library seat booking for students, plus an owner app.',pf:'Android · 2 apps',
+{cat:'live',st:'live',stt:'Live',i:'📣',n:'CDesk',ln:'Complaint management with two ways to file.',pf:'Android',
+ d:'A complaint app where users sign in and choose how to report an issue. They can write the full complaint and submit it, or take the quick route: search, pick the issue from a list and submit in a few taps.',
+ b:['User login and complaint history','Detailed mode: write the whole complaint and submit','Quick mode: search, select and submit','Published on the Play Store'],
+ s:['Kotlin','Firebase','REST APIs'],
+ l:[[GP,'https://play.google.com/store/apps/details?id=com.algosoft.cdesk&hl=en_IN']]},
+{cat:'live',st:'live',stt:'Live',i:'📚',n:'LibQuik',ln:'Library seat booking for students, plus an owner app.',pf:'Android · 2 apps',
  d:'Two apps that work together. Students find a library and book a seat for a chosen time from home, and ask questions in a community where teachers answer. Library owners get their own app to manage seats and bookings and to fill empty seats through the platform.',
  b:['Seat reservation by date, time and seat number','Owner approval workflow for bookings','Student community with questions answered by teachers','Email, Facebook and phone sign-in','Firebase ML Kit image moderation, polls and Q&A'],
  s:['Kotlin','Firebase','MVVM','ML Kit'],
  l:[['Student app','https://play.google.com/store/apps/details?id=com.app.qiklibrary&hl=en_IN'],['Business app','https://play.google.com/store/apps/details?id=com.app.qiklibrarybusiness&hl=en_IN']]},
-{cat:'live',st:'live',stt:'Live',h:45,m:'TS',n:'TenSquare',ln:'Study material, papers and mock tests for class 10 and 12.',pf:'Android',
+{cat:'live',st:'live',stt:'Live',i:'🎓',n:'TenSquare',ln:'Study material, papers and mock tests for class 10 and 12.',pf:'Android',
  d:'An exam-preparation app for class 10 and 12 students. It brings study material, previous papers, mock tests and video lessons into one place, with access controls so content reaches the right students.',
  b:['Study material and PDF delivery','Papers and mock tests','Recorded video classes','Secure, organised course access'],
  s:['Kotlin','Firebase','PDF viewer'],
  l:[[GP,'https://play.google.com/store/apps/details?id=com.app.tensquare&hl=en_IN']]},
-{cat:'soon',st:'soon',stt:'Launching soon',h:195,m:'AL',f:1,n:'ALO',ln:'Ride-hailing for customers and drivers, like Rapido and Uber.',pf:'Android · iOS',
+{cat:'soon',st:'soon',stt:'Launching soon',i:'🚖',n:'ALO',ln:'Ride-hailing for customers and drivers, like Rapido and Uber.',pf:'Android · iOS',
  d:'A ride-hailing platform starting in Maharashtra, with two apps: one for customers and one for driver partners. Both sides see each other on the map in real time, and every step of the ride is managed in the apps.',
  b:['Live location for users and drivers','Ride booking and real-time location sharing','Turn-by-turn directions','Separate customer and driver apps','Cabs, bikes and autos'],
  s:['React Native','TypeScript','Google Maps','WebSocket'],l:[]},
-{cat:'soon',st:'soon',stt:'Launching soon',h:330,m:'Re',n:'Reachly',ln:'Marketplace connecting influencers and brands.',pf:'Android · iOS',
+{cat:'soon',st:'soon',stt:'Launching soon',i:'🤝',n:'Reachly',ln:'Marketplace connecting influencers and brands.',pf:'Android · iOS',
  d:'An app where influencers get paid promotions and businesses find the right creators. The whole deal is handled inside the app, from the first offer to the final payment.',
  b:['Businesses post a campaign with tasks and a price, or book an influencer directly','Influencers accept or reject offers','Demo reel and post uploads for approval','Payment and campaign tracking for both sides'],
  s:['React Native','TypeScript','Media upload'],l:[]},
-{cat:'soon',st:'priv',stt:'In development',h:215,m:'TG',n:'TradeGrid',ln:'Procurement-to-sales system with three connected apps.',pf:'Android · iOS',
+{cat:'soon',st:'priv',stt:'In development',i:'🚚',n:'TradeGrid',ln:'Procurement-to-sales system with three connected apps.',pf:'Android · iOS',
  d:'My company\'s product, built to manage the whole chain from procurement to sale. Each client gets three apps, and demo builds of the first two are ready.',
  b:['Dealer app for orders, trucks and daily dealer operations','Admin app that is read-only: see everything, and use the web dashboard to make changes','FLS app for field sales teams to manage their work'],
  s:['React Native','TypeScript','Role-based access'],l:[]},
-{cat:'soon',st:'soon',stt:'In development',h:350,m:'HM',n:'Hospital Management',ln:'Patient and doctor apps for booking, reports and alerts.',pf:'Android · iOS',
+{cat:'soon',st:'soon',stt:'In development',i:'🏥',n:'Hospital Management',ln:'Patient and doctor apps for booking, reports and alerts.',pf:'Android · iOS',
  d:'Two apps that cover both sides of a hospital visit. Patients book doctors and keep their medical reports in one place. Doctors manage appointments and patient information.',
  b:['Doctor booking and appointment tracking','Medical reports stored and available on demand','Alerts for serious or critical conditions','Separate patient and doctor apps'],
  s:['React Native','TypeScript','Push notifications'],l:[]},
-{cat:'soon',st:'soon',stt:'Website live',h:100,m:'GB',n:'GymBym',ln:'One pass for gyms across your area, like FitPass.',pf:'App · Web',
+{cat:'soon',st:'soon',stt:'Website live',i:'🏋️',n:'GymBym',ln:'One pass for gyms across your area, like FitPass.',pf:'App · Web',
  d:'A gym membership platform that lets users walk into gyms across their area with a single pass. The website is live and the mobile app is in development.',
  b:['Browse and book gyms nearby','One pass, many gyms','Mobile app in development'],
  s:['React Native','React.js','Node.js'],l:[['Visit gymbym.com','https://gymbym.com']]},
-{cat:'soon',st:'priv',stt:'Private distribution',h:280,m:'GR',n:'Gulf region games',ln:'Native Android prize-game apps for a client in the Gulf.',pf:'Android',
+{cat:'soon',st:'priv',stt:'Private distribution',i:'🎮',n:'Gulf region games',ln:'Native Android prize-game apps for a client in the Gulf.',pf:'Android',
  d:'A few native Android apps for the Gulf market based on simple game formats such as spin the wheel, pick a number and lottery-style draws, with prizes for winning numbers. They are distributed directly, not through the stores.',
  b:['Spin wheel, number selection and draw mechanics','Prize and result handling','Native Android build'],
  s:['Kotlin','Java','Android'],l:[]},
-{cat:'web',st:'live',stt:'Live',h:30,m:'RC',n:'RoadCarnet',ln:'Trucking management from driver onboarding to documents.',pf:'Web',
- d:'A web platform for managing a trucking business end to end. It handles drivers, bookings and the paperwork around every trip, so the whole flow stays in one system.',
- b:['Driver management and ride booking','Document handling for every trip','Complete operational flow in one dashboard'],
- s:['React.js','Node.js'],l:[['Visit roadcarnet.com','https://roadcarnet.com']]},
-{cat:'web',st:'live',stt:'Live',h:120,m:'GB',n:'GymBym website',ln:'Public site for the GymBym gym-access platform.',pf:'Web',
- d:'The web side of GymBym, built in React.js and Node.js while the mobile app is being built.',
- b:['Responsive marketing and sign-up site','Backed by Node.js'],
- s:['React.js','Node.js'],l:[['Visit gymbym.com','https://gymbym.com']]},
-{cat:'side',st:'priv',stt:'Built solo',h:300,m:'Un',n:'Unheard',ln:'AI chatbot that responds to how you feel.',pf:'Android · iOS',
+{cat:'soon',st:'priv',stt:'Built independently',i:'🤖',n:'Unheard',ln:'AI chatbot that responds to how you feel.',pf:'Android · iOS',
  d:'A chat app with emotional awareness. It picks up the tone of each message and answers with empathy rather than just information. I built it on my own, front to back.',
  b:['Emotion-aware conversation flow','LLM API integration','Chat interface for Android and iOS'],
  s:['React Native','TypeScript','LLM APIs'],l:[]},
-{cat:'side',st:'priv',stt:'Personal',h:185,m:'CN',n:'ChatNova',ln:'Real-time chat and video calling.',pf:'Android',
+{cat:'web',st:'live',stt:'Live',i:'🚛',n:'RoadCarnet',ln:'Trucking management from driver onboarding to documents.',pf:'Web',
+ d:'A web platform for managing a trucking business end to end. It handles drivers, bookings and the paperwork around every trip, so the whole flow stays in one system.',
+ b:['Driver management and ride booking','Document handling for every trip','Complete operational flow in one dashboard'],
+ s:['React.js','Node.js'],l:[['Visit roadcarnet.com','https://roadcarnet.com']]},
+{cat:'web',st:'live',stt:'Live',i:'🌐',n:'GymBym website',ln:'Public site for the GymBym gym-access platform.',pf:'Web',
+ d:'The web side of GymBym, built in React.js and Node.js while the mobile app is being built.',
+ b:['Responsive marketing and sign-up site','Backed by Node.js'],
+ s:['React.js','Node.js'],l:[['Visit gymbym.com','https://gymbym.com']]},
+{cat:'side',st:'priv',stt:'Personal',i:'💬',n:'ChatNova',ln:'Real-time chat and video calling.',pf:'Android',
  d:'A messaging app with live chat and video calls using Firebase and ZegoCloud, with message lists tuned for smooth scrolling.',
  b:['Real-time messaging','Video calling with ZegoCloud','Optimised RecyclerView lists'],s:['Kotlin','Firebase','ZegoCloud'],l:[]},
-{cat:'side',st:'priv',stt:'Personal',h:210,m:'Ja',n:'Jaankari',ln:'News app that works offline.',pf:'Android',
+{cat:'side',st:'priv',stt:'Personal',i:'📰',n:'Jaankari',ln:'News app that works offline.',pf:'Android',
  d:'MVVM news reader with live headlines from a News API and offline reading through a Room database.',
  b:['Live headlines','Offline reading with Room','MVVM structure'],s:['Kotlin','Retrofit','Room'],l:[]},
-{cat:'side',st:'priv',stt:'Personal',h:60,m:'KP',n:'KharchaPaani',ln:'Offline-first expense tracker.',pf:'Android',
+{cat:'side',st:'priv',stt:'Personal',i:'💸',n:'KharchaPaani',ln:'Offline-first expense tracker.',pf:'Android',
  d:'A personal expense tracker that stores everything on the device with Realm for fast, offline access.',
  b:['Add and review expenses','Fully offline','Fast local queries with Realm'],s:['Java','Realm','Android'],l:[]}
 ];
 
 const pg=document.getElementById('pg');
+const card=(p,i)=>`<article class="proj" tabindex="0" role="button" data-i="${i}" aria-label="${p.n} details">
+  <div class="ptop"><div class="ico">${p.i}</div><span class="badge ${p.st}">${p.stt}</span></div>
+  <h3>${p.n}</h3><p class="ln">${p.ln}</p>
+  <div class="tags">${p.s.slice(0,3).map(t=>`<span>${t}</span>`).join('')}</div>
+  <div class="foot"><span>${p.pf}</span><b>Details</b></div></article>`;
 function show(f){
-  pg.innerHTML=P.map((p,i)=>({p,i})).filter(o=>f==='all'||o.p.cat===f).map((o,k)=>{const p=o.p,w=p.f&&f==='all';return `
-  <article class="proj${w?' feat':''}" style="--h:${p.h};animation-delay:${k*45}ms" tabindex="0" role="button" data-i="${o.i}" aria-label="${p.n} details">
-    <div class="top"><div class="app">${p.m}</div><span class="badge ${p.st}">${p.stt}</span></div>
-    <h3>${p.n}</h3><p class="ln">${p.ln}</p>
-    ${w?`<ul class="pts">${p.b.slice(0,3).map(x=>`<li>${x}</li>`).join('')}</ul>`:''}
-    <div class="tags">${p.s.slice(0,w?4:3).map(t=>`<span>${t}</span>`).join('')}</div>
-    <div class="foot"><span>${p.pf}</span><b>Details</b></div>
-  </article>`}).join('');
+  pg.innerHTML=Object.keys(CATS).filter(c=>f==='all'||c===f).map(c=>{
+    const items=P.map((p,i)=>[p,i]).filter(x=>x[0].cat===c);
+    return `<div class="gh"><h3>${CATS[c]}</h3><span>${items.length} ${items.length===1?'project':'projects'}</span></div><div class="grid">${items.map(x=>card(x[0],x[1])).join('')}</div>`}).join('');
 }
 show('all');
 document.getElementById('fl').onclick=e=>{const b=e.target.closest('.fb');if(!b)return;
   document.querySelectorAll('.fb').forEach(x=>x.classList.toggle('on',x===b));show(b.dataset.f)};
 
 const dlg=document.getElementById('dlg'),sheet=document.getElementById('sheet');
-function openP(i){const p=P[i];sheet.style.setProperty('--h',p.h);
+function openP(i){const p=P[i];
   sheet.innerHTML=`<button class="x" aria-label="Close" onclick="dlg.close()">✕</button>
-  <div class="hd"><div class="app" style="--h:${p.h}">${p.m}</div><div><h3>${p.n}</h3><span class="badge ${p.st}">${p.stt}</span> <span class="badge" style="margin-left:8px">${p.pf}</span></div></div>
+  <div class="hd"><div class="ico">${p.i}</div><div><h3>${p.n}</h3><span class="badge ${p.st}">${p.stt}</span> <span class="badge" style="margin-left:10px">${p.pf}</span></div></div>
   <p>${p.d}</p><h4>What I built</h4><ul>${p.b.map(x=>`<li>${x}</li>`).join('')}</ul>
-  <h4>Stack</h4><div class="tags" style="--h:${p.h};--c:hsl(${p.h} 80% 66%)">${p.s.map(t=>`<span>${t}</span>`).join('')}</div>
+  <h4>Stack</h4><div class="tags">${p.s.map(t=>`<span>${t}</span>`).join('')}</div>
   <div class="lk">${p.l.length?p.l.map(l=>`<a href="${l[1]}" target="_blank" rel="noopener">${l[0]} ↗</a>`).join(''):'<span class="none">Not on the stores yet. Links will be added when it launches.</span>'}</div>`;
   dlg.showModal();}
 pg.addEventListener('click',e=>{const c=e.target.closest('.proj');if(c)openP(+c.dataset.i)});
@@ -426,27 +423,40 @@ pg.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const c=e.tar
 dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
 
 /* hero typing */
-const W=['React Native','Kotlin','TypeScript','Firebase','WebSocket'],ty=document.getElementById('ty');
+const W=['React Native','Kotlin','Java','TypeScript','Firebase'],ty=document.getElementById('ty');
 let wi=0,ci=0,del=false;
 (function t(){const w=W[wi];ty.textContent=w.slice(0,del?--ci:++ci);let d=del?45:95;
   if(!del&&ci===w.length){del=true;d=1500}else if(del&&ci===0){del=false;wi=(wi+1)%W.length;d=300}setTimeout(t,d)})();
 
-/* phone terminal */
-const term=document.getElementById('term');
-const script=[['$ npm run android','',700],['<span class="w">› bundling 1243 modules</span>','',900],['<span class="ok">✓ BUILD SUCCESSFUL</span>','',900],['$ eas submit --platform all','',800],['<span class="ok">✓ Sent to Play Store</span>','',700],['<span class="ok">✓ Sent to App Store</span>','',2200]];
-(function run(){let i=0,lines=[];function step(){
-  if(i===script.length){i=0;lines=[]}
-  lines.push(script[i][0]);if(lines.length>6)lines.shift();
-  term.innerHTML=lines.map((l,j)=>`<div${j===lines.length-1&&l.startsWith('$')?' class="cur"':''}>${l}</div>`).join('');
-  setTimeout(step,script[i++][2]);}
-  step()})();
+/* phone: React Native and Kotlin, taking turns */
+const code=document.getElementById('code'),term=document.getElementById('term'),t0=document.getElementById('t0'),t1=document.getElementById('t1');
+const SNIP=[
+ `<span class="k">function</span> <span class="f">App</span>() {\n  <span class="k">const</span> [ok] = <span class="f">useState</span>(<span class="n">1</span>);\n  <span class="k">return</span> &lt;<span class="f">Home</span> /&gt;;\n}\n<span class="c">// one codebase</span>`,
+ `<span class="k">class</span> <span class="f">Home</span> : Fragment() {\n  <span class="k">val</span> vm: HomeVM <span class="k">by</span>\n    <span class="f">viewModels</span>()\n  <span class="k">fun</span> <span class="f">onStart</span>() = vm.<span class="f">load</span>()\n}`];
+const RUN=[
+ [['$ npx react-native run-android',900],['<span class="w">› bundling modules</span>',900],['<span class="ok">✓ BUILD SUCCESSFUL</span>',900],['$ eas submit -p ios',800],['<span class="ok">✓ Sent to App Store</span>',1800]],
+ [['$ ./gradlew bundleRelease',900],['<span class="w">› compiling Kotlin</span>',900],['<span class="ok">✓ BUILD SUCCESSFUL</span>',900],['$ upload to Play Console',800],['<span class="ok">✓ Sent to Play Store</span>',1800]]];
+let mode=0;
+(function run(){
+  code.innerHTML=SNIP[mode];t0.className=mode?'':'on';t1.className=mode?'on':'';
+  const steps=RUN[mode],lines=[];let i=0;
+  (function step(){
+    if(i===steps.length){mode=1-mode;run();return}
+    lines.push(steps[i][0]);if(lines.length>5)lines.shift();
+    term.innerHTML=lines.map((l,j)=>`<div${j===lines.length-1&&l[0]==='$'?' class="cur"':''}>${l}</div>`).join('');
+    setTimeout(step,steps[i++][1]);
+  })();
+})();
 
-/* reveal, progress, active nav */
+/* reveal, progress bar, active nav (cheap: one rAF-throttled handler, observers for the rest) */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-const bar=document.getElementById('bar'),ls=[...document.querySelectorAll('nav a:not(.hire)')],ss=ls.map(a=>document.querySelector(a.getAttribute('href')));
-addEventListener('scroll',()=>{const h=document.documentElement;bar.style.width=h.scrollTop/(h.scrollHeight-h.clientHeight)*100+'%';
-  let c=-1;ss.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<160)c=i});ls.forEach((a,i)=>a.classList.toggle('on',i===c))},{passive:true});
+const bar=document.getElementById('bar');let tick=false;
+addEventListener('scroll',()=>{if(tick)return;tick=true;requestAnimationFrame(()=>{
+  const h=document.documentElement;bar.style.transform=`scaleX(${h.scrollTop/(h.scrollHeight-h.clientHeight)})`;tick=false})},{passive:true});
+const links=[...document.querySelectorAll('.site nav a:not(.hire)')];
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-40% 0px -55% 0px'});
+links.forEach(a=>{const s=document.querySelector(a.getAttribute('href'));if(s)so.observe(s)});
 </script>
 </body>
 </html>
