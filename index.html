@@ -46,7 +46,7 @@ a{color:inherit}
 .mbtn{display:none;width:42px;height:42px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--text);font-size:20px;cursor:pointer}
 
 /* hero */
-.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:72px 0 90px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:64px 0 56px}
 .hello{font:400 17px 'JetBrains Mono',monospace;color:var(--teal);margin-bottom:12px}
 .hello::after{content:'';display:inline-block;width:9px;height:1.05em;background:var(--teal);margin-left:6px;vertical-align:-3px;animation:blink 1s steps(2) infinite}
 @keyframes blink{50%{opacity:0}}
@@ -85,11 +85,12 @@ a{color:inherit}
 .term .cur::after{content:'▍';color:var(--teal);animation:blink 1s steps(2) infinite}
 
 /* sections */
-section{padding:84px 0;border-top:1px solid var(--line)}
+section{padding:64px 0;border-top:1px solid var(--line)}
 h2{font-size:clamp(30px,4.4vw,46px);font-weight:800;line-height:1.08;margin-bottom:12px}
-.lead{color:var(--muted);max-width:560px;margin-bottom:40px}
+.lead{color:var(--muted);max-width:560px;margin-bottom:32px}
 .about2{display:grid;grid-template-columns:1fr 1fr;gap:20px 56px}
 .about2 p{color:var(--body);margin-bottom:14px}
+.about2 p:last-child{margin-bottom:0}
 .do{list-style:none}
 .do li{padding:14px 0;border-bottom:1px solid var(--line)}
 .do li:first-child{padding-top:0}
@@ -101,12 +102,14 @@ h2{font-size:clamp(30px,4.4vw,46px);font-weight:800;line-height:1.08;margin-bott
 .fb{font:600 14px 'DM Sans';color:var(--muted);background:transparent;border:1px solid var(--line);padding:8px 16px;border-radius:8px;cursor:pointer;transition:color .2s,border-color .2s,background .2s}
 .fb:hover{color:var(--text);border-color:var(--hline)}
 .fb.on{color:var(--on-teal);background:var(--teal);border-color:var(--teal)}
-.gh{display:flex;justify-content:space-between;align-items:baseline;margin:38px 0 16px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.gh{display:flex;justify-content:space-between;align-items:baseline;margin:32px 0 16px;padding-bottom:10px;border-bottom:1px solid var(--line)}
 .gh h3{font-size:22px}
 .gh span{font-size:13px;color:var(--muted)}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
 .proj{position:relative;display:flex;flex-direction:column;padding:24px;border-radius:16px;background:var(--panel);border:1px solid var(--line);cursor:pointer;overflow:hidden;transition:transform .2s,border-color .2s}
 .proj::before{content:'';position:absolute;left:0;top:0;right:0;height:3px;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.proj.solo{grid-column:1/-1}
+.proj.solo .ln{max-width:640px}
 .proj:hover{transform:translateY(-4px);border-color:var(--tbd3)}
 .proj:hover::before{transform:scaleX(1)}
 .ptop{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
@@ -123,6 +126,7 @@ h2{font-size:clamp(30px,4.4vw,46px);font-weight:800;line-height:1.08;margin-bott
 
 /* card screenshot preview + logo */
 .ico.logo{background:transparent;border:0;border-radius:50%;box-shadow:0 4px 12px var(--shadow)}
+.ico.logo.sq{border-radius:14px}
 .ico.logo img{width:100%;height:100%;object-fit:contain;display:block}
 .media{position:relative;height:196px;margin:-24px -24px 20px;overflow:hidden;background:radial-gradient(280px 170px at 50% 0%,var(--tbd),transparent 72%),linear-gradient(180deg,var(--tbg2),var(--tint));border-bottom:1px solid var(--line)}
 .fan{position:absolute;inset:0}
@@ -173,6 +177,7 @@ dialog[open]{animation:dlg .22s ease}
 /* experience */
 .job{display:grid;grid-template-columns:200px 1fr;gap:6px 40px;padding:28px 0;border-bottom:1px solid var(--line)}
 .job:first-of-type{padding-top:0}
+.job:last-of-type{border-bottom:0;padding-bottom:0}
 .job time{font-size:14px;color:var(--muted);padding-top:5px}
 .job time::before{content:'';display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--teal);margin-right:10px}
 .job h3{font-size:21px}
@@ -189,7 +194,7 @@ dialog[open]{animation:dlg .22s ease}
 .stab small{font:500 12px 'DM Sans';opacity:.7}
 .stab:hover{color:var(--text);background:var(--tint)}
 .stab.on{color:var(--text);background:var(--tbg2);box-shadow:inset 3px 0 0 var(--teal)}
-.spanel{padding:32px 34px;min-height:320px}
+.spanel{padding:30px 34px;min-height:290px}
 .spanel>*{animation:fadein .3s ease both}
 @keyframes fadein{from{opacity:0;transform:translateY(6px)}}
 .spanel h3{font-size:26px;margin-bottom:8px}
@@ -226,7 +231,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
   .site nav a.hire{margin:8px 0 0;text-align:center}
   .grid{grid-template-columns:1fr}
   .job{grid-template-columns:1fr}
-  section{padding:64px 0}
+  section{padding:48px 0}
   .stage{width:min(350px,88%)}.pic{height:410px}.phone{right:-4px;bottom:-20px;width:164px;height:314px}.screen{font-size:8px}.tabs{font-size:7.5px}#code{min-height:92px}.term{min-height:94px}
   .sheet{padding:24px 20px}
   .skillbox{grid-template-columns:1fr}
@@ -366,6 +371,7 @@ document.documentElement.classList.add('js');
 
 /* ───── PROJECTS: edit this list to add or change projects ─────
    cat: live | soon | web | side     st: live | soon | priv     i: icon (emoji)
+   r: screenshot height/width ratio if it isn't the default; sq:1 = square logo instead of round
    ic: logo path, e.g. 'assets/pgti-logo.webp' (replaces the emoji)
    sh: screenshots, e.g. [['pgti-1','alt text'],['pgti-2','alt text']] -> needs assets/pgti-1.webp (640px) and assets/pgti-1-sm.webp (360px)
    l: store links, e.g. [['Google Play','https://...'],['App Store','https://...']] */
@@ -383,6 +389,8 @@ const P=[
  d:'A large golf management app for the Professional Golf Tour of India, connected with DP World Tour data. Players log in to one place for the tournament calendar, draws, live scoring and rankings.',
  b:['Live leaderboards that update in real time','Tournament lists, draws, scorecards and player rankings','Player login with player-specific features','Live scoring over WebSocket','The full tournament flow, from upcoming events to final results'],
  s:['React Native','TypeScript','WebSocket','REST APIs'],
+ ic:'assets/pgti-logo.webp',sq:1,r:1393/640,
+ sh:[['pgti-home','Home screen with the latest news and the Order of Merit player rankings'],['pgti-tournaments','Tournaments screen listing events by month with dates and venues'],['pgti-about','About screen introducing the DP World PGTI'],['pgti-login','Login screen for PGTI members']],
  l:[[GP,'https://play.google.com/store/apps/details?id=com.forcepower.pgtigolf&hl=en_IN'],[AS,'https://apps.apple.com/in/app/pgti/id1635500583']]},
 {cat:'live',st:'live',stt:'Live',i:'📣',n:'CDesk',ln:'Complaint management with two ways to file a complaint.',pf:'Android',
  d:'A complaint app where users sign in and choose how they want to report an issue: write out the full complaint, or take the quick route by searching, selecting the issue and submitting in a few taps.',
@@ -447,19 +455,23 @@ const P=[
 ];
 
 const pg=document.getElementById('pg');
-const ico=p=>p.ic?`<div class="ico logo"><img src="${p.ic}" alt="" width="50" height="50" decoding="async"></div>`:`<div class="ico">${p.i}</div>`;
+const RATIO=1436/640;
+const ico=p=>p.ic?`<div class="ico logo${p.sq?' sq':''}"><img src="${p.ic}" alt="" width="50" height="50" decoding="async"></div>`:`<div class="ico">${p.i}</div>`;
 const media=p=>{if(!p.sh)return'';const pos=['c','l','r'];
-  return `<div class="media" aria-hidden="true"><div class="fan">${p.sh.slice(0,3).map((x,k)=>`<img class="${pos[k]}" src="assets/${x[0]}-sm.webp" alt="" width="360" height="808" loading="lazy" decoding="async">`).join('')}</div><span class="cnt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="1.6"/><path d="M21 15l-5-5L5 21"/></svg>${p.sh.length} ${p.sh.length===1?'screen':'screens'}</span></div>`};
-const gal=p=>p.sh?`<div class="gal"><div class="gtrack" tabindex="0" role="group" aria-label="${p.n} screenshots">${p.sh.map(x=>`<img src="assets/${x[0]}.webp" alt="${x[1]}" width="640" height="1436" loading="lazy" decoding="async">`).join('')}</div><button class="garr gprev" aria-label="Previous screenshot">‹</button><button class="garr gnext" aria-label="Next screenshot">›</button><div class="gdots" aria-hidden="true">${p.sh.map(()=>'<i></i>').join('')}</div></div>`:'';
-const card=(p,i)=>`<article class="proj" tabindex="0" role="button" data-i="${i}" aria-label="${p.n} details">
+  return `<div class="media" aria-hidden="true"><div class="fan">${p.sh.slice(0,3).map((x,k)=>`<img class="${pos[k]}" src="assets/${x[0]}-sm.webp" alt="" width="360" height="${Math.round(360*(p.r||RATIO))}" loading="lazy" decoding="async">`).join('')}</div><span class="cnt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="1.6"/><path d="M21 15l-5-5L5 21"/></svg>${p.sh.length} ${p.sh.length===1?'screen':'screens'}</span></div>`};
+const gal=p=>p.sh?`<div class="gal"><div class="gtrack" tabindex="0" role="group" aria-label="${p.n} screenshots">${p.sh.map(x=>`<img src="assets/${x[0]}.webp" alt="${x[1]}" width="640" height="${Math.round(640*(p.r||RATIO))}" loading="lazy" decoding="async">`).join('')}</div><button class="garr gprev" aria-label="Previous screenshot">‹</button><button class="garr gnext" aria-label="Next screenshot">›</button><div class="gdots" aria-hidden="true">${p.sh.map(()=>'<i></i>').join('')}</div></div>`:'';
+const card=(p,i,solo)=>`<article class="proj${solo?' solo':''}" tabindex="0" role="button" data-i="${i}" aria-label="${p.n} details">
   ${media(p)}<div class="ptop">${ico(p)}<span class="badge ${p.st}">${p.stt}</span></div>
   <h3>${p.n}</h3><p class="ln">${p.ln}</p>
   <div class="tags">${p.s.slice(0,3).map(t=>`<span>${t}</span>`).join('')}</div>
   <div class="foot"><span>${p.pf}</span><b>Details</b></div></article>`;
 function show(f){
   pg.innerHTML=Object.keys(CATS).filter(c=>f==='all'||c===f).map(c=>{
-    const items=P.map((p,i)=>[p,i]).filter(x=>x[0].cat===c);
-    return `<div class="gh"><h3>${CATS[c]}</h3><span>${items.length} ${items.length===1?'project':'projects'}</span></div><div class="grid">${items.map(x=>card(x[0],x[1])).join('')}</div>`}).join('');
+    const items=P.map((p,i)=>[p,i]).filter(x=>x[0].cat===c).sort((a,b)=>!!b[0].sh-!!a[0].sh);
+    const mi=items.filter(x=>x[0].sh).length,solo=new Set();
+    if(mi%2)solo.add(mi-1);
+    if((items.length-mi)%2)solo.add(items.length-1);
+    return `<div class="gh"><h3>${CATS[c]}</h3><span>${items.length} ${items.length===1?'project':'projects'}</span></div><div class="grid">${items.map((x,k)=>card(x[0],x[1],solo.has(k))).join('')}</div>`}).join('');
 }
 show('all');
 document.getElementById('fl').onclick=e=>{const b=e.target.closest('.fb');if(!b)return;
