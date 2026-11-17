@@ -121,6 +121,36 @@ h2{font-size:clamp(30px,4.4vw,46px);font-weight:800;line-height:1.08;margin-bott
 .foot{display:flex;justify-content:space-between;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
 .foot b{font-weight:600;color:var(--teal)}
 
+/* card screenshot preview + logo */
+.ico.logo{background:transparent;border:0;border-radius:50%;box-shadow:0 4px 12px var(--shadow)}
+.ico.logo img{width:100%;height:100%;object-fit:contain;display:block}
+.media{position:relative;height:196px;margin:-24px -24px 20px;overflow:hidden;background:radial-gradient(280px 170px at 50% 0%,var(--tbd),transparent 72%),linear-gradient(180deg,var(--tbg2),var(--tint));border-bottom:1px solid var(--line)}
+.fan{position:absolute;inset:0}
+.fan img{position:absolute;top:26px;left:50%;width:106px;height:auto;border-radius:11%/4.9%;box-shadow:0 12px 26px var(--shadow);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.fan .c{transform:translateX(-50%);z-index:3}
+.fan .l{transform:translateX(-136%) rotate(-7deg);top:42px;z-index:1}
+.fan .r{transform:translateX(36%) rotate(7deg);top:42px;z-index:2}
+.proj:hover .fan .c{transform:translateX(-50%) translateY(-8px)}
+.proj:hover .fan .l{transform:translateX(-158%) rotate(-11deg)}
+.proj:hover .fan .r{transform:translateX(58%) rotate(11deg)}
+.cnt{position:absolute;left:14px;bottom:12px;z-index:4;display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:var(--text);background:var(--panel);border:1px solid var(--line);padding:5px 11px 5px 9px;border-radius:999px;box-shadow:0 4px 12px var(--shadow)}
+.cnt svg{width:14px;height:14px;color:var(--teal)}
+
+/* popup gallery */
+.gal{position:relative;margin:2px 0 22px}
+.gtrack{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 14px 22px;margin:0 -14px;scroll-padding-left:14px;scrollbar-width:none;border-radius:12px}
+.gtrack::-webkit-scrollbar{display:none}
+.gtrack img{flex:none;height:480px;width:auto;border-radius:11%/4.9%;box-shadow:0 6px 14px var(--shadow);scroll-snap-align:start}
+.garr{position:absolute;top:45%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--text);font-size:22px;line-height:1;cursor:pointer;box-shadow:0 6px 16px var(--shadow);transition:opacity .2s,border-color .2s}
+.garr:hover{border-color:var(--teal)}
+.gprev{left:-8px}.gnext{right:-8px}
+.gal.at-start .gprev,.gal.at-end .gnext{opacity:0;pointer-events:none}
+.gal.fit .garr,.gal.fit .gdots{display:none}
+.gdots{display:flex;justify-content:center;gap:6px}
+.gdots i{width:6px;height:6px;border-radius:50%;background:var(--line);transition:width .25s,background .25s}
+.gdots i.on{width:18px;border-radius:4px;background:var(--teal)}
+@media(hover:none){.garr{display:none}}
+@media(max-width:680px){.gtrack img{height:340px}}
 dialog{border:0;background:transparent;color:var(--text);margin:auto;width:min(680px,94vw);max-height:90vh;overflow:visible}
 dialog::backdrop{background:var(--shade)}
 dialog[open]{animation:dlg .22s ease}
@@ -336,6 +366,8 @@ document.documentElement.classList.add('js');
 
 /* ───── PROJECTS: edit this list to add or change projects ─────
    cat: live | soon | web | side     st: live | soon | priv     i: icon (emoji)
+   ic: logo path, e.g. 'assets/pgti-logo.webp' (replaces the emoji)
+   sh: screenshots, e.g. [['pgti-1','alt text'],['pgti-2','alt text']] -> needs assets/pgti-1.webp (640px) and assets/pgti-1-sm.webp (360px)
    l: store links, e.g. [['Google Play','https://...'],['App Store','https://...']] */
 const GP='Google Play',AS='App Store';
 const CATS={live:'Live on stores',soon:'Building and launching soon',web:'Websites',side:'Personal projects'};
@@ -344,6 +376,8 @@ const P=[
  d:'A spiritual wellness and content app that I built end to end, from the first screen to the Android and iOS releases, and handed over to the client. Members stream video and audio, read PDFs and follow a guided breathing exercise, with content unlocked by access level.',
  b:['Video and audio playback, including background play when the screen is off','Inhale and exhale breathing animation with timed guidance','PDF library and downloads stored inside the app, not in the phone gallery','Access-based content, so each member sees only what they have unlocked','Content and data served from the client\'s backend'],
  s:['React Native','TypeScript','Media playback','Animations'],
+ ic:'assets/divine-sparks-logo.webp',
+ sh:[['ds-home','Home screen with an upcoming appointment, event cards and feature tiles'],['ds-insights','Insights screen with Divine Mantras and spiritual insight collections'],['ds-appointment','Book an Appointment screen with healing and sound healing sessions']],
  l:[[GP,'https://play.google.com/store/apps/details?id=com.app.thedivinesparks&hl=en_IN'],[AS,'https://apps.apple.com/in/app/the-divine-sparks/id6473799742']]},
 {cat:'live',st:'live',stt:'Live',i:'⛳',n:'PGTI',ln:'Tournament management and live scoring for professional golf.',pf:'Android · iOS',
  d:'A large golf management app for the Professional Golf Tour of India, connected with DP World Tour data. Players log in to one place for the tournament calendar, draws, live scoring and rankings.',
@@ -413,8 +447,12 @@ const P=[
 ];
 
 const pg=document.getElementById('pg');
+const ico=p=>p.ic?`<div class="ico logo"><img src="${p.ic}" alt="" width="50" height="50" decoding="async"></div>`:`<div class="ico">${p.i}</div>`;
+const media=p=>{if(!p.sh)return'';const pos=['c','l','r'];
+  return `<div class="media" aria-hidden="true"><div class="fan">${p.sh.slice(0,3).map((x,k)=>`<img class="${pos[k]}" src="assets/${x[0]}-sm.webp" alt="" width="360" height="808" loading="lazy" decoding="async">`).join('')}</div><span class="cnt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="1.6"/><path d="M21 15l-5-5L5 21"/></svg>${p.sh.length} ${p.sh.length===1?'screen':'screens'}</span></div>`};
+const gal=p=>p.sh?`<div class="gal"><div class="gtrack" tabindex="0" role="group" aria-label="${p.n} screenshots">${p.sh.map(x=>`<img src="assets/${x[0]}.webp" alt="${x[1]}" width="640" height="1436" loading="lazy" decoding="async">`).join('')}</div><button class="garr gprev" aria-label="Previous screenshot">‹</button><button class="garr gnext" aria-label="Next screenshot">›</button><div class="gdots" aria-hidden="true">${p.sh.map(()=>'<i></i>').join('')}</div></div>`:'';
 const card=(p,i)=>`<article class="proj" tabindex="0" role="button" data-i="${i}" aria-label="${p.n} details">
-  <div class="ptop"><div class="ico">${p.i}</div><span class="badge ${p.st}">${p.stt}</span></div>
+  ${media(p)}<div class="ptop">${ico(p)}<span class="badge ${p.st}">${p.stt}</span></div>
   <h3>${p.n}</h3><p class="ln">${p.ln}</p>
   <div class="tags">${p.s.slice(0,3).map(t=>`<span>${t}</span>`).join('')}</div>
   <div class="foot"><span>${p.pf}</span><b>Details</b></div></article>`;
@@ -431,11 +469,23 @@ const dlg=document.getElementById('dlg'),sheet=document.getElementById('sheet');
 let last;
 function openP(i){const p=P[i];last=document.activeElement;
   sheet.innerHTML=`<button class="x" aria-label="Close" onclick="dlg.close()">✕</button>
-  <div class="hd"><div class="ico">${p.i}</div><div><h3 id="dtitle">${p.n}</h3><span class="badge ${p.st}">${p.stt}</span> <span class="badge" style="margin-left:10px">${p.pf}</span></div></div>
-  <p>${p.d}</p><h4>What I built</h4><ul>${p.b.map(x=>`<li>${x}</li>`).join('')}</ul>
+  <div class="hd">${ico(p)}<div><h3 id="dtitle">${p.n}</h3><span class="badge ${p.st}">${p.stt}</span> <span class="badge" style="margin-left:10px">${p.pf}</span></div></div>
+  ${gal(p)}<p>${p.d}</p><h4>What I built</h4><ul>${p.b.map(x=>`<li>${x}</li>`).join('')}</ul>
   <h4>Tech stack</h4><div class="tags">${p.s.map(t=>`<span>${t}</span>`).join('')}</div>
   <div class="lk">${p.l.length?p.l.map(l=>`<a href="${l[1]}" target="_blank" rel="noopener">${l[0]} ↗</a>`).join(''):'<span class="none">Not on the stores yet. Links will be added when it launches.</span>'}</div>`;
-  document.body.style.overflow='hidden';dlg.showModal();}
+  document.body.style.overflow='hidden';dlg.showModal();initGal();}
+function initGal(){const g=sheet.querySelector('.gal');if(!g)return;
+  const t=g.querySelector('.gtrack'),dots=g.querySelectorAll('.gdots i'),step=()=>t.children[0].getBoundingClientRect().width+14;
+  g.querySelector('.gprev').onclick=()=>t.scrollBy({left:-step(),behavior:'smooth'});
+  g.querySelector('.gnext').onclick=()=>t.scrollBy({left:step(),behavior:'smooth'});
+  let tk=false;
+  const upd=()=>{g.classList.toggle('fit',t.scrollWidth<=t.clientWidth+2);
+    const i=Math.min(Math.round(t.scrollLeft/step()),dots.length-1);
+    dots.forEach((d,j)=>d.classList.toggle('on',j===i));
+    g.classList.toggle('at-start',t.scrollLeft<4);g.classList.toggle('at-end',t.scrollLeft+t.clientWidth>=t.scrollWidth-4);tk=false};
+  t.addEventListener('scroll',()=>{if(!tk){tk=true;requestAnimationFrame(upd)}},{passive:true});
+  t.querySelectorAll('img').forEach(im=>im.addEventListener('load',upd));
+  upd()}
 pg.addEventListener('click',e=>{const c=e.target.closest('.proj');if(c)openP(+c.dataset.i)});
 pg.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const c=e.target.closest('.proj');if(c){e.preventDefault();openP(+c.dataset.i)}}});
 dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
