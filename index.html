@@ -162,6 +162,7 @@ h2{font-size:clamp(30px,4.4vw,46px);font-weight:800;line-height:1.08;margin-bott
 .gprev{left:-8px}.gnext{right:-8px}
 .gal.at-start .gprev,.gal.at-end .gnext{opacity:0;pointer-events:none}
 .gal.fit .garr,.gal.fit .gdots{display:none}
+.media.ps .fan img,.gal.ps .gtrack img{border-radius:5%/2.9%}
 .gal.fit .gtrack{padding-bottom:6px}.gal.fit{margin-bottom:16px}
 .gdots{display:flex;justify-content:center;gap:6px}
 .gdots i{width:6px;height:6px;border-radius:50%;background:var(--line);transition:width .25s,background .25s}
@@ -428,10 +429,12 @@ const P=[
  sh:[LQ.feed,LQ.seats,LQ.book,LQ.login],
  gr:[{n:'Student app',ic:'assets/lq-student-logo.webp',sh:[LQ.feed,LQ.book]},{n:'Business app',ic:'assets/lq-business-logo.webp',sh:[LQ.login,LQ.seats]}],
  l:[['Student app','https://play.google.com/store/apps/details?id=com.app.qiklibrary&hl=en_IN'],['Business app','https://play.google.com/store/apps/details?id=com.app.qiklibrarybusiness&hl=en_IN']]},
-{cat:'live',st:'live',stt:'Live',i:'🎓',n:'TenSquare',ln:'Study material, papers and mock tests for class 10 and 12 students.',pf:'Android',
- d:'An exam-preparation app for class 10 and 12 students. Study material, previous papers, mock tests and video lessons sit in one place, with access controls so content reaches the right students.',
- b:['Study material and PDF delivery','Papers and mock tests','Recorded video classes','Secure, well-organised course access'],
+{cat:'live',st:'live',stt:'Live',i:'🎓',n:'TenSquare',ln:'Papers, notes, practice and revision videos for class 10 and 12 students.',pf:'Android',
+ d:'An exam-preparation app for class 10 and 12 students. It brings solved previous year papers, revision notes, practice questions with step-by-step solutions, mock tests and quick revision videos in Hindi and English into one place, with access controls so content reaches the right students.',
+ b:['Solved previous year papers','Revision notes to download once and read anytime','Practice sessions with detailed step-by-step solutions','Mock tests for exam preparation','Quick revision videos in Hindi and English','Secure, well-organised course access'],
  s:['Kotlin','Firebase','PDF viewer'],
+ ic:'assets/ts-logo.webp',sq:1,ps:1,r:1844/1080,
+ sh:[['ts-papers','Previous year papers with solved question papers'],['ts-notes','Revision notes that can be downloaded once and read anytime'],['ts-solution','Practice session with a detailed step-by-step solution'],['ts-videos','Quick revision videos in Hindi and English']],
  l:[[GP,'https://play.google.com/store/apps/details?id=com.app.tensquare&hl=en_IN']]},
 {cat:'soon',st:'soon',stt:'Launching soon',i:'🚖',n:'ALO',ln:'Ride-hailing for customers and drivers, in the style of Rapido and Uber.',pf:'Android · iOS',
  d:'A ride-hailing platform launching first in Maharashtra, with two apps: one for customers and one for driver partners. Both sides see each other on the map in real time, and every step of a ride is managed in the apps.',
@@ -484,9 +487,9 @@ const pg=document.getElementById('pg');
 const RATIO=1436/640;
 const ico=p=>p.ic?`<div class="ico logo${p.sq?' sq':''}"><img src="${p.ic}" alt="" width="50" height="50" decoding="async"></div>`:`<div class="ico">${p.i}</div>`;
 const media=p=>{if(!p.sh)return'';const pos=['c','l','r'];
-  return `<div class="media" aria-hidden="true"><div class="fan">${p.sh.slice(0,3).map((x,k)=>`<img class="${pos[k]}" src="assets/${x[0]}-sm.webp" alt="" width="360" height="${Math.round(360*(x[2]||p.r||RATIO))}" loading="lazy" decoding="async">`).join('')}</div><span class="cnt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="1.6"/><path d="M21 15l-5-5L5 21"/></svg>${p.sh.length} ${p.sh.length===1?'screen':'screens'}</span></div>`};
+  return `<div class="media${p.ps?' ps':''}" aria-hidden="true"><div class="fan">${p.sh.slice(0,3).map((x,k)=>`<img class="${pos[k]}" src="assets/${x[0]}-sm.webp" alt="" width="360" height="${Math.round(360*(x[2]||p.r||RATIO))}" loading="lazy" decoding="async">`).join('')}</div><span class="cnt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="1.6"/><path d="M21 15l-5-5L5 21"/></svg>${p.sh.length} ${p.sh.length===1?'screen':'screens'}</span></div>`};
 const shot=(p,x)=>`<img src="assets/${x[0]}.webp" alt="${x[1]}" width="640" height="${Math.round(640*(x[2]||p.r||RATIO))}" loading="lazy" decoding="async">`;
-const galOne=(p,sh,hid)=>`<div class="gal"${hid?' hidden':''}><div class="gtrack" tabindex="0" role="group" aria-label="${p.n} screenshots">${sh.map(x=>shot(p,x)).join('')}</div><button class="garr gprev" aria-label="Previous screenshot">‹</button><button class="garr gnext" aria-label="Next screenshot">›</button><div class="gdots" aria-hidden="true">${sh.map(()=>'<i></i>').join('')}</div></div>`;
+const galOne=(p,sh,hid)=>`<div class="gal${p.ps?' ps':''}"${hid?' hidden':''}><div class="gtrack" tabindex="0" role="group" aria-label="${p.n} screenshots">${sh.map(x=>shot(p,x)).join('')}</div><button class="garr gprev" aria-label="Previous screenshot">‹</button><button class="garr gnext" aria-label="Next screenshot">›</button><div class="gdots" aria-hidden="true">${sh.map(()=>'<i></i>').join('')}</div></div>`;
 const gal=p=>p.gr?`<div class="gtabs" role="tablist">${p.gr.map((g,k)=>`<button class="gtab${k?'':' on'}" role="tab" aria-selected="${!k}" data-k="${k}"><img src="${g.ic}" alt="" width="22" height="22">${g.n}</button>`).join('')}</div>${p.gr.map((g,k)=>galOne(p,g.sh,k)).join('')}`:p.sh?galOne(p,p.sh,0):'';
 const card=(p,i,solo)=>`<article class="proj${solo?' solo':''}${solo&&p.sh?' wide':''}" tabindex="0" role="button" data-i="${i}" aria-label="${p.n} details">
   ${media(p)}<div class="pbody"><div class="ptop">${ico(p)}<span class="badge ${p.st}">${p.stt}</span></div>
