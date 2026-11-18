@@ -148,6 +148,12 @@ h2{font-size:clamp(30px,4.4vw,46px);font-weight:800;line-height:1.08;margin-bott
 
 /* popup gallery */
 .gal{position:relative;margin:2px 0 22px}
+.gal[hidden]{display:none}
+.gtabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+.gtab{display:inline-flex;align-items:center;gap:8px;font:600 13.5px 'DM Sans',sans-serif;padding:6px 14px 6px 7px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--muted);cursor:pointer;transition:color .2s,border-color .2s,background .2s}
+.gtab img{width:22px;height:22px;border-radius:7px;border:1px solid var(--line)}
+.gtab:hover{color:var(--text)}
+.gtab.on{color:var(--text);border-color:var(--tbd2);background:var(--tbg2)}
 .gtrack{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 14px 22px;margin:0 -14px;scroll-padding-left:14px;scrollbar-width:none;border-radius:12px}
 .gtrack::-webkit-scrollbar{display:none}
 .gtrack img{flex:none;height:480px;width:auto;border-radius:11%/4.9%;box-shadow:0 6px 14px var(--shadow);scroll-snap-align:start}
@@ -156,6 +162,7 @@ h2{font-size:clamp(30px,4.4vw,46px);font-weight:800;line-height:1.08;margin-bott
 .gprev{left:-8px}.gnext{right:-8px}
 .gal.at-start .gprev,.gal.at-end .gnext{opacity:0;pointer-events:none}
 .gal.fit .garr,.gal.fit .gdots{display:none}
+.gal.fit .gtrack{padding-bottom:6px}.gal.fit{margin-bottom:16px}
 .gdots{display:flex;justify-content:center;gap:6px}
 .gdots i{width:6px;height:6px;border-radius:50%;background:var(--line);transition:width .25s,background .25s}
 .gdots i.on{width:18px;border-radius:4px;background:var(--teal)}
@@ -386,6 +393,11 @@ document.documentElement.classList.add('js');
    l: store links, e.g. [['Google Play','https://...'],['App Store','https://...']] */
 const GP='Google Play',AS='App Store';
 const CATS={live:'Live on stores',soon:'Building and launching soon',web:'Websites',side:'Personal projects'};
+const LQ={
+ feed:['lq-feed','Student feed with quizzes and polls from coaching centres',1.8958],
+ book:['lq-book','Library page with facilities and a timing and price table for booking a seat',2.0667],
+ login:['lq-login','Business login with a choice between library owner and coaching owner',2.0979],
+ seats:['lq-seats','Seat grid with a booking request to accept or reject',1.8458]};
 const P=[
 {cat:'live',st:'live',stt:'Live',i:'🧘',n:'The Divine Sparks',ln:'A spiritual wellness app with video, audio, PDFs and guided breathing.',pf:'Android · iOS',
  d:'A spiritual wellness and content app that I built end to end, from the first screen to the Android and iOS releases, and handed over to the client. Members stream video and audio, read PDFs and follow a guided breathing exercise, with content unlocked by access level.',
@@ -412,6 +424,9 @@ const P=[
  d:'Two apps that work together. Students find a library and book a seat for a chosen time from home, and can ask questions in a community where teachers answer. Library owners get their own app to manage seats and bookings, and to fill empty seats through the platform.',
  b:['Seat reservation by date, time and seat number','Booking approval workflow for owners','Student community with answers from teachers','Email, Facebook and phone sign-in','Firebase ML Kit image moderation, polls and Q&A'],
  s:['Kotlin','Firebase','MVVM','ML Kit'],
+ ic:'assets/lq-business-logo.webp',sq:1,
+ sh:[LQ.feed,LQ.seats,LQ.book,LQ.login],
+ gr:[{n:'Student app',ic:'assets/lq-student-logo.webp',sh:[LQ.feed,LQ.book]},{n:'Business app',ic:'assets/lq-business-logo.webp',sh:[LQ.login,LQ.seats]}],
  l:[['Student app','https://play.google.com/store/apps/details?id=com.app.qiklibrary&hl=en_IN'],['Business app','https://play.google.com/store/apps/details?id=com.app.qiklibrarybusiness&hl=en_IN']]},
 {cat:'live',st:'live',stt:'Live',i:'🎓',n:'TenSquare',ln:'Study material, papers and mock tests for class 10 and 12 students.',pf:'Android',
  d:'An exam-preparation app for class 10 and 12 students. Study material, previous papers, mock tests and video lessons sit in one place, with access controls so content reaches the right students.',
@@ -469,8 +484,10 @@ const pg=document.getElementById('pg');
 const RATIO=1436/640;
 const ico=p=>p.ic?`<div class="ico logo${p.sq?' sq':''}"><img src="${p.ic}" alt="" width="50" height="50" decoding="async"></div>`:`<div class="ico">${p.i}</div>`;
 const media=p=>{if(!p.sh)return'';const pos=['c','l','r'];
-  return `<div class="media" aria-hidden="true"><div class="fan">${p.sh.slice(0,3).map((x,k)=>`<img class="${pos[k]}" src="assets/${x[0]}-sm.webp" alt="" width="360" height="${Math.round(360*(p.r||RATIO))}" loading="lazy" decoding="async">`).join('')}</div><span class="cnt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="1.6"/><path d="M21 15l-5-5L5 21"/></svg>${p.sh.length} ${p.sh.length===1?'screen':'screens'}</span></div>`};
-const gal=p=>p.sh?`<div class="gal"><div class="gtrack" tabindex="0" role="group" aria-label="${p.n} screenshots">${p.sh.map(x=>`<img src="assets/${x[0]}.webp" alt="${x[1]}" width="640" height="${Math.round(640*(p.r||RATIO))}" loading="lazy" decoding="async">`).join('')}</div><button class="garr gprev" aria-label="Previous screenshot">‹</button><button class="garr gnext" aria-label="Next screenshot">›</button><div class="gdots" aria-hidden="true">${p.sh.map(()=>'<i></i>').join('')}</div></div>`:'';
+  return `<div class="media" aria-hidden="true"><div class="fan">${p.sh.slice(0,3).map((x,k)=>`<img class="${pos[k]}" src="assets/${x[0]}-sm.webp" alt="" width="360" height="${Math.round(360*(x[2]||p.r||RATIO))}" loading="lazy" decoding="async">`).join('')}</div><span class="cnt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="1.6"/><path d="M21 15l-5-5L5 21"/></svg>${p.sh.length} ${p.sh.length===1?'screen':'screens'}</span></div>`};
+const shot=(p,x)=>`<img src="assets/${x[0]}.webp" alt="${x[1]}" width="640" height="${Math.round(640*(x[2]||p.r||RATIO))}" loading="lazy" decoding="async">`;
+const galOne=(p,sh,hid)=>`<div class="gal"${hid?' hidden':''}><div class="gtrack" tabindex="0" role="group" aria-label="${p.n} screenshots">${sh.map(x=>shot(p,x)).join('')}</div><button class="garr gprev" aria-label="Previous screenshot">‹</button><button class="garr gnext" aria-label="Next screenshot">›</button><div class="gdots" aria-hidden="true">${sh.map(()=>'<i></i>').join('')}</div></div>`;
+const gal=p=>p.gr?`<div class="gtabs" role="tablist">${p.gr.map((g,k)=>`<button class="gtab${k?'':' on'}" role="tab" aria-selected="${!k}" data-k="${k}"><img src="${g.ic}" alt="" width="22" height="22">${g.n}</button>`).join('')}</div>${p.gr.map((g,k)=>galOne(p,g.sh,k)).join('')}`:p.sh?galOne(p,p.sh,0):'';
 const card=(p,i,solo)=>`<article class="proj${solo?' solo':''}${solo&&p.sh?' wide':''}" tabindex="0" role="button" data-i="${i}" aria-label="${p.n} details">
   ${media(p)}<div class="pbody"><div class="ptop">${ico(p)}<span class="badge ${p.st}">${p.stt}</span></div>
   <h3>${p.n}</h3><p class="ln">${p.ln}</p>
@@ -497,18 +514,22 @@ function openP(i){const p=P[i];last=document.activeElement;
   <h4>Tech stack</h4><div class="tags">${p.s.map(t=>`<span>${t}</span>`).join('')}</div>
   <div class="lk">${p.l.length?p.l.map(l=>`<a href="${l[1]}" target="_blank" rel="noopener">${l[0]} ↗</a>`).join(''):'<span class="none">Not on the stores yet. Links will be added when it launches.</span>'}</div>`;
   document.body.style.overflow='hidden';dlg.showModal();initGal();}
-function initGal(){const g=sheet.querySelector('.gal');if(!g)return;
-  const t=g.querySelector('.gtrack'),dots=g.querySelectorAll('.gdots i'),step=()=>t.children[0].getBoundingClientRect().width+14;
-  g.querySelector('.gprev').onclick=()=>t.scrollBy({left:-step(),behavior:'smooth'});
-  g.querySelector('.gnext').onclick=()=>t.scrollBy({left:step(),behavior:'smooth'});
-  let tk=false;
-  const upd=()=>{g.classList.toggle('fit',t.scrollWidth<=t.clientWidth+2);
-    const i=Math.min(Math.round(t.scrollLeft/step()),dots.length-1);
-    dots.forEach((d,j)=>d.classList.toggle('on',j===i));
-    g.classList.toggle('at-start',t.scrollLeft<4);g.classList.toggle('at-end',t.scrollLeft+t.clientWidth>=t.scrollWidth-4);tk=false};
-  t.addEventListener('scroll',()=>{if(!tk){tk=true;requestAnimationFrame(upd)}},{passive:true});
-  t.querySelectorAll('img').forEach(im=>im.addEventListener('load',upd));
-  upd()}
+function initGal(){
+  const gals=[...sheet.querySelectorAll('.gal')];
+  gals.forEach(g=>{const t=g.querySelector('.gtrack'),dots=g.querySelectorAll('.gdots i'),step=()=>t.children[0].getBoundingClientRect().width+14;
+    g.querySelector('.gprev').onclick=()=>t.scrollBy({left:-step(),behavior:'smooth'});
+    g.querySelector('.gnext').onclick=()=>t.scrollBy({left:step(),behavior:'smooth'});
+    let tk=false;
+    const upd=()=>{g.classList.toggle('fit',t.scrollWidth<=t.clientWidth+2);
+      const i=Math.min(Math.round(t.scrollLeft/(step()||1)),dots.length-1);
+      dots.forEach((d,j)=>d.classList.toggle('on',j===i));
+      g.classList.toggle('at-start',t.scrollLeft<4);g.classList.toggle('at-end',t.scrollLeft+t.clientWidth>=t.scrollWidth-4);tk=false};
+    t.addEventListener('scroll',()=>{if(!tk){tk=true;requestAnimationFrame(upd)}},{passive:true});
+    t.querySelectorAll('img').forEach(im=>im.addEventListener('load',upd));
+    g._upd=upd;upd()});
+  sheet.querySelectorAll('.gtab').forEach(b=>b.onclick=()=>{
+    sheet.querySelectorAll('.gtab').forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-selected',x===b)});
+    gals.forEach((g,k)=>{g.hidden=k!==+b.dataset.k;if(!g.hidden)g._upd()})})}
 pg.addEventListener('click',e=>{const c=e.target.closest('.proj');if(c)openP(+c.dataset.i)});
 pg.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const c=e.target.closest('.proj');if(c){e.preventDefault();openP(+c.dataset.i)}}});
 dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
