@@ -294,7 +294,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
         <a class="btn main" href="#work">See my work</a>
         <a class="btn" href="Shivanjal_Resume.pdf" download>Download resume</a>
       </div>
-      <div class="facts"><div><b>3+</b>years of experience</div><div><b>5</b>apps live on the stores</div><div><b>16</b>projects built or in progress</div></div>
+      <div class="facts"><div><b>3+</b>years of experience</div><div><b>6</b>apps live on the stores</div><div><b>16</b>projects built or in progress</div></div>
     </div>
 
     <div class="stage">
@@ -424,7 +424,7 @@ const P=[
 {cat:'live',st:'live',stt:'Live',i:'📣',n:'CDesk',ln:'A citizen complaint desk for reporting civic issues to the right department.',pf:'Android',
  d:'A citizen complaint app for civic issues. After verifying their mobile number with an OTP, users choose how to report: a guided flow where they pick the department and then the exact category, or a search where they type the problem and the app finds the right category. Every complaint can be tracked with its complaint number.',
  b:['Mobile number verification with a one-time code','Guided report: choose the department, then the exact category from a list','Search and report: type the problem and get the matching category','Track a complaint by entering its complaint number','Published on the Google Play Store'],
- s:['Kotlin','Firebase','REST APIs'],
+ s:['React Native','TypeScript','REST APIs'],
  ic:'assets/cdesk-logo.webp',sq:1,r:1345/640,
  sh:[['cdesk-departments','Step 1 screen asking which department handles the issue, with department tiles'],['cdesk-login','Mobile number verification screen with a Send OTP button and a Track Your Complaint option'],['cdesk-mode','OTP entry and a choice between Guided Report and Search and Report'],['cdesk-category','Step 2 screen listing the exact complaint categories under a department']],
  l:[[GP,'https://play.google.com/store/apps/details?id=com.algosoft.cdesk&hl=en_IN']]},
@@ -592,11 +592,11 @@ nv.addEventListener('click',e=>{if(e.target.tagName==='A'){nv.classList.remove('
 
 /* skills */
 const SK=[
-{k:'React Native',d:'My main tool for apps that need to ship to both stores from a single codebase.',t:['TypeScript','JavaScript','Redux','Context API','React Navigation','Native Modules','CodePush','Expo'],u:['The Divine Sparks','PGTI','ALO','Unheard']},
-{k:'Kotlin and Java',d:'Native Android for apps that depend on the device: Bluetooth hardware, background work and offline data.',t:['Kotlin','Java','Jetpack Compose','XML layouts','MVVM','Coroutines','Hilt','WorkManager','DataStore'],u:['LibQuik','TenSquare','Team Tracker','ChatNova','Jaankari','KharchaPaani']},
+{k:'React Native',d:'My main tool for apps that need to ship to both stores from a single codebase.',t:['TypeScript','JavaScript','Redux','Context API','React Hooks','React Navigation','Native Modules','CodePush','Expo'],u:['The Divine Sparks','PGTI','CDesk','ALO','Unheard']},
+{k:'Kotlin and Java',d:'Native Android for apps that depend on the device: Bluetooth hardware, background work and offline data.',t:['Kotlin','Java','Jetpack Compose','XML layouts','MVVM','Coroutines','LiveData','Hilt','WorkManager','DataStore'],u:['LibQuik','TenSquare','Team Tracker','ChatNova','Jaankari','KharchaPaani']},
 {k:'Backend and data',d:'Getting data into the app reliably, whether live or offline.',t:['Firebase','REST APIs','Retrofit','WebSocket','Room','Realm','AsyncStorage'],u:['PGTI live scoring','LibQuik','Jaankari','KharchaPaani']},
 {k:'Integrations',d:'Hardware and third-party services my apps connect to.',t:['Google Maps','BLE / RFID','Bluetooth','ML Kit','ZegoCloud','Push notifications'],u:['ALO','Team Tracker','LibQuik','ChatNova']},
-{k:'Web and release',d:'Some React.js and Node.js on the web side, plus the Play Store and App Store work that gets an app live.',t:['React.js','Node.js','Play Store','App Store','Git'],u:['RoadCarnet','GymBym','5 apps live on the stores']}];
+{k:'Web and release',d:'Some React.js and Node.js on the web side, plus the Play Store and App Store work that gets an app live.',t:['React.js','Node.js','Play Store','App Store','Git'],u:['RoadCarnet','GymBym','6 apps live on the stores']}];
 const st=document.getElementById('stabs'),sp=document.getElementById('spanel');
 st.innerHTML=SK.map((g,i)=>`<button class="stab" role="tab" id="st${i}" aria-selected="false" data-i="${i}">${g.k}<small>${g.t.length}</small></button>`).join('');
 function pick(i){const g=SK[i];
